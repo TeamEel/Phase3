@@ -1,0 +1,100 @@
+<class-diagram version="1.0.11" icons="true" always-add-relationships="false" generalizations="true" realizations="true" 
+  associations="true" dependencies="false" nesting-relationships="true">  
+  <package id="1" corner="BOTTOM_RIGHT" language="java" name="icarus.commandfactory" project="ICARUS" 
+    file="/ICARUS/src/icarus/commandfactory" binary="false">    
+    <position height="-1" width="-1" x="180" y="67"/>    
+    <display autosize="true" stereotype="true"/>  
+  </package>  
+  <package id="2" corner="BOTTOM_RIGHT" language="java" name="icarus.operatorsoftware" project="ICARUS" 
+    file="/ICARUS/src/icarus/operatorsoftware" binary="false">    
+    <position height="-1" width="-1" x="99" y="319"/>    
+    <display autosize="true" stereotype="true"/>  
+  </package>  
+  <package id="3" corner="BOTTOM_RIGHT" language="java" name="icarus.parser" project="ICARUS" 
+    file="/ICARUS/src/icarus/parser" binary="false">    
+    <position height="-1" width="-1" x="469" y="67"/>    
+    <display autosize="true" stereotype="true"/>  
+  </package>  
+  <package id="4" corner="BOTTOM_RIGHT" language="java" name="icarus.exceptions" project="ICARUS" 
+    file="/ICARUS/src/icarus/exceptions" binary="false">    
+    <position height="-1" width="-1" x="583" y="319"/>    
+    <display autosize="true" stereotype="true"/>  
+  </package>  
+  <package id="5" corner="BOTTOM_RIGHT" language="java" name="icarus.parser.test" project="ICARUS" 
+    file="/ICARUS/src/icarus/parser/test" binary="false">    
+    <position height="-1" width="-1" x="412" y="319"/>    
+    <display autosize="true" stereotype="true"/>  
+  </package>  
+  <package id="6" corner="BOTTOM_RIGHT" language="java" name="icarus.util" project="ICARUS" 
+    file="/ICARUS/src/icarus/util" binary="false">    
+    <position height="-1" width="-1" x="252" y="319"/>    
+    <display autosize="true" stereotype="true"/>  
+  </package>  
+  <package id="7" corner="BOTTOM_RIGHT" language="java" name="icarus.reactor.test" project="ICARUS" 
+    file="/ICARUS/test/icarus/reactor/test" binary="false">    
+    <position height="-1" width="-1" x="656" y="222"/>    
+    <display autosize="true" stereotype="true"/>  
+  </package>  
+  <dependency id="8">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="9">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="10">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="11">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="12">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="1"/>  
+  </dependency>  
+  <dependency id="13">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <dependency id="14">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="15">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="16">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="17">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="6"/>  
+  </dependency>  
+  <dependency id="18">    
+    <end type="SOURCE" refId="5"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="19">    
+    <end type="SOURCE" refId="1"/>    
+    <end type="TARGET" refId="3"/>  
+  </dependency>  
+  <dependency id="20">    
+    <end type="SOURCE" refId="3"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <dependency id="21">    
+    <end type="SOURCE" refId="7"/>    
+    <end type="TARGET" refId="4"/>  
+  </dependency>  
+  <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    visibility="true">    
+    <attributes public="true" package="true" protected="true" private="false"/>    
+    <operations public="true" package="true" protected="true" private="true"/>  
+  </classifier-display>  
+  <association-display labels="true" multiplicity="true"/>
+</class-diagram>

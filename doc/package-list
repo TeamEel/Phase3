@@ -1,0 +1,12 @@
+icarus.commandfactory
+icarus.commandfactory.test
+icarus.exceptions
+icarus.operatorsoftware
+icarus.operatorsoftware.test
+icarus.parser
+icarus.parser.test
+icarus.reactor
+icarus.reactor.test
+icarus.usecases.test
+icarus.util
+icarus.util.test
