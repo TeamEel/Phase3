@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+    <action>
+        <actionName>CUSTOM-Build Coverage Report</actionName>
+        <displayName>Build Coverage Report</displayName>
+        <goals>
+            <goal>cobertura:cobertura</goal>
+        </goals>
+    </action>
+    <action>
+        <actionName>CUSTOM-Generate JavaNCSS Report</actionName>
+        <displayName>Generate JavaNCSS Report</displayName>
+        <goals>
+            <goal>javancss:report</goal>
+        </goals>
+    </action>
+</actions>
