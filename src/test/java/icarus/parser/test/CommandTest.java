@@ -46,7 +46,6 @@ public class CommandTest {
         assertFalse(command.isUnknown());
         command = new Command(CommandWord.TURNON, null, null);
         assertFalse(command.isUnknown());
-
     }
 
     @Test

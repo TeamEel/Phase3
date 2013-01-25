@@ -1,10 +1,8 @@
 package icarus.reactor.test;
 
-import static org.junit.Assert.*;
 import icarus.reactor.Generator;
 import icarus.reactor.Turbine;
-
-import org.junit.Assume;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class GeneratorTest {
@@ -17,6 +15,5 @@ public class GeneratorTest {
         tb.calculateRPM(0);
         gn.calculatePower();
         assertEquals(gn.getPower(), 0);
-
     }
 }

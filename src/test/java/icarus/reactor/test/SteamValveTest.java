@@ -1,16 +1,13 @@
 package icarus.reactor.test;
 
-import static org.junit.Assert.*;
 import icarus.exceptions.AlreadyAtStateException;
-import icarus.exceptions.InvalidValveException;
-import icarus.exceptions.NoFixNeededException;
 import icarus.reactor.Condenser;
 import icarus.reactor.CondenserPump;
 import icarus.reactor.Reactor;
 import icarus.reactor.SteamValve;
 import icarus.reactor.Turbine;
 import icarus.reactor.WaterPump;
-
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class SteamValveTest {
@@ -44,6 +41,5 @@ public class SteamValveTest {
         steamValve.equalise();
         assertEquals(condenser.getSteamLevel(), 455, 0.001);
         assertEquals(reactor.getSteamLevel(), 145, 0.001);
-
     }
 }

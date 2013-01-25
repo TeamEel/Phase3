@@ -1,14 +1,12 @@
 package icarus.reactor.test;
 
-import static org.junit.Assert.*;
 import icarus.exceptions.AlreadyAtStateException;
-import icarus.exceptions.ComponentFailedException;
 import icarus.exceptions.NoFixNeededException;
 import icarus.reactor.Condenser;
 import icarus.reactor.CondenserPump;
 import icarus.reactor.Reactor;
 import icarus.reactor.WaterPump;
-
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class WaterPumpTest {

@@ -1,11 +1,9 @@
 package icarus.reactor.test;
 
-import static org.junit.Assert.*;
 import icarus.exceptions.AlreadyAtStateException;
-import icarus.exceptions.ComponentFailedException;
 import icarus.exceptions.NoFixNeededException;
 import icarus.reactor.CondenserPump;
-
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CondenserPumpTest {
@@ -14,7 +12,6 @@ public class CondenserPumpTest {
 
     @Test
     public void testCheckFail() {
-
         assertFalse(cp.checkFail());
     }
 

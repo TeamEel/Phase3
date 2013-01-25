@@ -1,9 +1,8 @@
 package icarus.reactor.test;
 
-import static org.junit.Assert.*;
 import icarus.exceptions.NoFixNeededException;
 import icarus.reactor.Turbine;
-
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class TurbineTest {

@@ -1,10 +1,5 @@
 package icarus.commandfactory.test;
 
-import static org.junit.Assert.*;
-
-import java.io.File;
-import java.io.FileNotFoundException;
-
 import icarus.commandfactory.CommandFactory;
 import icarus.exceptions.AlreadyAtStateException;
 import icarus.exceptions.ComponentFailedException;
@@ -17,11 +12,9 @@ import icarus.exceptions.MaximumRodsException;
 import icarus.exceptions.MinimumRodsException;
 import icarus.exceptions.NoFixNeededException;
 import icarus.operatorsoftware.Component;
-import icarus.operatorsoftware.OperatorSoftware;
-import icarus.operatorsoftware.Player;
-import icarus.parser.CommandWord;
 import icarus.parser.CommandWords;
-
+import java.io.File;
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CommandFactoryTest {
@@ -52,25 +45,21 @@ public class CommandFactoryTest {
     @Test(expected = InvalidPumpException.class)
     public void testTurnoffInvalidInput() throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
         cf.turnOff(-4);
-
     }
 
     @Test
     public void testTurnoffValidInput() throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
         cf.turnOff(2);
-
     }
 
     @Test(expected = InvalidPumpException.class)
     public void testTurnonInvalidInput() throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
         cf.turnOn(-4);
-
     }
 
     @Test(expected = AlreadyAtStateException.class)
     public void testTurnonValidInput() throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
         cf.turnOn(2);
-
     }
 
     @Test(expected = InvalidRodsException.class)

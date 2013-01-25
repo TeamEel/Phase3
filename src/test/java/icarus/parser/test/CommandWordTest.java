@@ -1,8 +1,7 @@
 package icarus.parser.test;
 
-import static org.junit.Assert.*;
 import icarus.parser.CommandWord;
-
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CommandWordTest {
@@ -20,6 +19,5 @@ public class CommandWordTest {
         assertEquals("Quit", "quit", CommandWord.QUIT.toString());
         assertEquals("Help", "help", CommandWord.HELP.toString());
         assertEquals("Fix", "fix", CommandWord.FIX.toString());
-
     }
 }

@@ -1,8 +1,7 @@
 package icarus.operatorsoftware.test;
 
-import static org.junit.Assert.*;
 import icarus.operatorsoftware.Component;
-
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class ComponentTest {

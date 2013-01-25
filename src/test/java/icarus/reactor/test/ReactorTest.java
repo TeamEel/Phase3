@@ -1,13 +1,12 @@
 package icarus.reactor.test;
 
-import static org.junit.Assert.*;
 import icarus.exceptions.ComponentFailedException;
 import icarus.exceptions.InvalidRodsException;
 import icarus.exceptions.MaximumRodsException;
 import icarus.exceptions.MinimumRodsException;
 import icarus.exceptions.NoFixNeededException;
 import icarus.reactor.Reactor;
-
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class ReactorTest {

@@ -1,14 +1,11 @@
 package icarus.parser.test;
 
-import static org.junit.Assert.*;
-
 import icarus.parser.Command;
 import icarus.parser.CommandParser;
 import icarus.parser.CommandWord;
-
 import java.io.ByteArrayInputStream;
 import java.util.Scanner;
-
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CommandParserTest {

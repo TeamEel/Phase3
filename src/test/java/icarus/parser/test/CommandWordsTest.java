@@ -1,10 +1,8 @@
 package icarus.parser.test;
 
-import static org.junit.Assert.*;
-import icarus.parser.Command;
 import icarus.parser.CommandWord;
 import icarus.parser.CommandWords;
-
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class CommandWordsTest {

@@ -1,9 +1,5 @@
 package icarus.operatorsoftware.test;
 
-import static org.junit.Assert.*;
-
-import java.util.Hashtable;
-
 import icarus.exceptions.AlreadyAtStateException;
 import icarus.exceptions.ComponentFailedException;
 import icarus.exceptions.FixAlreadyUnderwayException;
@@ -16,11 +12,10 @@ import icarus.exceptions.MinimumRodsException;
 import icarus.exceptions.NoFixNeededException;
 import icarus.operatorsoftware.Component;
 import icarus.operatorsoftware.OperatorSoftware;
-import icarus.reactor.Condenser;
 import icarus.reactor.Generator;
 import icarus.reactor.Reactor;
 import icarus.reactor.Turbine;
-
+import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class OperatorSoftwareTest {
@@ -42,132 +37,44 @@ public class OperatorSoftwareTest {
     }
 
     @Test
-    public void testRaise() {
+    public void testRaise() throws Exception {
         int rodheight = 0;
-        try {
-            rodheight = op.raise(0);
-        } catch (InvalidRodsException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (MaximumRodsException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ComponentFailedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-            assertEquals(rodheight + 5, op.raise(5));
-        } catch (InvalidRodsException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (MaximumRodsException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ComponentFailedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        rodheight = op.raise(0);
+        assertEquals(rodheight + 5, op.raise(5));
     }
 
     @Test
-    public void testLower() {
+    public void testLower() throws Exception {
         int rodheight = 0;
-        try {
-            rodheight = op.lower(0);
-        } catch (InvalidRodsException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (MinimumRodsException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ComponentFailedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-            assertEquals(rodheight - 5, op.lower(5));
-        } catch (InvalidRodsException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (MinimumRodsException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ComponentFailedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        rodheight = op.lower(0);
+        assertEquals(rodheight - 5, op.lower(5));
     }
 
     @Test
-    public void testOpen() {
-        try {
-            op.open(0);
-        } catch (InvalidValveException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (AlreadyAtStateException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-            assertTrue(op.isValveOpened(0));
-        } catch (InvalidValveException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    public void testOpen() throws Exception {
+        op.close(0);
+        assertFalse(op.isValveOpened(0));
+        op.open(0);
+        assertTrue(op.isValveOpened(0));
     }
 
     @Test
-    public void testClose() {
-        try {
-            op.close(0);
-        } catch (InvalidValveException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (AlreadyAtStateException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        try {
-            assertFalse(op.isValveOpened(0));
-        } catch (InvalidValveException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    public void testClose() throws Exception {
+        op.close(0);
+        assertFalse(op.isValveOpened(0));
     }
 
     @Test
-    public void testTurnOn() {
-        try {
-            op.turnOn(0);
-        } catch (InvalidPumpException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (AlreadyAtStateException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ComponentFailedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    public void testTurnOn() throws Exception {
+        op.turnOff(0);
+        assertFalse(op.isWaterPumpActive(0));
+        op.turnOn(0);
         assertTrue(op.isWaterPumpActive(0));
     }
 
     @Test
-    public void testTurnOff() {
-        try {
-            op.turnOff(0);
-        } catch (InvalidPumpException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (AlreadyAtStateException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (ComponentFailedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+    public void testTurnOff() throws Exception {
+        op.turnOff(0);
         assertFalse(op.isWaterPumpActive(0));
     }
 
