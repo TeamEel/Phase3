@@ -12,7 +12,7 @@ import icarus.util.SaveState;
  * @author Team Haddock
  *
  */
-public class OperatorSoftware {
+public class OperatorSoftware implements PlantControl {
 
     Reactor reactor;
     Condenser condenser;
@@ -72,6 +72,7 @@ public class OperatorSoftware {
      *
      * @param String name
      */
+    @Override
     public void setPlayerName(String name) {
         player.setName(name);
     }
@@ -81,6 +82,7 @@ public class OperatorSoftware {
      *
      * @returns String name
      */
+    @Override
     public String getPlayerName() {
         return player.getName();
     }
@@ -96,6 +98,7 @@ public class OperatorSoftware {
      * @throws MaximumRodsException Thrown when the rods attempt to exceed the maximum height
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
+    @Override
     public int raise(int amount) throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
 
         reactor.raise(amount);
@@ -113,6 +116,7 @@ public class OperatorSoftware {
      * @throws MinimumRodsException Thrown when the rods attempt to exceed the minimum height
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
+    @Override
     public int lower(int amount) throws InvalidRodsException, MinimumRodsException, ComponentFailedException {
         reactor.lower(amount);
 
@@ -127,6 +131,7 @@ public class OperatorSoftware {
      * @throws InvalidValveException Thrown when a bad valve ID is specified
      * @throws AlreadyAtStateException Thrown if the specified valve is already open
      */
+    @Override
     public void open(int valveNum) throws InvalidValveException, AlreadyAtStateException {
         steamValve.open(valveNum);
     }
@@ -139,6 +144,7 @@ public class OperatorSoftware {
      * @throws InvalidValveException Thrown when a bad valve ID is specified
      * @throws AlreadyAtStateException Thrown if the specified valve is already closed
      */
+    @Override
     public void close(int valveNum) throws InvalidValveException, AlreadyAtStateException {
         steamValve.close(valveNum);
     }
@@ -152,6 +158,7 @@ public class OperatorSoftware {
      * @throws AlreadyAtStateException Thrown if the specified pump is already on
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
+    @Override
     public void turnOn(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
         if (validPumpNum(pumpNum)) {
             waterPump[pumpNum].turnOn();
@@ -171,6 +178,7 @@ public class OperatorSoftware {
      * @throws AlreadyAtStateException Thrown if the specified pump is already on
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
+    @Override
     public void turnOff(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
         if (validPumpNum(pumpNum)) {
             waterPump[pumpNum].turnOff();
@@ -188,6 +196,7 @@ public class OperatorSoftware {
      *
      * @returns whether pump of ID is active
      */
+    @Override
     public boolean isWaterPumpActive(int pumpNum) {
         return waterPump[pumpNum].isActive();
     }
@@ -197,6 +206,7 @@ public class OperatorSoftware {
      *
      * @returns whether pump is active
      */
+    @Override
     public boolean isCondenserPumpActive() {
         return condenserPump.isActive();
     }
@@ -207,6 +217,7 @@ public class OperatorSoftware {
      * @returns whether valve is open
      * @throws InvalidValveException Thrown when bad ID is specified
      */
+    @Override
     public boolean isValveOpened(int valveNum) throws InvalidValveException {
         return steamValve.isOpen(valveNum);
     }
@@ -220,6 +231,7 @@ public class OperatorSoftware {
      *
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
+    @Override
     public double temperature(Components component) throws InvalidComponentException {
         switch (component) {
             case CONDENSER:
@@ -240,6 +252,7 @@ public class OperatorSoftware {
      *
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
+    @Override
     public double waterLevel(Components component) throws InvalidComponentException {
         switch (component) {
             case CONDENSER:
@@ -260,6 +273,7 @@ public class OperatorSoftware {
      *
      * @throws InvalidComponentException Thrown when a bad component is specified
      */
+    @Override
     public boolean functional(Components component) throws InvalidComponentException {
         switch (component) {
             case CONDENSER:
@@ -285,6 +299,7 @@ public class OperatorSoftware {
      *
      * @throws InvalidComponentException Thrown when a bad component is specified
      */
+    @Override
     public boolean functional(Components component, int pumpNum) throws InvalidComponentException {
         if (component == Components.WATERPUMP) {
             return waterPump[pumpNum].getFunctional();
@@ -298,6 +313,7 @@ public class OperatorSoftware {
      *
      * @return double containing the rod height
      */
+    @Override
     public int rodHeight() {
         return reactor.getRodHeight();
     }
@@ -311,6 +327,7 @@ public class OperatorSoftware {
      *
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
+    @Override
     public double pressure(Components component) throws InvalidComponentException {
         switch (component) {
             case CONDENSER:
@@ -325,6 +342,7 @@ public class OperatorSoftware {
     /**
      * Returns the total power generated
      */
+    @Override
     public int getPower() {
         return generator.getPower();
     }
@@ -338,6 +356,7 @@ public class OperatorSoftware {
      * @throws FixAlreadyUnderwayException Thrown when a fix is already occurring in the system
      * @throws NoFixNeededException Thrown when attempting to fix a functional component
      */
+    @Override
     public void fix(Components component) throws InvalidComponentException, FixAlreadyUnderwayException,
                                                 NoFixNeededException {
         if (!fixUnderway()) {
@@ -372,6 +391,7 @@ public class OperatorSoftware {
      * @throws FixAlreadyUnderwayException Thrown when a fix is already occurring in the system
      * @throws NoFixNeededException Thrown when attempting to fix a functional component
      */
+    @Override
     public void fix(Components component, int pumpNum) throws InvalidComponentException, FixAlreadyUnderwayException,
                                                              InvalidPumpException, NoFixNeededException {
         if (!fixUnderway()) {
@@ -393,6 +413,7 @@ public class OperatorSoftware {
      * Progresses time in the system. All time dependent activities occur such as changes in temperature, pressure,
      * water levels, power output and equiptment failure and fixes.
      */
+    @Override
     public void next() {
         reactor.calculateActivity();
 
@@ -424,6 +445,7 @@ public class OperatorSoftware {
      *
      * @return Whether a component has failed
      */
+    @Override
     public boolean checkFailures() {
         //if a functional component fails, it will return true, leaving checkFailures
         //without calling checkFail() on any other components
@@ -440,6 +462,7 @@ public class OperatorSoftware {
      *
      * @return Whether a repair has finished.
      */
+    @Override
     public boolean doFix() {
         for (Component c : failableComponents()) {
             if (c.fixCycle()) {
@@ -453,6 +476,7 @@ public class OperatorSoftware {
      *
      * @return Whether there is currently a fix underway in the system
      */
+    @Override
     public boolean fixUnderway() {
         for (Component c : failableComponents()) {
             if (c.getRepairing()) {
@@ -468,6 +492,7 @@ public class OperatorSoftware {
      *
      * @return The fix time on a current fix in the system
      */
+    @Override
     public int getFixTime() {
         for (Component c : failableComponents()) {
             if (c.getRepairing()) {
@@ -484,6 +509,7 @@ public class OperatorSoftware {
      *
      * @return Whether the component is currently being repaired
      */
+    @Override
     public boolean isRepairing(Components component) {
         switch (component) {
             case CONDENSER:
@@ -507,6 +533,7 @@ public class OperatorSoftware {
      *
      * @return Whether the specified pump is being repaired
      */
+    @Override
     public boolean isRepairing(Components component, int id) {
         if (component == Components.WATERPUMP && id == 0) {
             return waterPump[0].getRepairing();
@@ -522,6 +549,7 @@ public class OperatorSoftware {
      *
      * @return Whether the game over scenario has been reached
      */
+    @Override
     public boolean checkIfGameOver() {
         return (reactor.getTemperature() > 6000);
     }
@@ -531,6 +559,7 @@ public class OperatorSoftware {
      *
      * @return a hashtable
      */
+    @Override
     public SaveState getGameState() {
         SaveState s = new SaveState();
         s.reactor = reactor;
