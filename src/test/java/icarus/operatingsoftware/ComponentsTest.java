@@ -4,7 +4,7 @@ import icarus.operatingsoftware.Components;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class ComponentTest {
+public class ComponentsTest {
 
     @Test
     public void testToString() {
