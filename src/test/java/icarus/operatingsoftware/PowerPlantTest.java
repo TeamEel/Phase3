@@ -1,11 +1,11 @@
-package icarus.operatorsoftware;
+package icarus.operatingsoftware;
 
 import icarus.exceptions.FixAlreadyUnderwayException;
 import icarus.exceptions.InvalidComponentException;
 import icarus.exceptions.InvalidPumpException;
 import icarus.exceptions.NoFixNeededException;
-import icarus.operatorsoftware.Components;
-import icarus.operatorsoftware.PowerPlant;
+import icarus.operatingsoftware.Components;
+import icarus.operatingsoftware.PowerPlant;
 import icarus.reactor.Generator;
 import icarus.reactor.Reactor;
 import icarus.reactor.Turbine;

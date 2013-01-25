@@ -1,6 +1,6 @@
 package icarus.util;
 
-import icarus.operatorsoftware.OperatingSoftware;
+import icarus.operatingsoftware.OperatingSoftware;
 import icarus.util.FileInput;
 import java.io.FileNotFoundException;
 import static org.junit.Assert.*;

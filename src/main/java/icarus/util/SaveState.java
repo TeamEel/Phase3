@@ -4,7 +4,7 @@
  */
 package icarus.util;
 
-import icarus.operatorsoftware.Player;
+import icarus.operatingsoftware.Player;
 import icarus.reactor.*;
 import java.io.Serializable;
 

@@ -1,4 +1,4 @@
-package icarus.operatorsoftware;
+package icarus.operatingsoftware;
 
 import java.io.Serializable;
 

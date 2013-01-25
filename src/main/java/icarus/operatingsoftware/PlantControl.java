@@ -1,4 +1,4 @@
-package icarus.operatorsoftware;
+package icarus.operatingsoftware;
 
 import icarus.exceptions.AlreadyAtStateException;
 import icarus.exceptions.ComponentFailedException;

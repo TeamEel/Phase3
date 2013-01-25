@@ -1,7 +1,7 @@
-package icarus.operatorsoftware;
+package icarus.operatingsoftware;
 
 import icarus.exceptions.*;
-import icarus.operatorsoftware.Components;
+import icarus.operatingsoftware.Components;
 import icarus.reactor.*;
 import icarus.util.SaveState;
 

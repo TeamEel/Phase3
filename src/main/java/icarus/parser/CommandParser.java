@@ -8,9 +8,9 @@ package icarus.parser;
  * @author Team Haddock
  * @version 2012/2013
  */
-import icarus.operatorsoftware.OperatingSoftware;
+import icarus.operatingsoftware.OperatingSoftware;
 import icarus.exceptions.*;
-import icarus.operatorsoftware.Components;
+import icarus.operatingsoftware.Components;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 

@@ -1,6 +1,6 @@
-package icarus.operatorsoftware;
+package icarus.operatingsoftware;
 
-import icarus.operatorsoftware.OperatingSoftware;
+import icarus.operatingsoftware.OperatingSoftware;
 import icarus.exceptions.AlreadyAtStateException;
 import icarus.exceptions.ComponentFailedException;
 import icarus.exceptions.FixAlreadyUnderwayException;
@@ -11,7 +11,7 @@ import icarus.exceptions.InvalidValveException;
 import icarus.exceptions.MaximumRodsException;
 import icarus.exceptions.MinimumRodsException;
 import icarus.exceptions.NoFixNeededException;
-import icarus.operatorsoftware.Components;
+import icarus.operatingsoftware.Components;
 import icarus.parser.CommandWords;
 import java.io.File;
 import static org.junit.Assert.*;

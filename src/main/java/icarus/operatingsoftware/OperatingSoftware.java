@@ -1,8 +1,8 @@
-package icarus.operatorsoftware;
+package icarus.operatingsoftware;
 
 import icarus.exceptions.*;
-import icarus.operatorsoftware.Components;
-import icarus.operatorsoftware.PowerPlant;
+import icarus.operatingsoftware.Components;
+import icarus.operatingsoftware.PowerPlant;
 import icarus.util.FileInput;
 import icarus.util.FileOutput;
 import icarus.util.SaveState;

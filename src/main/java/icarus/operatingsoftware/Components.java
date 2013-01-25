@@ -1,4 +1,4 @@
-package icarus.operatorsoftware;
+package icarus.operatingsoftware;
 
 /**
  * Enum of Components that can fail in the system. Planned future use for keeping track of software failures.

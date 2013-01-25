@@ -1,6 +1,6 @@
-package icarus.operatorsoftware;
+package icarus.operatingsoftware;
 
-import icarus.operatorsoftware.Components;
+import icarus.operatingsoftware.Components;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
