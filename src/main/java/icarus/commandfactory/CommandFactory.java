@@ -19,8 +19,6 @@ public class CommandFactory {
 
 	private OperatorSoftware op;
 	private int score; // stores the score of the player
-	private FileInput fileInput = new FileInput();
-	private FileOutput fileOutput = new FileOutput();
 
 	/**
 	 * Default constructor for CommandFactory
@@ -427,7 +425,7 @@ public class CommandFactory {
 	 *            specifies the name of the file
 	 */
 	public void saveToFile(String fileName) {
-		fileOutput.saveObjectToFile(op.getGameState(), fileName);
+		FileOutput.saveObjectToFile(op.getGameState(), fileName);
 	}
 
 	/**
@@ -440,7 +438,7 @@ public class CommandFactory {
 	public boolean loadFromFile(String fileName) {
 		Hashtable<String, Serializable> h;
 		try {
-			h = fileInput.loadObjectFromFile(fileName);
+			h = FileInput.loadObjectFromFile(fileName);
 			if (h.get("reactor") != null) {
 				op = new OperatorSoftware(h);
 				return true;

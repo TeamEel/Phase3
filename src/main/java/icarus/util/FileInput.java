@@ -25,7 +25,7 @@ public class FileInput {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public Hashtable<String, Serializable> loadObjectFromFile(String fileName) throws FileNotFoundException {
+    public static Hashtable<String, Serializable> loadObjectFromFile(String fileName) throws FileNotFoundException {;
         Hashtable<String, Serializable> h = new Hashtable();
         try {
             FileInputStream fileIn = new FileInputStream(fileName + ".ser");

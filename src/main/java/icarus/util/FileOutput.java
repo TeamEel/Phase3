@@ -23,7 +23,7 @@ public class FileOutput {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public void saveObjectToFile(Hashtable<String, Serializable> h, String fileName) {
+    public static void saveObjectToFile(Hashtable<String, Serializable> h, String fileName) {
         try {
 
             FileOutputStream fileOut = new FileOutputStream(fileName + ".ser");
