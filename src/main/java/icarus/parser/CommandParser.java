@@ -8,7 +8,7 @@ package icarus.parser;
  * @author Team Haddock
  * @version 2012/2013
  */
-import icarus.commandfactory.CommandFactory;
+import icarus.operatorsoftware.CommandFactory;
 import icarus.exceptions.*;
 import icarus.operatorsoftware.Components;
 import java.text.DecimalFormat;

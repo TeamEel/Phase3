@@ -1,6 +1,6 @@
-package icarus.commandfactory.test;
+package icarus.operatorsoftware.test;
 
-import icarus.commandfactory.CommandFactory;
+import icarus.operatorsoftware.CommandFactory;
 import icarus.exceptions.AlreadyAtStateException;
 import icarus.exceptions.ComponentFailedException;
 import icarus.exceptions.FixAlreadyUnderwayException;

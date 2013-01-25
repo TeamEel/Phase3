@@ -1,4 +1,4 @@
-package icarus.commandfactory;
+package icarus.operatorsoftware;
 
 import icarus.exceptions.*;
 import icarus.operatorsoftware.Components;
