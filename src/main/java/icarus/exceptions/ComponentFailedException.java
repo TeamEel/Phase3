@@ -10,6 +10,7 @@ public class ComponentFailedException extends Exception {
     public ComponentFailedException() {
     }
 
+    @Override
     public String toString() {
         return "Component failed.";
     }

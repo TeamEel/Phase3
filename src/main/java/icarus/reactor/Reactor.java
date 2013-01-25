@@ -95,6 +95,7 @@ public class Reactor extends MajorComponent implements Serializable {
     /**
      * Calculates the current temperature of the Reactor in Kelvin
      */
+    @Override
     public void calculateTemperature() {
         // stops divide by zero error
         if (waterLevel < 1) {
@@ -180,6 +181,7 @@ public class Reactor extends MajorComponent implements Serializable {
      *
      * @param amount The amount of water to be added.
      */
+    @Override
     public void addWater(double amount) {
         waterLevel += amount;
         waterIn += amount;
@@ -202,6 +204,7 @@ public class Reactor extends MajorComponent implements Serializable {
      *
      * @return MajorComponent contains less than the amount specified.
      */
+    @Override
     public double drainWater(double amount) {
         if (waterLevel >= amount) {
             waterLevel -= amount;

@@ -13,6 +13,7 @@ public class InvalidComponentException extends Exception {
         this.strValue = value;
     }
 
+    @Override
     public String toString() {
         return "Invalid component entered: " + strValue;
     }

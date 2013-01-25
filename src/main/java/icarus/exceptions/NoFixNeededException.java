@@ -10,6 +10,7 @@ public class NoFixNeededException extends Exception {
     public NoFixNeededException() {
     }
 
+    @Override
     public String toString() {
         return ("Component does not need fixing");
     }

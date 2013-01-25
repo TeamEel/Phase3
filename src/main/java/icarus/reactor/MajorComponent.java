@@ -94,6 +94,7 @@ public abstract class MajorComponent extends Component implements Serializable {
      *
      * @return Returns whether the Component has failed or not (ie !functional)
      */
+    @Override
     public boolean checkFail() {
         double failureChance = failureProbability * (temperature / 4500) * (pressure / 6000);
         if (Math.random() < failureChance) {

@@ -47,6 +47,7 @@ public class Turbine extends Component implements Serializable {
      *
      * @return Returns whether the Component has failed or not (ie !functional)
      */
+    @Override
     public boolean checkFail() {
         double failureChance = failureProbability * (rpm / 4000);
         if (Math.random() < failureChance) {

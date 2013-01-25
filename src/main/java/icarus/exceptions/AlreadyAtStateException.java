@@ -13,6 +13,7 @@ public class AlreadyAtStateException extends Exception {
         this.state = state;
     }
 
+    @Override
     public String toString() {
         return "Component is already at state: " + state;
     }

@@ -34,6 +34,7 @@ public class CondenserPump extends Component implements Serializable {
      *
      * @return Returns whether the Component has failed or not (ie !functional)
      */
+    @Override
     public boolean checkFail() {
         if (Math.random() < failureProbability && active) {
             functional = false;

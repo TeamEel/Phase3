@@ -7,6 +7,7 @@ package icarus.exceptions;
  */
 public class MinimumRodsException extends Exception {
 
+    @Override
     public String toString() {
         return "The minimum of 0 has been reached!";
     }

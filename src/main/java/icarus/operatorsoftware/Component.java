@@ -24,6 +24,7 @@ public enum Component {
     /**
      * @return a string version of the component
      */
+    @Override
     public String toString() {
         return componentString;
     }

@@ -91,6 +91,7 @@ public class Condenser extends MajorComponent implements Serializable {
     /**
      * Increases the steamLevel by the specified amount.
      */
+    @Override
     public void addSteam(double amount, double temperature) {
         steamInTemperature = temperature;
         steamLevel += amount;
@@ -100,6 +101,7 @@ public class Condenser extends MajorComponent implements Serializable {
     /**
      * Calculates the Condenser's temperature for the timestep
      */
+    @Override
     public void calculateTemperature() {
         temperature = (((steamLevel - steamIn) * temperature) + (steamIn * steamInTemperature)) / steamLevel;
         temperature -= (condensation);

@@ -7,6 +7,7 @@ package icarus.exceptions;
  */
 public class MaximumRodsException extends Exception {
 
+    @Override
     public String toString() {
         return "The maximum of 100 has been reached!";
     }

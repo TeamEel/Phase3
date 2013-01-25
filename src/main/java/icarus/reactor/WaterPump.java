@@ -34,6 +34,7 @@ public class WaterPump extends Component implements Serializable {
      *
      * @return Returns whether the Component has failed or not (ie !functional)
      */
+    @Override
     public boolean checkFail() {
         double failureChance = failureProbability * (0.9 * (Math.abs(mcomp1.getPressure() - mcomp2.getPressure()) /
                                                             10000) + 0.1);

@@ -13,6 +13,7 @@ public class InvalidPumpException extends Exception {
         this.intValue = value;
     }
 
+    @Override
     public String toString() {
         return "Invalid pump entered: " + intValue + " Please enter a value of 0, 1 or 2";
     }
