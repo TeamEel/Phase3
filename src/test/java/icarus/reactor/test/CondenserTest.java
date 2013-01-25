@@ -10,7 +10,6 @@ public class CondenserTest {
 
     CondenserPump pump = new CondenserPump();
     Condenser condenser = new Condenser(100, pump, 50, 20000, 20000, 600, 50, 90, 50, 0.5, 1, true, false, 5);
-    CondenserPump pump2 = new CondenserPump();
     Condenser condenser2 = new Condenser(100, pump, 50, 1000, 1000, 200, 50, 90, 50, 0.5, 1, true, false, 5);
 
     @Test(expected = NoFixNeededException.class)

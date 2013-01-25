@@ -250,7 +250,7 @@ public class CommandFactory {
 	 */
 	public String achievementResponse(String playerName) {
 
-		String response = null;
+		String response;
 
 		if (score > 250000) {
 			if (score > 500000) {
@@ -438,7 +438,7 @@ public class CommandFactory {
 	 * @return Hashtable containing the reactor objects
 	 */
 	public boolean loadFromFile(String fileName) {
-		Hashtable<String, Serializable> h = new Hashtable<String, Serializable>();
+		Hashtable<String, Serializable> h;
 		try {
 			h = fileInput.loadObjectFromFile(fileName);
 			if (h.get("reactor") != null) {

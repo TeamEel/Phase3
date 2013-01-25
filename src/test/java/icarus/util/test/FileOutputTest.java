@@ -1,11 +1,10 @@
 package icarus.util.test;
 
-import static org.junit.Assert.*;
+import icarus.util.FileOutput;
 
 import java.io.File;
 import java.util.Hashtable;
-
-import icarus.util.FileOutput;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 

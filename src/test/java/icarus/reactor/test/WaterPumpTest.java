@@ -46,7 +46,7 @@ public class WaterPumpTest {
 
     @Test
     public void testExtremePumpWater() {
-        double drain = condenser.drainWater(280);
+        condenser.drainWater(280);
         waterPump.pumpWater();
         assertEquals(reactor.getWaterLevel(), 300, 0.001);
         assertEquals(condenser.getWaterLevel(), 0, 0.001);

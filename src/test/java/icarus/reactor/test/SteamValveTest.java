@@ -15,7 +15,6 @@ public class SteamValveTest {
     CondenserPump condeserPump = new CondenserPump();
     Reactor reactor = new Reactor();
     Condenser condenser = new Condenser(condeserPump);
-    WaterPump waterPump = new WaterPump(reactor, condenser);
     Turbine turbine = new Turbine();
     SteamValve steamValve = new SteamValve(reactor, turbine, condenser);
 

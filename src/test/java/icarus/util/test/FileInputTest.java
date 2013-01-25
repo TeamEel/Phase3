@@ -1,12 +1,9 @@
 package icarus.util.test;
 
-import static org.junit.Assert.*;
-
-import java.io.FileNotFoundException;
-
 import icarus.commandfactory.CommandFactory;
 import icarus.util.FileInput;
-import icarus.util.FileOutput;
+import java.io.FileNotFoundException;
+import static org.junit.Assert.*;
 
 import org.junit.Test;
 

@@ -1,14 +1,8 @@
 package icarus.operatorsoftware.test;
 
-import icarus.exceptions.AlreadyAtStateException;
-import icarus.exceptions.ComponentFailedException;
 import icarus.exceptions.FixAlreadyUnderwayException;
 import icarus.exceptions.InvalidComponentException;
 import icarus.exceptions.InvalidPumpException;
-import icarus.exceptions.InvalidRodsException;
-import icarus.exceptions.InvalidValveException;
-import icarus.exceptions.MaximumRodsException;
-import icarus.exceptions.MinimumRodsException;
 import icarus.exceptions.NoFixNeededException;
 import icarus.operatorsoftware.Component;
 import icarus.operatorsoftware.OperatorSoftware;
@@ -38,15 +32,13 @@ public class OperatorSoftwareTest {
 
     @Test
     public void testRaise() throws Exception {
-        int rodheight = 0;
-        rodheight = op.raise(0);
+        int rodheight = op.raise(0);
         assertEquals(rodheight + 5, op.raise(5));
     }
 
     @Test
     public void testLower() throws Exception {
-        int rodheight = 0;
-        rodheight = op.lower(0);
+        int rodheight = op.lower(0);
         assertEquals(rodheight - 5, op.lower(5));
     }
 

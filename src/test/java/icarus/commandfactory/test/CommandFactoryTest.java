@@ -20,7 +20,6 @@ import org.junit.Test;
 public class CommandFactoryTest {
 
     CommandFactory cf = new CommandFactory();
-    CommandWords words = new CommandWords();
 
     // CommandFactoryTest class which tests the methods in the actual
     // CommandFactory class (whether they work, given a valid and invalid
