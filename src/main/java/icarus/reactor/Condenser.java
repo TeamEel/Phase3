@@ -1,7 +1,5 @@
 package icarus.reactor;
 
-import icarus.reactor.CondenserPump;
-
 import java.io.Serializable;
 
 /**

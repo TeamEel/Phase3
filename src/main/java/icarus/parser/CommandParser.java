@@ -11,7 +11,6 @@ package icarus.parser;
 import icarus.commandfactory.CommandFactory;
 import icarus.exceptions.*;
 import icarus.operatorsoftware.Component;
-
 import java.text.DecimalFormat;
 import java.util.Scanner;
 

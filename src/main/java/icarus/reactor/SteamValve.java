@@ -1,7 +1,6 @@
 package icarus.reactor;
 
 import icarus.exceptions.*;
-
 import java.io.Serializable;
 
 /**

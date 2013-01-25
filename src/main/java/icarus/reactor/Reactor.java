@@ -1,7 +1,7 @@
 package icarus.reactor;
 
-import java.io.Serializable;
 import icarus.exceptions.*;
+import java.io.Serializable;
 
 /**
  * The nuclear reactor, evaporates water to steam as part of the boiling water reactor model.

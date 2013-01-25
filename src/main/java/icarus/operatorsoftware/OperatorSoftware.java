@@ -1,9 +1,7 @@
 package icarus.operatorsoftware;
 
 import icarus.exceptions.*;
-import icarus.operatorsoftware.Component;
 import icarus.reactor.*;
-
 import java.io.Serializable;
 import java.util.Hashtable;
 

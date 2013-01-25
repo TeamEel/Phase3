@@ -1,7 +1,7 @@
 package icarus.reactor;
 
-import java.io.Serializable;
 import icarus.exceptions.NoFixNeededException;
+import java.io.Serializable;
 
 /**
  * Component abstract class, used for all components that can fail.

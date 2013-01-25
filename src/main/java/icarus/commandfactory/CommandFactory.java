@@ -5,7 +5,6 @@ import icarus.operatorsoftware.Component;
 import icarus.operatorsoftware.OperatorSoftware;
 import icarus.util.FileInput;
 import icarus.util.FileOutput;
-
 import java.io.FileNotFoundException;
 import java.io.Serializable;
 import java.util.Hashtable;
