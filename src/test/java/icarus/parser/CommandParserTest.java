@@ -1,4 +1,4 @@
-package icarus.parser.test;
+package icarus.parser;
 
 import icarus.parser.Command;
 import icarus.parser.CommandParser;

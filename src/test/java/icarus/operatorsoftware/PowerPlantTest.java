@@ -1,4 +1,4 @@
-package icarus.operatorsoftware.test;
+package icarus.operatorsoftware;
 
 import icarus.exceptions.FixAlreadyUnderwayException;
 import icarus.exceptions.InvalidComponentException;

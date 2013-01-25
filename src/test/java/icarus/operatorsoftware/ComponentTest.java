@@ -1,4 +1,4 @@
-package icarus.operatorsoftware.test;
+package icarus.operatorsoftware;
 
 import icarus.operatorsoftware.Components;
 import static org.junit.Assert.*;

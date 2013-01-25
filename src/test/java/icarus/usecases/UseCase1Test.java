@@ -1,4 +1,4 @@
-package icarus.usecases.test;
+package icarus.usecases;
 
 import icarus.parser.CommandParser;
 

@@ -1,4 +1,4 @@
-package icarus.util.test;
+package icarus.util;
 
 import icarus.util.FileOutput;
 import icarus.util.SaveState;

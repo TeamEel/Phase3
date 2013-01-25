@@ -1,4 +1,4 @@
-package icarus.reactor.test;
+package icarus.reactor;
 
 import icarus.exceptions.ComponentFailedException;
 import icarus.exceptions.InvalidRodsException;

@@ -1,4 +1,4 @@
-package icarus.util.test;
+package icarus.util;
 
 import icarus.operatorsoftware.OperatingSoftware;
 import icarus.util.FileInput;

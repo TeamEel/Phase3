@@ -1,4 +1,4 @@
-package icarus.reactor.test;
+package icarus.reactor;
 
 import icarus.exceptions.NoFixNeededException;
 import icarus.reactor.Condenser;

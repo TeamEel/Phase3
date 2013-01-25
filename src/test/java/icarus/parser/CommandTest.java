@@ -1,4 +1,4 @@
-package icarus.parser.test;
+package icarus.parser;
 
 import static org.junit.Assert.*;
 import icarus.parser.Command;
