@@ -11,13 +11,12 @@ import org.junit.Test;
 
 public class FileOutputTest {
 
-	@Test
-	public void testSaveObjectToFile() {
-		FileOutput out = new FileOutput();
-		Hashtable h = new Hashtable();
-		out.saveObjectToFile(h, "test123");
-		File file = new File("test123.ser");
-		assertTrue(file.exists());
-	}
-
+    @Test
+    public void testSaveObjectToFile() {
+        FileOutput out = new FileOutput();
+        Hashtable h = new Hashtable();
+        out.saveObjectToFile(h, "test123");
+        File file = new File("test123.ser");
+        assertTrue(file.exists());
+    }
 }

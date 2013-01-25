@@ -9,34 +9,34 @@ import icarus.reactor.CondenserPump;
 import org.junit.Test;
 
 public class CondenserPumpTest {
-	CondenserPump cp = new CondenserPump();
 
-	@Test
-	public void testCheckFail() {
+    CondenserPump cp = new CondenserPump();
 
-		assertFalse(cp.checkFail());
-	}
+    @Test
+    public void testCheckFail() {
 
-	@Test (expected = AlreadyAtStateException.class)
-	public void testTurnOn() throws Exception {		
-			cp.turnOn();		
-		assertTrue(cp.isActive());
-	}
+        assertFalse(cp.checkFail());
+    }
 
-	@Test
-	public void testTurnOff() throws Exception {
-			cp.turnOff();
-		assertFalse(cp.isActive());
-	}
+    @Test(expected = AlreadyAtStateException.class)
+    public void testTurnOn() throws Exception {
+        cp.turnOn();
+        assertTrue(cp.isActive());
+    }
 
-	@Test
-	public void testIsActive() {
-		assertTrue(cp.isActive());
-	}
+    @Test
+    public void testTurnOff() throws Exception {
+        cp.turnOff();
+        assertFalse(cp.isActive());
+    }
 
-	@Test(expected = NoFixNeededException.class)
-	public void testBeginFixIfNotBroken() throws NoFixNeededException {
-		cp.beginFix();
-	}
+    @Test
+    public void testIsActive() {
+        assertTrue(cp.isActive());
+    }
 
+    @Test(expected = NoFixNeededException.class)
+    public void testBeginFixIfNotBroken() throws NoFixNeededException {
+        cp.beginFix();
+    }
 }
