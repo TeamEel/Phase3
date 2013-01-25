@@ -12,7 +12,7 @@ import icarus.util.SaveState;
  * @author Team Haddock
  *
  */
-public class OperatorSoftware implements PlantControl {
+public class PowerPlant implements PlantControl {
 
     Reactor reactor;
     Condenser condenser;
@@ -25,9 +25,9 @@ public class OperatorSoftware implements PlantControl {
     Player player;
 
     /**
-     * Default constructor for OperatorSoftware, typically used upon starting a new game.
+     * Default constructor for PowerPlant, typically used upon starting a new game.
      */
-    public OperatorSoftware() {
+    public PowerPlant() {
         condenserPump = new CondenserPump();
 
         reactor = new Reactor();
@@ -56,7 +56,7 @@ public class OperatorSoftware implements PlantControl {
      *
      * @param HashTable with Reactor objects
      */
-    public OperatorSoftware(SaveState state) {
+    public PowerPlant(SaveState state) {
         reactor = state.reactor;
         condenser = state.condenser;
         turbine = state.turbine;

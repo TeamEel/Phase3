@@ -1,6 +1,6 @@
 package icarus.operatorsoftware.test;
 
-import icarus.operatorsoftware.CommandFactory;
+import icarus.operatorsoftware.OperatingSoftware;
 import icarus.exceptions.AlreadyAtStateException;
 import icarus.exceptions.ComponentFailedException;
 import icarus.exceptions.FixAlreadyUnderwayException;
@@ -17,12 +17,12 @@ import java.io.File;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class CommandFactoryTest {
+public class OperatingSoftwareTest {
 
-    CommandFactory cf = new CommandFactory();
+    OperatingSoftware cf = new OperatingSoftware();
 
-    // CommandFactoryTest class which tests the methods in the actual
-    // CommandFactory class (whether they work, given a valid and invalid
+    // OperatingSoftwareTest class which tests the methods in the actual
+    // OperatingSoftware class (whether they work, given a valid and invalid
     // parameters)
     @Test
     public void testSetPlayerName() {

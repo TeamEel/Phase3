@@ -2,7 +2,7 @@ package icarus.operatorsoftware;
 
 import icarus.exceptions.*;
 import icarus.operatorsoftware.Components;
-import icarus.operatorsoftware.OperatorSoftware;
+import icarus.operatorsoftware.PowerPlant;
 import icarus.util.FileInput;
 import icarus.util.FileOutput;
 import icarus.util.SaveState;
@@ -15,16 +15,16 @@ import java.io.Serializable;
  * 
  * @author Team Haddock
  **/
-public class CommandFactory {
+public class OperatingSoftware {
 
-	private OperatorSoftware op;
+	private PowerPlant op;
 	private int score; // stores the score of the player
 
 	/**
-	 * Default constructor for CommandFactory
+	 * Default constructor for OperatingSoftware
 	 */
-	public CommandFactory() {
-		op = new OperatorSoftware();
+	public OperatingSoftware() {
+		op = new PowerPlant();
 		// commands = new CommandWords();
 	}
 
@@ -274,7 +274,7 @@ public class CommandFactory {
 	}
 
 	/**
-	 * The next() method just calls next in OperatorSoftware (calculations are
+	 * The next() method just calls next in PowerPlant (calculations are
 	 * done here)
 	 */
 	public void next() {
@@ -441,7 +441,7 @@ public class CommandFactory {
 			if (s == null) {
                             return false;
                         }
-			op = new OperatorSoftware(s);
+			op = new PowerPlant(s);
                         return true;
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found");

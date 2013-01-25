@@ -5,19 +5,19 @@ import icarus.exceptions.InvalidComponentException;
 import icarus.exceptions.InvalidPumpException;
 import icarus.exceptions.NoFixNeededException;
 import icarus.operatorsoftware.Components;
-import icarus.operatorsoftware.OperatorSoftware;
+import icarus.operatorsoftware.PowerPlant;
 import icarus.reactor.Generator;
 import icarus.reactor.Reactor;
 import icarus.reactor.Turbine;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class OperatorSoftwareTest {
+public class PowerPlantTest {
 
-    OperatorSoftware op = new OperatorSoftware();
+    PowerPlant op = new PowerPlant();
 
-    // OperatorSoftwareTest class tests whether the methods in the actual
-    // OperatorSoftware class actually do what they are supposed to do
+    // PowerPlantTest class tests whether the methods in the actual
+    // PowerPlant class actually do what they are supposed to do
     @Test
     public void testSetPlayerName() {
         op.setPlayerName("player");

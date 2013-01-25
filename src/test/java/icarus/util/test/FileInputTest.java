@@ -1,6 +1,6 @@
 package icarus.util.test;
 
-import icarus.operatorsoftware.CommandFactory;
+import icarus.operatorsoftware.OperatingSoftware;
 import icarus.util.FileInput;
 import java.io.FileNotFoundException;
 import static org.junit.Assert.*;
@@ -11,7 +11,7 @@ public class FileInputTest {
 
     @Test
     public void testLoadObjectFromFilePos() throws FileNotFoundException {
-        CommandFactory cf = new CommandFactory();
+        OperatingSoftware cf = new OperatingSoftware();
         cf.saveToFile("test123");
         assertNotNull(FileInput.loadObjectFromFile("test123"));
     }

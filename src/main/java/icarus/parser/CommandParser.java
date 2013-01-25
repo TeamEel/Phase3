@@ -8,7 +8,7 @@ package icarus.parser;
  * @author Team Haddock
  * @version 2012/2013
  */
-import icarus.operatorsoftware.CommandFactory;
+import icarus.operatorsoftware.OperatingSoftware;
 import icarus.exceptions.*;
 import icarus.operatorsoftware.Components;
 import java.text.DecimalFormat;
@@ -19,7 +19,7 @@ public class CommandParser {
     private Scanner reader; // source of command input
     private String playerName = "";  //playerName will hold the player's name throughout the game, which will be used when the player is addressed
     private CommandWords commands;
-    private CommandFactory cf;
+    private OperatingSoftware cf;
 
     /**
      * Create a parser to read from the terminal window.
@@ -27,7 +27,7 @@ public class CommandParser {
     public CommandParser() {
         reader = new Scanner(System.in);
         commands = new CommandWords();
-        cf = new CommandFactory();
+        cf = new OperatingSoftware();
     }
 
     /**
@@ -38,7 +38,7 @@ public class CommandParser {
     public CommandParser(Scanner reader) {
         this.reader = reader;
         commands = new CommandWords();
-        cf = new CommandFactory();
+        cf = new OperatingSoftware();
     }
 
     /**
@@ -216,7 +216,7 @@ public class CommandParser {
                             userResponse = reader.nextLine();
                         }
                         if (userResponse.equals("y")) {
-                            cf = new CommandFactory();
+                            cf = new OperatingSoftware();
                             finished = false;
                             userResponse = "";
                             updateDisplay();
@@ -347,7 +347,7 @@ public class CommandParser {
         }
         tokenizer.close();
 
-        //need to change the getCommandWord to point to the method in CommandFactory
+        //need to change the getCommandWord to point to the method in OperatingSoftware
         return new Command(getCommandWord(word1), word2, word3);
     }
 
