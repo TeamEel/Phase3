@@ -176,7 +176,7 @@ public class OperatorSoftware {
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
     public void turnOff(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
-        if ((pumpNum == 0 || pumpNum == 1) && pumpNum != 2) {
+        if (pumpNum == 0 || pumpNum == 1) {
             waterPump[pumpNum].turnOff();
         } else if (pumpNum == 2) {
             condenserPump.turnOff();
