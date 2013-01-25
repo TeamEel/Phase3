@@ -427,23 +427,10 @@ public class OperatorSoftware {
     public boolean checkFailures() {
         //if a functional component fails, it will return true, leaving checkFailures
         //without calling checkFail() on any other components
-        if (reactor.getFunctional() && reactor.checkFail()) {
-            return true;
-        }
-        if (condenser.getFunctional() && condenser.checkFail()) {
-            return true;
-        }
-        if (turbine.getFunctional() && turbine.checkFail()) {
-            return true;
-        }
-        if (waterPump[0].getFunctional() && waterPump[0].checkFail()) {
-            return true;
-        }
-        if (waterPump[1].getFunctional() && waterPump[1].checkFail()) {
-            return true;
-        }
-        if (condenserPump.getFunctional() && condenserPump.checkFail()) {
-            return true;
+        for (Component c : failableComponents()) {
+            if (c.getFunctional() && c.checkFail()) {
+                return true;
+            }
         }
         return false;
     }
@@ -454,23 +441,10 @@ public class OperatorSoftware {
      * @return Whether a repair has finished.
      */
     public boolean doFix() {
-        if (reactor.fixCycle()) {
-            return true;
-        }
-        if (condenser.fixCycle()) {
-            return true;
-        }
-        if (turbine.fixCycle()) {
-            return true;
-        }
-        if (waterPump[0].fixCycle()) {
-            return true;
-        }
-        if (waterPump[1].fixCycle()) {
-            return true;
-        }
-        if (condenserPump.fixCycle()) {
-            return true;
+        for (Component c : failableComponents()) {
+            if (c.fixCycle()) {
+                return true;
+            }
         }
         return false;
     }
@@ -480,8 +454,12 @@ public class OperatorSoftware {
      * @return Whether there is currently a fix underway in the system
      */
     public boolean fixUnderway() {
-        return condenser.getRepairing() || reactor.getRepairing() || turbine.getRepairing() || condenserPump
-                .getRepairing() || waterPump[0].getRepairing() || waterPump[1].getRepairing();
+        for (Component c : failableComponents()) {
+            if (c.getRepairing()) {
+                return true;
+            }
+        }
+        return false;
     }
 
     /**
@@ -491,23 +469,10 @@ public class OperatorSoftware {
      * @return The fix time on a current fix in the system
      */
     public int getFixTime() {
-        if (condenser.getRepairing()) {
-            return condenser.getFixRemaining();
-        }
-        if (reactor.getRepairing()) {
-            return reactor.getFixRemaining();
-        }
-        if (turbine.getRepairing()) {
-            return turbine.getFixRemaining();
-        }
-        if (condenserPump.getRepairing()) {
-            return condenserPump.getFixRemaining();
-        }
-        if (waterPump[0].getRepairing()) {
-            return waterPump[0].getFixRemaining();
-        }
-        if (waterPump[1].getRepairing()) {
-            return waterPump[1].getFixRemaining();
+        for (Component c : failableComponents()) {
+            if (c.getRepairing()) {
+                return c.getFixRemaining();
+            }
         }
         return 0; // Should probably throw an exception
     }
@@ -577,5 +542,17 @@ public class OperatorSoftware {
         s.condenserPump = condenserPump;
         s.player = player;
         return s;
+    }
+    
+    private Component[] failableComponents() {
+        Component[] result = {
+            reactor,
+            condenser,
+            turbine,
+            waterPump[0],
+            waterPump[1],
+            condenserPump
+        };
+        return result;
     }
 }
