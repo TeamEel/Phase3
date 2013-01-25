@@ -153,7 +153,7 @@ public class OperatorSoftware {
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
     public void turnOn(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
-        if (pumpNum == 0 || pumpNum == 1) {
+        if (validPumpNum(pumpNum)) {
             waterPump[pumpNum].turnOn();
         } else if (pumpNum == 2) {
             condenserPump.turnOn();
@@ -172,7 +172,7 @@ public class OperatorSoftware {
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
     public void turnOff(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
-        if (pumpNum == 0 || pumpNum == 1) {
+        if (validPumpNum(pumpNum)) {
             waterPump[pumpNum].turnOff();
         } else if (pumpNum == 2) {
             condenserPump.turnOff();
@@ -376,7 +376,7 @@ public class OperatorSoftware {
                                                              InvalidPumpException, NoFixNeededException {
         if (!fixUnderway()) {
             if (component == Components.WATERPUMP) {
-                if (pumpNum == 0 || pumpNum == 1) {
+                if (validPumpNum(pumpNum)) {
                     waterPump[pumpNum].beginFix();
                 } else {
                     throw new InvalidPumpException(pumpNum);
@@ -554,5 +554,9 @@ public class OperatorSoftware {
             condenserPump
         };
         return result;
+    }
+
+    private boolean validPumpNum(int pumpNum) {
+        return pumpNum == 0 || pumpNum == 1;
     }
 }
