@@ -4,8 +4,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
-import java.util.Hashtable;
 
 /**
  * Saves a file
@@ -23,13 +21,13 @@ public class FileOutput {
      * @throws FileNotFoundException
      * @throws IOException
      */
-    public static void saveObjectToFile(Hashtable<String, Serializable> h, String fileName) {
+    public static void saveObjectToFile(SaveState s, String fileName) {
         try {
 
             FileOutputStream fileOut = new FileOutputStream(fileName + ".ser");
             ObjectOutputStream out = new ObjectOutputStream(fileOut);
 
-            out.writeObject(h);
+            out.writeObject(s);
 
             out.close();
             fileOut.close();

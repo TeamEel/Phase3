@@ -4,8 +4,6 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.Serializable;
-import java.util.Hashtable;
 
 /**
  * Loads a file
@@ -25,23 +23,22 @@ public class FileInput {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static Hashtable<String, Serializable> loadObjectFromFile(String fileName) throws FileNotFoundException {;
-        Hashtable<String, Serializable> h = new Hashtable();
+    public static SaveState loadObjectFromFile(String fileName) throws FileNotFoundException {
+        SaveState s = null;
         try {
             FileInputStream fileIn = new FileInputStream(fileName + ".ser");
             ObjectInputStream in = new ObjectInputStream(fileIn);
 
-            h = (Hashtable)in.readObject();
+            s = (SaveState)in.readObject();
 
             in.close();
             fileIn.close();
-
         } catch (ClassNotFoundException e) {
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         } catch (IOException e) {
         }
-        return h;
-
+        
+        return s;
     }
 }

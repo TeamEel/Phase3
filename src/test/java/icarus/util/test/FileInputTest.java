@@ -18,6 +18,6 @@ public class FileInputTest {
 
     @Test
     public void testLoadObjectFromFileNeg() throws FileNotFoundException {
-        assertNull(FileInput.loadObjectFromFile("2nju234uj2").get("reactor"));
+        assertNull(FileInput.loadObjectFromFile("2nju234uj2"));
     }
 }

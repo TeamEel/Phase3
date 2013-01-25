@@ -1,9 +1,9 @@
 package icarus.operatorsoftware;
 
 import icarus.exceptions.*;
+import icarus.operatorsoftware.Component;
 import icarus.reactor.*;
-import java.io.Serializable;
-import java.util.Hashtable;
+import icarus.util.SaveState;
 
 /**
  * Emulates the software component of the nuclear reactor. In addition, it owns and manages the hardware components of
@@ -56,17 +56,15 @@ public class OperatorSoftware {
      *
      * @param HashTable with Reactor objects
      */
-    public OperatorSoftware(Hashtable<String, Serializable> h) {
-        reactor = (Reactor)h.get("reactor");
-        condenser = (Condenser)h.get("condenser");
-
-        turbine = (Turbine)h.get("turbine");
-        generator = (Generator)h.get("generator");
-
-        waterPump = (WaterPump[])h.get("waterPump");
-        steamValve = (SteamValve)h.get("steamValve");
-        condenserPump = (CondenserPump)h.get("condenserPump");
-        player = (Player)h.get("player");
+    public OperatorSoftware(SaveState state) {
+        reactor = state.reactor;
+        condenser = state.condenser;
+        turbine = state.turbine;
+        generator = state.generator;
+        waterPump = state.waterPumps;
+        steamValve = state.steamValve;
+        condenserPump = state.condenserPump;
+        player = state.player;
     }
 
     /**
@@ -568,16 +566,16 @@ public class OperatorSoftware {
      *
      * @return a hashtable
      */
-    public Hashtable<String, Serializable> getGameState() {
-        Hashtable<String, Serializable> h = new Hashtable<String, Serializable>();
-        h.put("reactor", reactor);
-        h.put("condenser", condenser);
-        h.put("generator", generator);
-        h.put("turbine", turbine);
-        h.put("steamValve", steamValve);
-        h.put("waterPump", waterPump);
-        h.put("condenserPump", condenserPump);
-        h.put("player", player);
-        return h;
+    public SaveState getGameState() {
+        SaveState s = new SaveState();
+        s.reactor = reactor;
+        s.condenser = condenser;
+        s.generator = generator;
+        s.turbine = turbine;
+        s.steamValve = steamValve;
+        s.waterPumps = waterPump;
+        s.condenserPump = condenserPump;
+        s.player = player;
+        return s;
     }
 }
