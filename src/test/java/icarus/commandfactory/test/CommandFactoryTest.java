@@ -11,7 +11,7 @@ import icarus.exceptions.InvalidValveException;
 import icarus.exceptions.MaximumRodsException;
 import icarus.exceptions.MinimumRodsException;
 import icarus.exceptions.NoFixNeededException;
-import icarus.operatorsoftware.Component;
+import icarus.operatorsoftware.Components;
 import icarus.parser.CommandWords;
 import java.io.File;
 import static org.junit.Assert.*;
@@ -104,18 +104,18 @@ public class CommandFactoryTest {
     @Test(expected = NoFixNeededException.class)
     public void testFixWithoutWaterPump() throws InvalidComponentException, FixAlreadyUnderwayException,
                                                  NoFixNeededException, NoFixNeededException {
-        cf.fix(Component.CONDENSER);
-        cf.fix(Component.CONDENSERPUMP);
-        cf.fix(Component.REACTOR);
-        cf.fix(Component.TURBINE);
-        cf.fix(Component.WATERPUMP);
+        cf.fix(Components.CONDENSER);
+        cf.fix(Components.CONDENSERPUMP);
+        cf.fix(Components.REACTOR);
+        cf.fix(Components.TURBINE);
+        cf.fix(Components.WATERPUMP);
     }
 
     @Test(expected = NoFixNeededException.class)
     public void testFixWaterPump() throws NumberFormatException, InvalidComponentException, FixAlreadyUnderwayException,
                                           NoFixNeededException, InvalidPumpException {
-        cf.fix(Component.WATERPUMP, 1);
-        cf.fix(Component.WATERPUMP, 3);
+        cf.fix(Components.WATERPUMP, 1);
+        cf.fix(Components.WATERPUMP, 3);
     }
 
     @Test

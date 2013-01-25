@@ -6,7 +6,7 @@ package icarus.operatorsoftware;
  * @author Team Haddock
  *
  */
-public enum Component {
+public enum Components {
 
     REACTOR("reactor"),
     CONDENSER("condenser"),
@@ -16,7 +16,7 @@ public enum Component {
     GENERATOR("generator");
     private String componentString;
 
-    private Component(String componentString) {
+    private Components(String componentString) {
 
         this.componentString = componentString;
     }

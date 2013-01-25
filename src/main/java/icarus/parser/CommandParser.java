@@ -10,7 +10,7 @@ package icarus.parser;
  */
 import icarus.commandfactory.CommandFactory;
 import icarus.exceptions.*;
-import icarus.operatorsoftware.Component;
+import icarus.operatorsoftware.Components;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -410,13 +410,13 @@ public class CommandParser {
         try {
             System.out.println(String.format("%-15s%15s%15s", " ", "Reactor", "Condenser"));
             System.out.println(String.format("%-15s%15s%15s", "Water level",
-                                             df.format(cf.waterLevel(Component.REACTOR)) + " cm", df.format(cf
-                    .waterLevel(Component.CONDENSER)) + " cm"));
+                                             df.format(cf.waterLevel(Components.REACTOR)) + " cm", df.format(cf
+                    .waterLevel(Components.CONDENSER)) + " cm"));
             System.out.println(String.format("%-15s%15s%15s", "Pressure level", df
-                    .format(cf.pressure(Component.REACTOR)) + " kPa", df.format(cf.pressure(Component.CONDENSER)) +
+                    .format(cf.pressure(Components.REACTOR)) + " kPa", df.format(cf.pressure(Components.CONDENSER)) +
                                                                       " kPa"));
             System.out.println(String.format("%-15s%15s%15s", "Temperature", df
-                    .format(cf.temperature(Component.REACTOR)) + " K", df.format(cf.temperature(Component.CONDENSER)) +
+                    .format(cf.temperature(Components.REACTOR)) + " K", df.format(cf.temperature(Components.CONDENSER)) +
                                                                        " K"));
             System.out.println(String.format("%-15s%15s", "Rod Height", cf.rodHeight()));
             System.out.println();
@@ -472,49 +472,49 @@ public class CommandParser {
      */
     public void reportFailures() {
         try {
-            if (!cf.functional(Component.REACTOR)) {
+            if (!cf.functional(Components.REACTOR)) {
                 System.out.print("The reactor " + " is not functioning properly");
-                if (cf.isRepairing(Component.REACTOR)) {
+                if (cf.isRepairing(Components.REACTOR)) {
                     System.out.println(" but is being repaired.");
                 } else {
                     System.out.println("!");
                 }
             }
-            if (!cf.functional(Component.CONDENSER)) {
+            if (!cf.functional(Components.CONDENSER)) {
                 System.out.print("The condenser " + "is broken due to an alien attack");
-                if (cf.isRepairing(Component.CONDENSER)) {
+                if (cf.isRepairing(Components.CONDENSER)) {
                     System.out.println(" but is being repaired.");
                 } else {
                     System.out.println("!");
                 }
             }
-            if (!cf.functional(Component.TURBINE)) {
+            if (!cf.functional(Components.TURBINE)) {
                 System.out.print("The turbine " + "is broken and isn't generating any power");
-                if (cf.isRepairing(Component.TURBINE)) {
+                if (cf.isRepairing(Components.TURBINE)) {
                     System.out.println(" but is being repaired.");
                 } else {
                     System.out.println("!");
                 }
             }
-            if (!cf.functional(Component.CONDENSERPUMP)) {
+            if (!cf.functional(Components.CONDENSERPUMP)) {
                 System.out.print("The condenser pump (pump 2) " + "was shot in the crossfire and is broken");
-                if (cf.isRepairing(Component.CONDENSERPUMP)) {
+                if (cf.isRepairing(Components.CONDENSERPUMP)) {
                     System.out.println(" but is being repaired.");
                 } else {
                     System.out.println("!");
                 }
             }
-            if (!cf.functional(Component.WATERPUMP, 0)) {
+            if (!cf.functional(Components.WATERPUMP, 0)) {
                 System.out.print("Pump 0 " + "is badly damaged and not functioning");
-                if (cf.isRepairing(Component.WATERPUMP, 0)) {
+                if (cf.isRepairing(Components.WATERPUMP, 0)) {
                     System.out.println(" but is being repaired.");
                 } else {
                     System.out.println("!");
                 }
             }
-            if (!cf.functional(Component.WATERPUMP, 1)) {
+            if (!cf.functional(Components.WATERPUMP, 1)) {
                 System.out.print("Pump 1 " + "is badly damaged and not functioning");
-                if (cf.isRepairing(Component.WATERPUMP, 1)) {
+                if (cf.isRepairing(Components.WATERPUMP, 1)) {
                     System.out.println(" but is being repaired.");
                 } else {
                     System.out.println("!");
@@ -714,10 +714,10 @@ public class CommandParser {
      * @param word3 (string )
      */
     public void fix(String word2, String word3) throws NoFixNeededException {
-        if (word2.equals(Component.CONDENSER.toString())) {
+        if (word2.equals(Components.CONDENSER.toString())) {
 
             try {
-                cf.fix(Component.CONDENSER);
+                cf.fix(Components.CONDENSER);
                 System.out.println("Fixing the condenser...");
             } catch (InvalidComponentException e) {
                 System.out.println("Component not recognised");
@@ -726,10 +726,10 @@ public class CommandParser {
             } catch (NoFixNeededException e) {
                 System.out.println(e.toString());
             }
-        } else if (word2.equals(Component.REACTOR.toString())) {
+        } else if (word2.equals(Components.REACTOR.toString())) {
 
             try {
-                cf.fix(Component.REACTOR);
+                cf.fix(Components.REACTOR);
                 System.out.println("Fixing the reactor...");
             } catch (InvalidComponentException e) {
                 System.out.println("Component not recognised.");
@@ -738,10 +738,10 @@ public class CommandParser {
             } catch (NoFixNeededException e) {
                 System.out.println(e.toString());
             }
-        } else if (word2.equals(Component.TURBINE.toString())) {
+        } else if (word2.equals(Components.TURBINE.toString())) {
 
             try {
-                cf.fix(Component.TURBINE);
+                cf.fix(Components.TURBINE);
                 System.out.println("Fixing the turbine...");
             } catch (InvalidComponentException e) {
                 System.out.println("Component not recognised.");
@@ -752,7 +752,7 @@ public class CommandParser {
             }
         } else if (word2.equals("pump") && word3.equals("2")) {
             try {
-                cf.fix(Component.CONDENSERPUMP);
+                cf.fix(Components.CONDENSERPUMP);
                 System.out.println("Fixing the condenser pump...");
             } catch (InvalidComponentException e) {
                 System.out.println("Component not recognised.");
@@ -765,7 +765,7 @@ public class CommandParser {
         } else if (word2.equals("pump") && (word3.equals("0") || word3.equals("1"))) {
 
             try {
-                cf.fix(Component.WATERPUMP, Integer.parseInt(word3));
+                cf.fix(Components.WATERPUMP, Integer.parseInt(word3));
                 System.out.println("Fixing waterpump " + word3 + " ..");
             } catch (InvalidComponentException e) {
                 System.out.println("Component not recognised.");

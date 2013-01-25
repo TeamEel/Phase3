@@ -4,7 +4,7 @@ import icarus.exceptions.FixAlreadyUnderwayException;
 import icarus.exceptions.InvalidComponentException;
 import icarus.exceptions.InvalidPumpException;
 import icarus.exceptions.NoFixNeededException;
-import icarus.operatorsoftware.Component;
+import icarus.operatorsoftware.Components;
 import icarus.operatorsoftware.OperatorSoftware;
 import icarus.reactor.Generator;
 import icarus.reactor.Reactor;
@@ -72,44 +72,44 @@ public class OperatorSoftwareTest {
 
     @Test(expected = InvalidComponentException.class)
     public void testInvalidTemperature() throws InvalidComponentException {
-        op.temperature(Component.TURBINE);
+        op.temperature(Components.TURBINE);
     }
 
     @Test
     public void testValidTemperature() throws InvalidComponentException {
         Reactor reactor = new Reactor();
-        assertEquals(reactor.getTemperature(), op.temperature(Component.REACTOR), 0);
+        assertEquals(reactor.getTemperature(), op.temperature(Components.REACTOR), 0);
     }
 
     @Test(expected = InvalidComponentException.class)
     public void testInvalidWaterLevel() throws InvalidComponentException {
-        op.waterLevel(Component.TURBINE);
+        op.waterLevel(Components.TURBINE);
     }
 
     @Test
     public void testValidWaterLevel() throws InvalidComponentException {
         Reactor reactor = new Reactor();
-        assertEquals(reactor.getWaterLevel(), op.waterLevel(Component.REACTOR), 0);
+        assertEquals(reactor.getWaterLevel(), op.waterLevel(Components.REACTOR), 0);
     }
 
     @Test
     public void testValidFunctionalComponent() throws InvalidComponentException {
-        assertTrue(op.functional(Component.REACTOR));
+        assertTrue(op.functional(Components.REACTOR));
     }
 
     @Test(expected = InvalidComponentException.class)
     public void testInvalidFunctionalComponent() throws InvalidComponentException {
-        op.functional(Component.WATERPUMP);
+        op.functional(Components.WATERPUMP);
     }
 
     @Test
     public void testValidFunctionalWaterPump() throws InvalidComponentException {
-        assertTrue(op.functional(Component.WATERPUMP, 0));
+        assertTrue(op.functional(Components.WATERPUMP, 0));
     }
 
     @Test(expected = InvalidComponentException.class)
     public void testInvalidFunctionalWaterPump() throws InvalidComponentException {
-        op.functional(Component.CONDENSERPUMP, 0);
+        op.functional(Components.CONDENSERPUMP, 0);
     }
 
     @Test
@@ -121,12 +121,12 @@ public class OperatorSoftwareTest {
     @Test
     public void testValidPressure() throws InvalidComponentException {
         Reactor reactor = new Reactor();
-        assertEquals(reactor.getPressure(), op.pressure(Component.REACTOR), 0);
+        assertEquals(reactor.getPressure(), op.pressure(Components.REACTOR), 0);
     }
 
     @Test(expected = InvalidComponentException.class)
     public void testInvalidPressure() throws InvalidComponentException {
-        op.pressure(Component.TURBINE);
+        op.pressure(Components.TURBINE);
     }
 
     @Test
@@ -140,13 +140,13 @@ public class OperatorSoftwareTest {
     @Test(expected = InvalidComponentException.class)
     public void testFixInvalidComponent() throws InvalidComponentException, FixAlreadyUnderwayException,
                                                  NoFixNeededException {
-        op.fix(Component.WATERPUMP);
+        op.fix(Components.WATERPUMP);
     }
 
     @Test(expected = InvalidPumpException.class)
     public void testFixInvalidWaterPump() throws NumberFormatException, InvalidComponentException,
                                                  FixAlreadyUnderwayException, NoFixNeededException, InvalidPumpException {
-        op.fix(Component.WATERPUMP, 2);
+        op.fix(Components.WATERPUMP, 2);
     }
 
     @Test
@@ -166,12 +166,12 @@ public class OperatorSoftwareTest {
 
     @Test
     public void testIsRepairingComponent() {
-        assertFalse(op.isRepairing(Component.REACTOR));
+        assertFalse(op.isRepairing(Components.REACTOR));
     }
 
     @Test
     public void testIsRepairingWaterPump() {
-        assertFalse(op.isRepairing(Component.WATERPUMP, 0));
+        assertFalse(op.isRepairing(Components.WATERPUMP, 0));
     }
 
     @Test

@@ -1,7 +1,7 @@
 package icarus.operatorsoftware;
 
 import icarus.exceptions.*;
-import icarus.operatorsoftware.Component;
+import icarus.operatorsoftware.Components;
 import icarus.reactor.*;
 import icarus.util.SaveState;
 
@@ -21,7 +21,7 @@ public class OperatorSoftware {
     SteamValve steamValve;
     WaterPump[] waterPump;
     CondenserPump condenserPump;
-    Component currentFix;
+    Components currentFix;
     Player player;
 
     /**
@@ -220,7 +220,7 @@ public class OperatorSoftware {
      *
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
-    public double temperature(Component component) throws InvalidComponentException {
+    public double temperature(Components component) throws InvalidComponentException {
         switch (component) {
             case CONDENSER:
                 return condenser.getTemperature();
@@ -240,7 +240,7 @@ public class OperatorSoftware {
      *
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
-    public double waterLevel(Component component) throws InvalidComponentException {
+    public double waterLevel(Components component) throws InvalidComponentException {
         switch (component) {
             case CONDENSER:
                 return condenser.getWaterLevel();
@@ -260,7 +260,7 @@ public class OperatorSoftware {
      *
      * @throws InvalidComponentException Thrown when a bad component is specified
      */
-    public boolean functional(Component component) throws InvalidComponentException {
+    public boolean functional(Components component) throws InvalidComponentException {
         switch (component) {
             case CONDENSER:
                 return condenser.getFunctional();
@@ -276,17 +276,17 @@ public class OperatorSoftware {
     }
 
     /**
-     * Variation of functional(Component) for pumps, returns the functionality of a specified pump
+     * Variation of functional(Components) for pumps, returns the functionality of a specified pump
      *
-     * @param component Required to be set to Component.WATERPUMP, specifies the component to inspect
+     * @param component Required to be set to Components.WATERPUMP, specifies the component to inspect
      * @param pumpNum The id of the pump to inspect
      *
      * @return whether the specified pump is functional
      *
      * @throws InvalidComponentException Thrown when a bad component is specified
      */
-    public boolean functional(Component component, int pumpNum) throws InvalidComponentException {
-        if (component == Component.WATERPUMP) {
+    public boolean functional(Components component, int pumpNum) throws InvalidComponentException {
+        if (component == Components.WATERPUMP) {
             return waterPump[pumpNum].getFunctional();
         } else {
             throw new InvalidComponentException(component.toString());
@@ -311,7 +311,7 @@ public class OperatorSoftware {
      *
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
-    public double pressure(Component component) throws InvalidComponentException {
+    public double pressure(Components component) throws InvalidComponentException {
         switch (component) {
             case CONDENSER:
                 return condenser.getPressure();
@@ -338,7 +338,7 @@ public class OperatorSoftware {
      * @throws FixAlreadyUnderwayException Thrown when a fix is already occurring in the system
      * @throws NoFixNeededException Thrown when attempting to fix a functional component
      */
-    public void fix(Component component) throws InvalidComponentException, FixAlreadyUnderwayException,
+    public void fix(Components component) throws InvalidComponentException, FixAlreadyUnderwayException,
                                                 NoFixNeededException {
         if (!fixUnderway()) {
             switch (component) {
@@ -372,10 +372,10 @@ public class OperatorSoftware {
      * @throws FixAlreadyUnderwayException Thrown when a fix is already occurring in the system
      * @throws NoFixNeededException Thrown when attempting to fix a functional component
      */
-    public void fix(Component component, int pumpNum) throws InvalidComponentException, FixAlreadyUnderwayException,
+    public void fix(Components component, int pumpNum) throws InvalidComponentException, FixAlreadyUnderwayException,
                                                              InvalidPumpException, NoFixNeededException {
         if (!fixUnderway()) {
-            if (component == Component.WATERPUMP) {
+            if (component == Components.WATERPUMP) {
                 if (pumpNum == 0 || pumpNum == 1) {
                     waterPump[pumpNum].beginFix();
                 } else {
@@ -519,7 +519,7 @@ public class OperatorSoftware {
      *
      * @return Whether the component is currently being repaired
      */
-    public boolean isRepairing(Component component) {
+    public boolean isRepairing(Components component) {
         switch (component) {
             case CONDENSER:
                 return condenser.getRepairing();
@@ -535,18 +535,18 @@ public class OperatorSoftware {
     }
 
     /**
-     * The pump variant of isRepairing(Component). Returns whether a specified pump is currently being repaired.
+     * The pump variant of isRepairing(Components). Returns whether a specified pump is currently being repaired.
      *
-     * @param component required to be set to Component.WATERPUMP, specifies the component to inspect
+     * @param component required to be set to Components.WATERPUMP, specifies the component to inspect
      * @param id The pump ID to inspect
      *
      * @return Whether the specified pump is being repaired
      */
-    public boolean isRepairing(Component component, int id) {
-        if (component == Component.WATERPUMP && id == 0) {
+    public boolean isRepairing(Components component, int id) {
+        if (component == Components.WATERPUMP && id == 0) {
             return waterPump[0].getRepairing();
         }
-        if (component == Component.WATERPUMP && id == 1) {
+        if (component == Components.WATERPUMP && id == 1) {
             return waterPump[1].getRepairing();
         }
         return false;
