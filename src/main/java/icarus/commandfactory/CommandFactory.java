@@ -5,10 +5,9 @@ import icarus.operatorsoftware.Component;
 import icarus.operatorsoftware.OperatorSoftware;
 import icarus.util.FileInput;
 import icarus.util.FileOutput;
-
+import icarus.util.SaveState;
 import java.io.FileNotFoundException;
 import java.io.Serializable;
-import java.util.Hashtable;
 
 /**
  * Handles commands specified by the UI, including calls to operatorSoftware,
@@ -20,8 +19,6 @@ public class CommandFactory {
 
 	private OperatorSoftware op;
 	private int score; // stores the score of the player
-	private FileInput fileInput = new FileInput();
-	private FileOutput fileOutput = new FileOutput();
 
 	/**
 	 * Default constructor for CommandFactory
@@ -251,7 +248,7 @@ public class CommandFactory {
 	 */
 	public String achievementResponse(String playerName) {
 
-		String response = null;
+		String response;
 
 		if (score > 250000) {
 			if (score > 500000) {
@@ -428,7 +425,7 @@ public class CommandFactory {
 	 *            specifies the name of the file
 	 */
 	public void saveToFile(String fileName) {
-		fileOutput.saveObjectToFile(op.getGameState(), fileName);
+		FileOutput.saveObjectToFile(op.getGameState(), fileName);
 	}
 
 	/**
@@ -439,15 +436,13 @@ public class CommandFactory {
 	 * @return Hashtable containing the reactor objects
 	 */
 	public boolean loadFromFile(String fileName) {
-		Hashtable<String, Serializable> h = new Hashtable<String, Serializable>();
 		try {
-			h = fileInput.LoadObjectFromFile(fileName);
-			if (h.get("reactor") != null) {
-				op = new OperatorSoftware(h);
-				return true;
-			}
-			return false;
-
+			SaveState s = FileInput.loadObjectFromFile(fileName);
+			if (s == null) {
+                            return false;
+                        }
+			op = new OperatorSoftware(s);
+                        return true;
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found");
 			return false;
