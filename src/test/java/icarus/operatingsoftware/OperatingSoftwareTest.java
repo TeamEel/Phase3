@@ -63,23 +63,20 @@ public class OperatingSoftwareTest {
 
     @Test(expected = InvalidRodsException.class)
     public void testRaiseInvalidInput() throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
-        cf.raise(-43);
+        cf.movecontrolrods(-43);
+    }
+    
+    @Test(expected = InvalidRodsException.class)
+    public void testRaiseInvalidInput2() throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
+        cf.movecontrolrods(101);
     }
 
     @Test
     public void testRaiseValidInput() throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
-        cf.raise(20);
+        cf.movecontrolrods(20);
     }
 
-    @Test(expected = InvalidRodsException.class)
-    public void testLowerInvalidInput() throws InvalidRodsException, ComponentFailedException, MinimumRodsException {
-        cf.lower(-43);
-    }
-
-    @Test
-    public void testLowerValidInput() throws InvalidRodsException, ComponentFailedException, MinimumRodsException {
-        cf.lower(20);
-    }
+   
 
     @Test(expected = InvalidValveException.class)
     public void testOpenInvalid() throws InvalidValveException, AlreadyAtStateException {

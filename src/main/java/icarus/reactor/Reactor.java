@@ -114,59 +114,21 @@ public class Reactor extends MajorComponent implements Serializable {
 
     }
 
-    /**
-     * Reduces the height of the control rods in the reactor
-     *
-     * @param amount The amount to reduce the height by, as a value between 0 and 100
-     *
-     * @throws InvalidRodsException Thrown when amount specified is either negative or would force rods outside
-     *                                  logical region
-     * @throws MinimumRodsException Thrown when the height of the rods attempts to exceed the minimum
-     * @throws ComponentFailedException Thrown if method is called when component is failed.
-     */
-    public void lower(int amount) throws InvalidRodsException, MinimumRodsException, ComponentFailedException {
+    
+    
+    public void movecontrolrods(int amount) throws InvalidRodsException, ComponentFailedException {
         if (functional) {
             // stops inputs outside of the 0 - 100 range
             if (amount < 0 || amount > 100) {
                 throw new InvalidRodsException(amount);
-            } // stops rodHeight going below 0
-            else if (rodHeight - amount < 0) {
-                rodHeight = 0;
-                throw new MinimumRodsException();
             } else {
-                rodHeight = rodHeight - amount;
+                rodHeight =  amount;
             }
         } else {
             throw new ComponentFailedException();
         }
     }
-
-    /**
-     * Increases the height of the control rods in the reactor
-     *
-     * @param amount The amount to increase the height by, as a value between 0 and 100
-     *
-     * @throws InvalidRodsException Thrown when amount specified is either negative or would force rods outside
-     *                                 logical region
-     * @throws MaximumRodsException Thrown when the height of the rods attempts to exceed the maximum
-     * @throws ComponetFailedException Thrown if method is called when component is failed.
-     */
-    public void raise(int amount) throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
-        if (functional) {
-            // stops inputs outside of the 0 - 100 range
-            if (amount < 0 || amount > 100) {
-                throw new InvalidRodsException(amount);
-            } // stops rodHeight going above 100
-            else if (rodHeight + amount > 100) {
-                rodHeight = 100;
-                throw new MaximumRodsException();
-            } else {
-                rodHeight = rodHeight + amount;
-            }
-        } else {
-            throw new ComponentFailedException();
-        }
-    }
+    
 
     /**
      *

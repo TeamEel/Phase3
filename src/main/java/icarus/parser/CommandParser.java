@@ -253,12 +253,12 @@ public class CommandParser {
                 case TURNON:
                     turnon(word2);
                     break;
-                case RAISE:
+  /*              case RAISE:
                     raise(word2);
                     break;
                 case LOWER:
                     lower(word2);
-                    break;
+                    break;*/
                 case OPEN:
                     open(word2);
                     break;
@@ -630,7 +630,7 @@ public class CommandParser {
      * Raises the rods by the inputed ammount
      *
      * @param word2 (string, specifying the ammount to be raised)
-     */
+    
     public void raise(String word2) {
         try {
             int amount = cf.raise(Integer.parseInt(word2));
@@ -646,12 +646,13 @@ public class CommandParser {
             System.out.println("The reactor has failed and isn't responding to commands!");
         }
     }
+    *  */
 
     /**
      * Lowers the rods by the inputed ammount
      *
      * @param word2 (string, specifying the ammount to be lower)
-     */
+     
     public void lower(String word2) {
         try {
             int amount = cf.lower(Integer.parseInt(word2));
@@ -667,7 +668,7 @@ public class CommandParser {
             System.out.println("The reactor has failed and isn't responding to commands!");
         }
     }
-
+*/
     /**
      * Opens a valve
      *

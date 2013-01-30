@@ -87,41 +87,8 @@ public class PowerPlant implements PlantControl {
         return player.getName();
     }
 
-    /**
-     * Move the control rods up in the reactor by the amount specified
-     *
-     * @param amount The amount to raise the control rods by
-     *
-     * @return The new height of the control rods
-     *
-     * @throws InvalidRodsException Thrown when amount specified is negative
-     * @throws MaximumRodsException Thrown when the rods attempt to exceed the maximum height
-     * @throws ComponentFailedException Thrown if method is called when component is failed.
-     */
-    @Override
-    public int raise(int amount) throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
-
-        reactor.raise(amount);
-        return reactor.getRodHeight();
-    }
-
-    /**
-     * Move the control rods down in the reactor by the amount specified
-     *
-     * @param amount The amount to lower the control rods by
-     *
-     * @return The new height of the control rods
-     *
-     * @throws InvalidRodsException Thrown when amount specified is negative
-     * @throws MinimumRodsException Thrown when the rods attempt to exceed the minimum height
-     * @throws ComponentFailedException Thrown if method is called when component is failed.
-     */
-    @Override
-    public int lower(int amount) throws InvalidRodsException, MinimumRodsException, ComponentFailedException {
-        reactor.lower(amount);
-
-        return reactor.getRodHeight();
-    }
+    
+    
 
     /**
      * Opens a SteamValve in the system
@@ -571,6 +538,11 @@ public class PowerPlant implements PlantControl {
         s.condenserPump = condenserPump;
         s.player = player;
         return s;
+    }
+
+    @Override
+    public void movecontrolrods(int amount) throws InvalidRodsException, ComponentFailedException {
+        reactor.movecontrolrods(amount);
     }
     
     private Component[] failableComponents() {

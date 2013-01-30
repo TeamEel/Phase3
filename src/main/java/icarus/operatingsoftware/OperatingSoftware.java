@@ -323,25 +323,9 @@ public class OperatingSoftware {
 		op.turnOn(pumpNum);
 	}
 
-	/**
-	 * Move the control rods up in the reactor by the amount specified
-	 * 
-	 * @param amount
-	 *            The amount to raise the control rods by
-	 * @return The new height of the control rods
-	 * @throws InvalidRodsException
-	 *             Thrown when amount specified is negative
-	 * @throws MaximumRodsException
-	 *             Thrown when the rods attempt to exceed the maximum height
-	 * @throws ComponentFailedException
-	 *             Thrown if method is called when component is failed.
-	 */
-	public int raise(int amount) throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
-		return op.raise(amount);
-	}
 
 	/**
-	 * Move the control rods down in the reactor by the amount specified
+	 * Move the control rods in the reactor to the amount specified
 	 * 
 	 * @param amount
 	 *            The amount to lower the control rods by
@@ -353,8 +337,8 @@ public class OperatingSoftware {
 	 * @throws ComponentFailedException
 	 *             Thrown if method is called when component is failed.
 	 */
-	public int lower(int amount) throws InvalidRodsException, MinimumRodsException, ComponentFailedException {
-		return op.lower(amount);
+	public void movecontrolrods(int amount) throws InvalidRodsException, ComponentFailedException {
+            op.movecontrolrods(amount);
 	}
 
 	/**
