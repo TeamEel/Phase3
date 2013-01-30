@@ -1,6 +1,5 @@
 package icarus.operatingsoftware;
 
-import icarus.operatingsoftware.OperatingSoftware;
 import icarus.exceptions.AlreadyAtStateException;
 import icarus.exceptions.ComponentFailedException;
 import icarus.exceptions.FixAlreadyUnderwayException;
@@ -11,15 +10,13 @@ import icarus.exceptions.InvalidValveException;
 import icarus.exceptions.MaximumRodsException;
 import icarus.exceptions.MinimumRodsException;
 import icarus.exceptions.NoFixNeededException;
-import icarus.operatingsoftware.Components;
-import icarus.parser.CommandWords;
 import java.io.File;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class OperatingSoftwareTest {
 
-    OperatingSoftware cf = new OperatingSoftware();
+    OperatingSoftware cf = new OperatingSoftware(new PowerPlant());
 
     // OperatingSoftwareTest class which tests the methods in the actual
     // OperatingSoftware class (whether they work, given a valid and invalid

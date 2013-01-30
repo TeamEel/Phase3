@@ -11,6 +11,7 @@ package icarus.parser;
 import icarus.operatingsoftware.OperatingSoftware;
 import icarus.exceptions.*;
 import icarus.operatingsoftware.Components;
+import icarus.operatingsoftware.PowerPlant;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -27,7 +28,7 @@ public class CommandParser {
     public CommandParser() {
         reader = new Scanner(System.in);
         commands = new CommandWords();
-        cf = new OperatingSoftware();
+        cf = new OperatingSoftware(new PowerPlant());
     }
 
     /**
@@ -38,7 +39,7 @@ public class CommandParser {
     public CommandParser(Scanner reader) {
         this.reader = reader;
         commands = new CommandWords();
-        cf = new OperatingSoftware();
+        cf = new OperatingSoftware(new PowerPlant());
     }
 
     /**
@@ -216,7 +217,7 @@ public class CommandParser {
                             userResponse = reader.nextLine();
                         }
                         if (userResponse.equals("y")) {
-                            cf = new OperatingSoftware();
+                            cf = new OperatingSoftware(new PowerPlant());
                             finished = false;
                             userResponse = "";
                             updateDisplay();

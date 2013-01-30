@@ -17,14 +17,14 @@ import java.io.Serializable;
  **/
 public class OperatingSoftware {
 
-	private PowerPlant op;
+	private PlantControl pc;
 	private int score; // stores the score of the player
 
 	/**
 	 * Default constructor for OperatingSoftware
 	 */
-	public OperatingSoftware() {
-		op = new PowerPlant();
+	public OperatingSoftware(PlantControl plantControl) {
+		pc = plantControl;
 		// commands = new CommandWords();
 	}
 
@@ -34,7 +34,7 @@ public class OperatingSoftware {
 	 * @param String The name of the player
 	 */
 	public void setPlayerName(String name) {
-		op.setPlayerName(name);
+		pc.setPlayerName(name);
 	}
 
 	/**
@@ -43,7 +43,7 @@ public class OperatingSoftware {
 	 * @returns String name
 	 */
 	public String getPlayerName() {
-		return op.getPlayerName();
+		return pc.getPlayerName();
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class OperatingSoftware {
 	 * @returns whether pump of ID is active
 	 */
 	public boolean isWaterPumpActive(int pumpNum) {
-		return op.isWaterPumpActive(pumpNum);
+		return pc.isWaterPumpActive(pumpNum);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class OperatingSoftware {
 	 * @returns whether pump is active
 	 */
 	public boolean isCondenserPumpActive() {
-		return op.isCondenserPumpActive();
+		return pc.isCondenserPumpActive();
 	}
 
 	/**
@@ -74,7 +74,7 @@ public class OperatingSoftware {
 	 *             Thrown when bad ID is specified
 	 */
 	public boolean isValveOpened(int valveNum) throws InvalidValveException {
-		return op.isValveOpened(valveNum);
+		return pc.isValveOpened(valveNum);
 	}
 
 	/**
@@ -82,7 +82,7 @@ public class OperatingSoftware {
 	 * @return the total power generated
 	 */
 	public int getPower() {
-		return op.getPower();
+		return pc.getPower();
 	}
 
 	/**
@@ -96,7 +96,7 @@ public class OperatingSoftware {
 	 *             Thrown when a non-reactor/-condenser component is specified
 	 */
 	public double waterLevel(Components component) throws InvalidComponentException {
-		return op.waterLevel(component);
+		return pc.waterLevel(component);
 	}
 
 	/**
@@ -110,7 +110,7 @@ public class OperatingSoftware {
 	 *             Thrown when a non-reactor/-condenser component is specified
 	 */
 	public double temperature(Components component) throws InvalidComponentException {
-		return op.temperature(component);
+		return pc.temperature(component);
 	}
 
 	/**
@@ -124,7 +124,7 @@ public class OperatingSoftware {
 	 *             Thrown when a non-reactor/-condenser component is specified
 	 */
 	public double pressure(Components component) throws InvalidComponentException {
-		return op.pressure(component);
+		return pc.pressure(component);
 	}
 
 	/**
@@ -133,7 +133,7 @@ public class OperatingSoftware {
 	 * @return double containing the rod height
 	 */
 	public int rodHeight() {
-		return op.rodHeight();
+		return pc.rodHeight();
 	}
 
 	/**
@@ -146,7 +146,7 @@ public class OperatingSoftware {
 	 *             Thrown when a bad component is specified
 	 */
 	public boolean functional(Components component) throws InvalidComponentException {
-		return op.functional(component);
+		return pc.functional(component);
 	}
 
 	/**
@@ -163,7 +163,7 @@ public class OperatingSoftware {
 	 *             Thrown when a bad component is specified
 	 */
 	public boolean functional(Components component, int pumpID) throws InvalidComponentException {
-		return op.functional(component, pumpID);
+		return pc.functional(component, pumpID);
 	}
 
 	/**
@@ -174,7 +174,7 @@ public class OperatingSoftware {
 	 * @return Whether the component is currently being repaired
 	 */
 	public boolean isRepairing(Components component) {
-		return op.isRepairing(component);
+		return pc.isRepairing(component);
 	}
 
 	/**
@@ -189,7 +189,7 @@ public class OperatingSoftware {
 	 * @return Whether the specified pump is being repaired
 	 */
 	public boolean isRepairing(Components component, int pumpID) {
-		return op.isRepairing(component, pumpID);
+		return pc.isRepairing(component, pumpID);
 	}
 
 	/**
@@ -197,7 +197,7 @@ public class OperatingSoftware {
 	 * @return Whether there is currently a fix underway in the system
 	 */
 	public boolean fixUnderway() {
-		return op.fixUnderway();
+		return pc.fixUnderway();
 	}
 
 	/**
@@ -207,7 +207,7 @@ public class OperatingSoftware {
 	 * @return The fix time on a current fix in the system
 	 */
 	public int getFixTime() {
-		return op.getFixTime();
+		return pc.getFixTime();
 	}
 
 	/**
@@ -216,7 +216,7 @@ public class OperatingSoftware {
 	 * @returns true or false
 	 */
 	public boolean checkIfGameOver() {
-		return op.checkIfGameOver();
+		return pc.checkIfGameOver();
 	}
 
 	/**
@@ -224,7 +224,7 @@ public class OperatingSoftware {
 	 */
 	private void calculateScore() {
 		score = 0;
-		score = (int) op.getPower() * 5;
+		score = (int) pc.getPower() * 5;
 
 	}
 
@@ -278,7 +278,7 @@ public class OperatingSoftware {
 	 * done here)
 	 */
 	public void next() {
-		op.next();
+		pc.next();
 	}
 
 	/**
@@ -288,7 +288,7 @@ public class OperatingSoftware {
 	 *         finished.
 	 */
 	public boolean doFix() {
-		return op.doFix();
+		return pc.doFix();
 	}
 
 	/**
@@ -304,7 +304,7 @@ public class OperatingSoftware {
 	 *             Thrown if method is called when component is failed.
 	 */
 	public void turnOff(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
-		op.turnOff(pumpNum);
+		pc.turnOff(pumpNum);
 	}
 
 	/**
@@ -320,7 +320,7 @@ public class OperatingSoftware {
 	 *             Thrown if method is called when component is failed.
 	 */
 	public void turnOn(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
-		op.turnOn(pumpNum);
+		pc.turnOn(pumpNum);
 	}
 
 	/**
@@ -337,7 +337,7 @@ public class OperatingSoftware {
 	 *             Thrown if method is called when component is failed.
 	 */
 	public int raise(int amount) throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
-		return op.raise(amount);
+		return pc.raise(amount);
 	}
 
 	/**
@@ -354,7 +354,7 @@ public class OperatingSoftware {
 	 *             Thrown if method is called when component is failed.
 	 */
 	public int lower(int amount) throws InvalidRodsException, MinimumRodsException, ComponentFailedException {
-		return op.lower(amount);
+		return pc.lower(amount);
 	}
 
 	/**
@@ -368,7 +368,7 @@ public class OperatingSoftware {
 	 *             Thrown if the specified valve is already open
 	 */
 	public void open(int amount) throws InvalidValveException, AlreadyAtStateException {
-		op.open(amount);
+		pc.open(amount);
 	}
 
 	/**
@@ -382,7 +382,7 @@ public class OperatingSoftware {
 	 *             Thrown if the specified valve is already closed
 	 */
 	public void close(int valveNum) throws InvalidValveException, AlreadyAtStateException {
-		op.close(valveNum);
+		pc.close(valveNum);
 	}
 
 	/**
@@ -397,7 +397,7 @@ public class OperatingSoftware {
 	 * @throws NoFixNeededException
 	 */
 	public void fix(Components component) throws InvalidComponentException, FixAlreadyUnderwayException, NoFixNeededException {
-		op.fix(component);
+		pc.fix(component);
 	}
 
 	/**
@@ -415,7 +415,7 @@ public class OperatingSoftware {
 	 * @throws NoFixNeededException
 	 */
 	public void fix(Components component, int pumpNum) throws InvalidPumpException, InvalidComponentException, FixAlreadyUnderwayException, NoFixNeededException {
-		op.fix(component, pumpNum);
+		pc.fix(component, pumpNum);
 	}
 
 	/**
@@ -425,7 +425,7 @@ public class OperatingSoftware {
 	 *            specifies the name of the file
 	 */
 	public void saveToFile(String fileName) {
-		FileOutput.saveObjectToFile(op.getGameState(), fileName);
+		FileOutput.saveObjectToFile(pc.getGameState(), fileName);
 	}
 
 	/**
@@ -441,7 +441,7 @@ public class OperatingSoftware {
 			if (s == null) {
                             return false;
                         }
-			op = new PowerPlant(s);
+			pc = new PowerPlant(s);
                         return true;
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found");
