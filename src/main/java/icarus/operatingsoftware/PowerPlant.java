@@ -445,7 +445,7 @@ public class PowerPlant implements PlantControl {
      *
      * @return Whether a component has failed
      */
-    public boolean checkFailures() {
+    boolean checkFailures() {
         //if a functional component fails, it will return true, leaving checkFailures
         //without calling checkFail() on any other components
         for (Component c : failableComponents()) {
