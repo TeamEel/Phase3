@@ -19,13 +19,6 @@ import icarus.util.SaveState;
 public interface PlantControl {
 
     /**
-     * Rolls for and checks if any component fails
-     *
-     * @return Whether a component has failed
-     */
-    boolean checkFailures();
-
-    /**
      * Checks whether the game has ended - if the temperature in the reactor has exceeded the max
      *
      * @return Whether the game over scenario has been reached
