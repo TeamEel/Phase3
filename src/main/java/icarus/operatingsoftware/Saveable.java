@@ -11,5 +11,6 @@ import icarus.util.SaveState;
  * @author drm511
  */
 public interface Saveable {
+
     public SaveState getGameState();
 }

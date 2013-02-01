@@ -21,8 +21,8 @@ public class SteamValve implements Serializable {
     /**
      * Primary constructor for use when initialising a new game
      *
-     * @param mComponentIn The MajorComponent pushing steam into the one-way valve system
-     * @param turbine The turbine which the steam passes over
+     * @param mComponentIn  The MajorComponent pushing steam into the one-way valve system
+     * @param turbine       The turbine which the steam passes over
      * @param mComponentOut The MajorComponent receiving steam out of the valve system
      */
     public SteamValve(MajorComponent mComponentIn, Turbine turbine, MajorComponent mComponentOut) {
@@ -42,8 +42,8 @@ public class SteamValve implements Serializable {
             if (pressureDiff > 0) {
                 //amount works out the steam amount to drain, worked out using the opposite method to getPressure
                 double amount = mCompIn
-                                                   .drainSteam((mCompIn.getHeight() - mCompIn.getWaterLevel()) *
-                                                               (pressureDiff / 2) / mCompIn.getTemperature());
+                        .drainSteam((mCompIn.getHeight() - mCompIn.getWaterLevel()) *
+                                    (pressureDiff / 2) / mCompIn.getTemperature());
                 // works out how much steam to pass to turbine to work out rpm
                 if (turbine.getFunctional() && open1 && open2) {
                     turbine.calculateRPM(amount / 2);
@@ -61,7 +61,7 @@ public class SteamValve implements Serializable {
      *
      * @param valveID ID of the valve to open
      *
-     * @throws InvalidValveException Thrown when a bad ID is given
+     * @throws InvalidValveException   Thrown when a bad ID is given
      * @throws AlreadyAtStateException Thrown if valve is already open
      */
     public void open(int valveID) throws InvalidValveException, AlreadyAtStateException {
@@ -88,7 +88,7 @@ public class SteamValve implements Serializable {
      *
      * @param valveID ID of the valve to close
      *
-     * @throws InvalidValveException Thrown when a bad ID is given
+     * @throws InvalidValveException   Thrown when a bad ID is given
      * @throws AlreadyAtStateException Thrown if valve is already closed
      */
     public void close(int valveID) throws InvalidValveException, AlreadyAtStateException {

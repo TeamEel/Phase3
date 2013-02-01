@@ -15,7 +15,7 @@ public class FileOutput {
     /**
      * Saves a hashtable (containing reactor objects) to a file
      *
-     * @param fileName The name of the file
+     * @param fileName  The name of the file
      * @param HashTable h The objects to be saved
      *
      * @throws FileNotFoundException

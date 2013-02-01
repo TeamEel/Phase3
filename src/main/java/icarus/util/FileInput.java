@@ -38,7 +38,7 @@ public class FileInput {
             System.out.println("File not found");
         } catch (IOException e) {
         }
-        
+
         return s;
     }
 }

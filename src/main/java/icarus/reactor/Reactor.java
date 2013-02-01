@@ -29,21 +29,21 @@ public class Reactor extends MajorComponent implements Serializable {
     /**
      * Constructor used when testing or loading a Reactor from a saved state.
      *
-     * @param rodHeight is the height the rods are at, out of 100
-     * @param activity is the level of activity in the reactor
-     * @param steamLevel the amount of steam in the component
-     * @param temperature temperature of the steam in the component
-     * @param pressure is the pressure of the steam in the component
-     * @param waterLevel the amount of water in the component
-     * @param radius is the radius of the container
-     * @param volume is the volume of the container
+     * @param rodHeight        is the height the rods are at, out of 100
+     * @param activity         is the level of activity in the reactor
+     * @param steamLevel       the amount of steam in the component
+     * @param temperature      temperature of the steam in the component
+     * @param pressure         is the pressure of the steam in the component
+     * @param waterLevel       the amount of water in the component
+     * @param radius           is the radius of the container
+     * @param volume           is the volume of the container
      * @param waterSurfaceArea is the surface area of the water, used for calculations
-     * @param height the the hight of the container
-     * @param failProb The (maximum) probability of a component failing
-     * @param fix The number of timesteps required to fix a component
-     * @param functioning Whether or not the Component is currently functioning
-     * @param repairal Whether or not the Component is currently being repaired
-     * @param fixingProgress The progress on a current fix
+     * @param height           the the hight of the container
+     * @param failProb         The (maximum) probability of a component failing
+     * @param fix              The number of timesteps required to fix a component
+     * @param functioning      Whether or not the Component is currently functioning
+     * @param repairal         Whether or not the Component is currently being repaired
+     * @param fixingProgress   The progress on a current fix
      */
     public Reactor(int rodHeight, int activity, int steamLevel, double temperature, double pressure, double waterLevel,
                    double radius, double waterSurfaceArea, int height, double failProb, int fix, boolean functioning,
@@ -119,9 +119,9 @@ public class Reactor extends MajorComponent implements Serializable {
      *
      * @param amount The amount to reduce the height by, as a value between 0 and 100
      *
-     * @throws InvalidRodsException Thrown when amount specified is either negative or would force rods outside
+     * @throws InvalidRodsException     Thrown when amount specified is either negative or would force rods outside
      *                                  logical region
-     * @throws MinimumRodsException Thrown when the height of the rods attempts to exceed the minimum
+     * @throws MinimumRodsException     Thrown when the height of the rods attempts to exceed the minimum
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
     public void lower(int amount) throws InvalidRodsException, MinimumRodsException, ComponentFailedException {
@@ -146,9 +146,9 @@ public class Reactor extends MajorComponent implements Serializable {
      *
      * @param amount The amount to increase the height by, as a value between 0 and 100
      *
-     * @throws InvalidRodsException Thrown when amount specified is either negative or would force rods outside
+     * @throws InvalidRodsException    Thrown when amount specified is either negative or would force rods outside
      *                                 logical region
-     * @throws MaximumRodsException Thrown when the height of the rods attempts to exceed the maximum
+     * @throws MaximumRodsException    Thrown when the height of the rods attempts to exceed the maximum
      * @throws ComponetFailedException Thrown if method is called when component is failed.
      */
     public void raise(int amount) throws InvalidRodsException, MaximumRodsException, ComponentFailedException {

@@ -66,19 +66,21 @@ public class CommandParser {
 
         System.out.println();
 
-        System.out.println(String.format("%s, this is your president, Barack Obama. Aliens are invading Earth!" + '\n' +
-                                         "Far beyond our stars, an alien race have exhausted their solar system. " +
-                                         '\n' +
-                                         "Having destroyed the homes of many inferior species, the aliens have scoured" +
-                                         '\n' +
-                                         "their galaxy and have setttled on us as their next target." + '\n' +
-                                         "We knew this was coming, and we need you, to power the weapons that could" +
-                                         '\n' +
-                                         "save Earth. Go to the nuclear plant and create as much power as possible." +
-                                         '\n' +
-                                         "Be as fast as you can, most of our agents are already dead and the aliens won't" +
-                                         '\n' +
-                                         "take long to work out what you are going to do!\"", cf.getPlayerName()));
+        System.out.println(String
+                                         .format("%s, this is your president, Barack Obama. Aliens are invading Earth!" +
+                                                 '\n' +
+                                                 "Far beyond our stars, an alien race have exhausted their solar system. " +
+                                                 '\n' +
+                                                 "Having destroyed the homes of many inferior species, the aliens have scoured" +
+                                                 '\n' +
+                                                 "their galaxy and have setttled on us as their next target." + '\n' +
+                                                 "We knew this was coming, and we need you, to power the weapons that could" +
+                                                 '\n' +
+                                                 "save Earth. Go to the nuclear plant and create as much power as possible." +
+                                                 '\n' +
+                                                 "Be as fast as you can, most of our agents are already dead and the aliens won't" +
+                                                 '\n' +
+                                                 "take long to work out what you are going to do!\"", cf.getPlayerName()));
 
         System.out.println("Press enter to continue");
         System.out.println("> ");
@@ -415,10 +417,11 @@ public class CommandParser {
                     .waterLevel(Components.CONDENSER)) + " cm"));
             System.out.println(String.format("%-15s%15s%15s", "Pressure level", df
                     .format(cf.pressure(Components.REACTOR)) + " kPa", df.format(cf.pressure(Components.CONDENSER)) +
-                                                                      " kPa"));
+                                                                       " kPa"));
             System.out.println(String.format("%-15s%15s%15s", "Temperature", df
-                    .format(cf.temperature(Components.REACTOR)) + " K", df.format(cf.temperature(Components.CONDENSER)) +
-                                                                       " K"));
+                    .format(cf.temperature(Components.REACTOR)) + " K",
+                                             df.format(cf.temperature(Components.CONDENSER)) +
+                                             " K"));
             System.out.println(String.format("%-15s%15s", "Rod Height", cf.rodHeight()));
             System.out.println();
 
@@ -778,7 +781,8 @@ public class CommandParser {
                 System.out.println(e.toString());
             }
         } else {
-            System.out.println(
+            System.out
+                    .println(
                     "What do you want to fix? \ncondenser, turbine, reactor,pump 0, pump 1 or pump 2? \nSample commands: \"fix turbine\", \"fix pump 0\"");
         }
     }

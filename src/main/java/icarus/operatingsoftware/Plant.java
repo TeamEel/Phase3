@@ -9,5 +9,4 @@ package icarus.operatingsoftware;
  * @author drm511
  */
 public interface Plant extends PlantControl, Saveable {
-    
 }

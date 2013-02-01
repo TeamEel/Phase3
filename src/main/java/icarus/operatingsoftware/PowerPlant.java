@@ -94,8 +94,8 @@ public class PowerPlant implements Plant {
      *
      * @return The new height of the control rods
      *
-     * @throws InvalidRodsException Thrown when amount specified is negative
-     * @throws MaximumRodsException Thrown when the rods attempt to exceed the maximum height
+     * @throws InvalidRodsException     Thrown when amount specified is negative
+     * @throws MaximumRodsException     Thrown when the rods attempt to exceed the maximum height
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
     @Override
@@ -112,8 +112,8 @@ public class PowerPlant implements Plant {
      *
      * @return The new height of the control rods
      *
-     * @throws InvalidRodsException Thrown when amount specified is negative
-     * @throws MinimumRodsException Thrown when the rods attempt to exceed the minimum height
+     * @throws InvalidRodsException     Thrown when amount specified is negative
+     * @throws MinimumRodsException     Thrown when the rods attempt to exceed the minimum height
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
     @Override
@@ -128,7 +128,7 @@ public class PowerPlant implements Plant {
      *
      * @param valveNum The id of the valve to open
      *
-     * @throws InvalidValveException Thrown when a bad valve ID is specified
+     * @throws InvalidValveException   Thrown when a bad valve ID is specified
      * @throws AlreadyAtStateException Thrown if the specified valve is already open
      */
     @Override
@@ -141,7 +141,7 @@ public class PowerPlant implements Plant {
      *
      * @param valveNum The id of the valve to close
      *
-     * @throws InvalidValveException Thrown when a bad valve ID is specified
+     * @throws InvalidValveException   Thrown when a bad valve ID is specified
      * @throws AlreadyAtStateException Thrown if the specified valve is already closed
      */
     @Override
@@ -154,8 +154,8 @@ public class PowerPlant implements Plant {
      *
      * @param pumpNum The id of the pump to turn on
      *
-     * @throws InvalidPumpException Thrown when a bad pump ID is specified
-     * @throws AlreadyAtStateException Thrown if the specified pump is already on
+     * @throws InvalidPumpException     Thrown when a bad pump ID is specified
+     * @throws AlreadyAtStateException  Thrown if the specified pump is already on
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
     @Override
@@ -174,8 +174,8 @@ public class PowerPlant implements Plant {
      *
      * @param pumpNum The id of the pump to turn off
      *
-     * @throws InvalidPumpException Thrown when a bad pump ID is specified
-     * @throws AlreadyAtStateException Thrown if the specified pump is already on
+     * @throws InvalidPumpException     Thrown when a bad pump ID is specified
+     * @throws AlreadyAtStateException  Thrown if the specified pump is already on
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
     @Override
@@ -293,7 +293,7 @@ public class PowerPlant implements Plant {
      * Variation of functional(Components) for pumps, returns the functionality of a specified pump
      *
      * @param component Required to be set to Components.WATERPUMP, specifies the component to inspect
-     * @param pumpNum The id of the pump to inspect
+     * @param pumpNum   The id of the pump to inspect
      *
      * @return whether the specified pump is functional
      *
@@ -352,13 +352,13 @@ public class PowerPlant implements Plant {
      *
      * @param component The component to begin the fix upon
      *
-     * @throws InvalidComponentException Thrown when a bad component is specified
+     * @throws InvalidComponentException   Thrown when a bad component is specified
      * @throws FixAlreadyUnderwayException Thrown when a fix is already occurring in the system
-     * @throws NoFixNeededException Thrown when attempting to fix a functional component
+     * @throws NoFixNeededException        Thrown when attempting to fix a functional component
      */
     @Override
     public void fix(Components component) throws InvalidComponentException, FixAlreadyUnderwayException,
-                                                NoFixNeededException {
+                                                 NoFixNeededException {
         if (!fixUnderway()) {
             switch (component) {
                 case CONDENSER:
@@ -385,15 +385,15 @@ public class PowerPlant implements Plant {
      * Begins fixes for pumps
      *
      * @param component Must be set to WaterPump, used as a check to ensure desired functionality
-     * @param pumpNum The id of the pump to be fixed
+     * @param pumpNum   The id of the pump to be fixed
      *
-     * @throws InvalidComponentException Thrown when a non-pump component is specified
+     * @throws InvalidComponentException   Thrown when a non-pump component is specified
      * @throws FixAlreadyUnderwayException Thrown when a fix is already occurring in the system
-     * @throws NoFixNeededException Thrown when attempting to fix a functional component
+     * @throws NoFixNeededException        Thrown when attempting to fix a functional component
      */
     @Override
     public void fix(Components component, int pumpNum) throws InvalidComponentException, FixAlreadyUnderwayException,
-                                                             InvalidPumpException, NoFixNeededException {
+                                                              InvalidPumpException, NoFixNeededException {
         if (!fixUnderway()) {
             if (component == Components.WATERPUMP) {
                 if (validPumpNum(pumpNum)) {
@@ -528,7 +528,7 @@ public class PowerPlant implements Plant {
      * The pump variant of isRepairing(Components). Returns whether a specified pump is currently being repaired.
      *
      * @param component required to be set to Components.WATERPUMP, specifies the component to inspect
-     * @param id The pump ID to inspect
+     * @param id        The pump ID to inspect
      *
      * @return Whether the specified pump is being repaired
      */
@@ -571,7 +571,7 @@ public class PowerPlant implements Plant {
         s.player = player;
         return s;
     }
-    
+
     private Component[] failableComponents() {
         Component[] result = {
             reactor,

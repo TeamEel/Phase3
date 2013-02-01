@@ -49,7 +49,7 @@ public class WaterPump extends Component implements Serializable {
     /**
      * Enables the pump, causing it to move water on timestep
      *
-     * @throws AlreadyAtStateException Thrown if pump is already on
+     * @throws AlreadyAtStateException  Thrown if pump is already on
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
     public void turnOn() throws AlreadyAtStateException, ComponentFailedException {
@@ -66,7 +66,7 @@ public class WaterPump extends Component implements Serializable {
     /**
      * Disables the pump
      *
-     * @throws AlreadyAtStateException Thrown if pump is already off
+     * @throws AlreadyAtStateException  Thrown if pump is already off
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
     public void turnOff() throws AlreadyAtStateException, ComponentFailedException {

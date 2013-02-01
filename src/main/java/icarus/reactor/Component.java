@@ -22,7 +22,7 @@ public abstract class Component implements Serializable {
      * Primary constructor for use when initialising a new game
      *
      * @param failProb The (maximum) probability of a component failing
-     * @param fix The number of timesteps required to fix a component
+     * @param fix      The number of timesteps required to fix a component
      */
     public Component(double failProb, int fix) {
         functional = true;
@@ -35,10 +35,10 @@ public abstract class Component implements Serializable {
     /**
      * Constructor used when loading a Component from a saved state.
      *
-     * @param failProb The (maximum) probability of a component failing
-     * @param fix The number of timesteps required to fix a component
-     * @param functioning Whether or not the Component is currently functioning
-     * @param repairal Whether or not the Component is currently being repaired
+     * @param failProb       The (maximum) probability of a component failing
+     * @param fix            The number of timesteps required to fix a component
+     * @param functioning    Whether or not the Component is currently functioning
+     * @param repairal       Whether or not the Component is currently being repaired
      * @param fixingProgress The progress on a current fix
      */
     public Component(double failProb, int fix, boolean functioning, boolean repairal, int fixingProgress) {
