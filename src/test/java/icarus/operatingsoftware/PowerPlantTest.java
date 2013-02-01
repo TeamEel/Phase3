@@ -31,16 +31,11 @@ public class PowerPlantTest {
     }
 
     @Test
-    public void testRaise() throws Exception {
-        int rodheight = op.raise(0);
-        assertEquals(rodheight + 5, op.raise(5));
+    public void testSetControlRodPosition() throws Exception {
+        op.movecontrolrods(15);
+        assertEquals(15,op.rodHeight());
     }
 
-    @Test
-    public void testLower() throws Exception {
-        int rodheight = op.lower(0);
-        assertEquals(rodheight - 5, op.lower(5));
-    }
 
     @Test
     public void testOpen() throws Exception {

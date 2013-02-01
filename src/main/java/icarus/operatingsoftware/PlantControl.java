@@ -159,19 +159,6 @@ public interface PlantControl {
     boolean isWaterPumpActive(int pumpNum);
 
     /**
-     * Move the control rods down in the reactor by the amount specified
-     *
-     * @param amount The amount to lower the control rods by
-     *
-     * @return The new height of the control rods
-     *
-     * @throws InvalidRodsException     Thrown when amount specified is negative
-     * @throws MinimumRodsException     Thrown when the rods attempt to exceed the minimum height
-     * @throws ComponentFailedException Thrown if method is called when component is failed.
-     */
-    int lower(int amount) throws InvalidRodsException, MinimumRodsException, ComponentFailedException;
-
-    /**
      * Progresses time in the system. All time dependent activities occur such as changes in temperature, pressure,
      * water levels, power output and equiptment failure and fixes.
      */
@@ -198,19 +185,9 @@ public interface PlantControl {
      */
     double pressure(Components component) throws InvalidComponentException;
 
-    /**
-     * Move the control rods up in the reactor by the amount specified
-     *
-     * @param amount The amount to raise the control rods by
-     *
-     * @return The new height of the control rods
-     *
-     * @throws InvalidRodsException     Thrown when amount specified is negative
-     * @throws MaximumRodsException     Thrown when the rods attempt to exceed the maximum height
-     * @throws ComponentFailedException Thrown if method is called when component is failed.
-     */
-    int raise(int amount) throws InvalidRodsException, MaximumRodsException, ComponentFailedException;
 
+    void movecontrolrods(int amount) throws InvalidRodsException, ComponentFailedException;
+    
     /**
      * Returns the rod height
      *

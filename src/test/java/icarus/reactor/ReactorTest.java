@@ -32,24 +32,16 @@ public class ReactorTest {
 
     @Test(expected = InvalidRodsException.class)
     public void testRaiseExcessive() throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
-        reactor.raise(1000);
+        reactor.movecontrolrods(1000);
 
-    }
-
-    @Test(expected = MaximumRodsException.class)
-    public void testRaiseMax() throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
-        reactor.raise(51);
     }
 
     @Test(expected = InvalidRodsException.class)
     public void testLowerExcessive() throws InvalidRodsException, MinimumRodsException, ComponentFailedException {
-        reactor.lower(-1);
+        reactor.movecontrolrods(-1);
     }
 
-    @Test(expected = MinimumRodsException.class)
-    public void testLowerMin() throws InvalidRodsException, MinimumRodsException, ComponentFailedException {
-        reactor.lower(51);
-    }
+
 
     @Test
     public void testAddWater() {
