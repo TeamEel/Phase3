@@ -333,22 +333,22 @@ public class OperatingSoftware implements PlantControl {
     }
 
 
-	/**
-	 * Move the control rods in the reactor to the amount specified
-	 * 
-	 * @param amount
-	 *            The amount to lower the control rods by
-	 * @return The new height of the control rods
-	 * @throws InvalidRodsException
-	 *             Thrown when amount specified is negative
-	 * @throws MinimumRodsException
-	 *             Thrown when the rods attempt to exceed the minimum height
-	 * @throws ComponentFailedException
-	 *             Thrown if method is called when component is failed.
-	 */
-	public void movecontrolrods(int amount) throws InvalidRodsException, ComponentFailedException {
-            op.movecontrolrods(amount);
-	}
+    /**
+     * Move the control rods in the reactor to the amount specified
+     * 
+     * @param amount
+     *            The amount to lower the control rods by
+     * @return The new height of the control rods
+     * @throws InvalidRodsException
+     *             Thrown when amount specified is negative
+     * @throws MinimumRodsException
+     *             Thrown when the rods attempt to exceed the minimum height
+     * @throws ComponentFailedException
+     *             Thrown if method is called when component is failed.
+     */
+    public void movecontrolrods(int amount) throws InvalidRodsException, ComponentFailedException {
+        plant.movecontrolrods(amount);
+    }
 
     /**
      * Opens a SteamValve in the system
