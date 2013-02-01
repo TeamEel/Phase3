@@ -104,13 +104,6 @@ public interface PlantControl {
     int getFixTime();
 
     /**
-     * Places all objects in the reactor + Player in a hashtable, for saving purposes
-     *
-     * @return a hashtable
-     */
-    SaveState getGameState();
-
-    /**
      * get the name of the player
      *
      * @returns String name

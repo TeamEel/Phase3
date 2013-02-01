@@ -1,13 +1,10 @@
 package icarus.operatingsoftware;
 
 import icarus.exceptions.*;
-import icarus.operatingsoftware.Components;
-import icarus.operatingsoftware.PowerPlant;
 import icarus.util.FileInput;
 import icarus.util.FileOutput;
 import icarus.util.SaveState;
 import java.io.FileNotFoundException;
-import java.io.Serializable;
 
 /**
  * Handles commands specified by the UI, including calls to operatorSoftware,
@@ -15,16 +12,16 @@ import java.io.Serializable;
  * 
  * @author Team Haddock
  **/
-public class OperatingSoftware {
+public class OperatingSoftware implements PlantControl {
 
-	private PlantControl pc;
+	private Plant plant;
 	private int score; // stores the score of the player
 
 	/**
 	 * Default constructor for OperatingSoftware
 	 */
-	public OperatingSoftware(PlantControl plantControl) {
-		pc = plantControl;
+	public OperatingSoftware(Plant plant) {
+		this.plant = plant;
 		// commands = new CommandWords();
 	}
 
@@ -33,8 +30,9 @@ public class OperatingSoftware {
 	 * 
 	 * @param String The name of the player
 	 */
+    @Override
 	public void setPlayerName(String name) {
-		pc.setPlayerName(name);
+		plant.setPlayerName(name);
 	}
 
 	/**
@@ -42,8 +40,9 @@ public class OperatingSoftware {
 	 * 
 	 * @returns String name
 	 */
+    @Override
 	public String getPlayerName() {
-		return pc.getPlayerName();
+		return plant.getPlayerName();
 	}
 
 	/**
@@ -53,8 +52,9 @@ public class OperatingSoftware {
 	 *            The id of the pump
 	 * @returns whether pump of ID is active
 	 */
+    @Override
 	public boolean isWaterPumpActive(int pumpNum) {
-		return pc.isWaterPumpActive(pumpNum);
+		return plant.isWaterPumpActive(pumpNum);
 	}
 
 	/**
@@ -62,8 +62,9 @@ public class OperatingSoftware {
 	 * 
 	 * @returns whether pump is active
 	 */
+    @Override
 	public boolean isCondenserPumpActive() {
-		return pc.isCondenserPumpActive();
+		return plant.isCondenserPumpActive();
 	}
 
 	/**
@@ -73,16 +74,18 @@ public class OperatingSoftware {
 	 * @throws InvalidValveException
 	 *             Thrown when bad ID is specified
 	 */
+    @Override
 	public boolean isValveOpened(int valveNum) throws InvalidValveException {
-		return pc.isValveOpened(valveNum);
+		return plant.isValveOpened(valveNum);
 	}
 
 	/**
 	 * 
 	 * @return the total power generated
 	 */
+    @Override
 	public int getPower() {
-		return pc.getPower();
+		return plant.getPower();
 	}
 
 	/**
@@ -95,8 +98,9 @@ public class OperatingSoftware {
 	 * @throws InvalidComponentException
 	 *             Thrown when a non-reactor/-condenser component is specified
 	 */
+    @Override
 	public double waterLevel(Components component) throws InvalidComponentException {
-		return pc.waterLevel(component);
+		return plant.waterLevel(component);
 	}
 
 	/**
@@ -109,8 +113,9 @@ public class OperatingSoftware {
 	 * @throws InvalidComponentException
 	 *             Thrown when a non-reactor/-condenser component is specified
 	 */
+    @Override
 	public double temperature(Components component) throws InvalidComponentException {
-		return pc.temperature(component);
+		return plant.temperature(component);
 	}
 
 	/**
@@ -123,8 +128,9 @@ public class OperatingSoftware {
 	 * @throws InvalidComponentException
 	 *             Thrown when a non-reactor/-condenser component is specified
 	 */
+    @Override
 	public double pressure(Components component) throws InvalidComponentException {
-		return pc.pressure(component);
+		return plant.pressure(component);
 	}
 
 	/**
@@ -132,8 +138,9 @@ public class OperatingSoftware {
 	 * 
 	 * @return double containing the rod height
 	 */
+    @Override
 	public int rodHeight() {
-		return pc.rodHeight();
+		return plant.rodHeight();
 	}
 
 	/**
@@ -145,8 +152,9 @@ public class OperatingSoftware {
 	 * @throws InvalidComponentException
 	 *             Thrown when a bad component is specified
 	 */
+    @Override
 	public boolean functional(Components component) throws InvalidComponentException {
-		return pc.functional(component);
+		return plant.functional(component);
 	}
 
 	/**
@@ -162,8 +170,9 @@ public class OperatingSoftware {
 	 * @throws InvalidComponentException
 	 *             Thrown when a bad component is specified
 	 */
+    @Override
 	public boolean functional(Components component, int pumpID) throws InvalidComponentException {
-		return pc.functional(component, pumpID);
+		return plant.functional(component, pumpID);
 	}
 
 	/**
@@ -173,8 +182,9 @@ public class OperatingSoftware {
 	 *            The component to inspect
 	 * @return Whether the component is currently being repaired
 	 */
+    @Override
 	public boolean isRepairing(Components component) {
-		return pc.isRepairing(component);
+		return plant.isRepairing(component);
 	}
 
 	/**
@@ -188,16 +198,18 @@ public class OperatingSoftware {
 	 *            The pump ID to inspect
 	 * @return Whether the specified pump is being repaired
 	 */
+    @Override
 	public boolean isRepairing(Components component, int pumpID) {
-		return pc.isRepairing(component, pumpID);
+		return plant.isRepairing(component, pumpID);
 	}
 
 	/**
 	 * 
 	 * @return Whether there is currently a fix underway in the system
 	 */
+    @Override
 	public boolean fixUnderway() {
-		return pc.fixUnderway();
+		return plant.fixUnderway();
 	}
 
 	/**
@@ -206,8 +218,9 @@ public class OperatingSoftware {
 	 * 
 	 * @return The fix time on a current fix in the system
 	 */
+    @Override
 	public int getFixTime() {
-		return pc.getFixTime();
+		return plant.getFixTime();
 	}
 
 	/**
@@ -215,8 +228,9 @@ public class OperatingSoftware {
 	 * 
 	 * @returns true or false
 	 */
+    @Override
 	public boolean checkIfGameOver() {
-		return pc.checkIfGameOver();
+		return plant.checkIfGameOver();
 	}
 
 	/**
@@ -224,7 +238,7 @@ public class OperatingSoftware {
 	 */
 	private void calculateScore() {
 		score = 0;
-		score = (int) pc.getPower() * 5;
+		score = (int) plant.getPower() * 5;
 
 	}
 
@@ -277,8 +291,9 @@ public class OperatingSoftware {
 	 * The next() method just calls next in PowerPlant (calculations are
 	 * done here)
 	 */
+    @Override
 	public void next() {
-		pc.next();
+		plant.next();
 	}
 
 	/**
@@ -287,8 +302,9 @@ public class OperatingSoftware {
 	 * @return Whether a repair has
 	 *         finished.
 	 */
+    @Override
 	public boolean doFix() {
-		return pc.doFix();
+		return plant.doFix();
 	}
 
 	/**
@@ -303,8 +319,9 @@ public class OperatingSoftware {
 	 * @throws ComponentFailedException
 	 *             Thrown if method is called when component is failed.
 	 */
+    @Override
 	public void turnOff(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
-		pc.turnOff(pumpNum);
+		plant.turnOff(pumpNum);
 	}
 
 	/**
@@ -319,8 +336,9 @@ public class OperatingSoftware {
 	 * @throws ComponentFailedException
 	 *             Thrown if method is called when component is failed.
 	 */
+    @Override
 	public void turnOn(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
-		pc.turnOn(pumpNum);
+		plant.turnOn(pumpNum);
 	}
 
 	/**
@@ -336,8 +354,9 @@ public class OperatingSoftware {
 	 * @throws ComponentFailedException
 	 *             Thrown if method is called when component is failed.
 	 */
+    @Override
 	public int raise(int amount) throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
-		return pc.raise(amount);
+		return plant.raise(amount);
 	}
 
 	/**
@@ -353,8 +372,9 @@ public class OperatingSoftware {
 	 * @throws ComponentFailedException
 	 *             Thrown if method is called when component is failed.
 	 */
+    @Override
 	public int lower(int amount) throws InvalidRodsException, MinimumRodsException, ComponentFailedException {
-		return pc.lower(amount);
+		return plant.lower(amount);
 	}
 
 	/**
@@ -367,8 +387,9 @@ public class OperatingSoftware {
 	 * @throws AlreadyAtStateException
 	 *             Thrown if the specified valve is already open
 	 */
+    @Override
 	public void open(int amount) throws InvalidValveException, AlreadyAtStateException {
-		pc.open(amount);
+		plant.open(amount);
 	}
 
 	/**
@@ -381,8 +402,9 @@ public class OperatingSoftware {
 	 * @throws AlreadyAtStateException
 	 *             Thrown if the specified valve is already closed
 	 */
+    @Override
 	public void close(int valveNum) throws InvalidValveException, AlreadyAtStateException {
-		pc.close(valveNum);
+		plant.close(valveNum);
 	}
 
 	/**
@@ -396,8 +418,9 @@ public class OperatingSoftware {
 	 *             Thrown when a fix is already occurring in the system
 	 * @throws NoFixNeededException
 	 */
+    @Override
 	public void fix(Components component) throws InvalidComponentException, FixAlreadyUnderwayException, NoFixNeededException {
-		pc.fix(component);
+		plant.fix(component);
 	}
 
 	/**
@@ -414,8 +437,9 @@ public class OperatingSoftware {
 	 *             Thrown when a fix is already occurring in the system
 	 * @throws NoFixNeededException
 	 */
+    @Override
 	public void fix(Components component, int pumpNum) throws InvalidPumpException, InvalidComponentException, FixAlreadyUnderwayException, NoFixNeededException {
-		pc.fix(component, pumpNum);
+		plant.fix(component, pumpNum);
 	}
 
 	/**
@@ -425,7 +449,7 @@ public class OperatingSoftware {
 	 *            specifies the name of the file
 	 */
 	public void saveToFile(String fileName) {
-		FileOutput.saveObjectToFile(pc.getGameState(), fileName);
+		FileOutput.saveObjectToFile(plant.getGameState(), fileName);
 	}
 
 	/**
@@ -441,7 +465,7 @@ public class OperatingSoftware {
 			if (s == null) {
                             return false;
                         }
-			pc = new PowerPlant(s);
+			plant = new PowerPlant(s);
                         return true;
 		} catch (FileNotFoundException e) {
 			System.out.println("File not found");

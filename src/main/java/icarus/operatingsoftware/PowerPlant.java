@@ -12,7 +12,7 @@ import icarus.util.SaveState;
  * @author Team Haddock
  *
  */
-public class PowerPlant implements PlantControl {
+public class PowerPlant implements Plant {
 
     Reactor reactor;
     Condenser condenser;
