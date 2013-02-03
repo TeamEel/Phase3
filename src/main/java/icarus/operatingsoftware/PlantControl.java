@@ -185,9 +185,16 @@ public interface PlantControl {
      */
     double pressure(Components component) throws InvalidComponentException;
 
-
+    /**
+     * Move the control rods to the specified position
+     *
+     * @param amount The position to move the control rods to, from 1-100
+     *
+     * @throws InvalidRodsException     Thrown when amount has an invalid value
+     * @throws ComponentFailedException Thrown when the reactor has failed and the control rods cannot be moved
+     */
     void movecontrolrods(int amount) throws InvalidRodsException, ComponentFailedException;
-    
+
     /**
      * Returns the rod height
      *

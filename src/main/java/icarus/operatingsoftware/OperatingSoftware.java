@@ -341,11 +341,10 @@ public class OperatingSoftware implements PlantControl {
      * @return The new height of the control rods
      * @throws InvalidRodsException
      *             Thrown when amount specified is negative
-     * @throws MinimumRodsException
-     *             Thrown when the rods attempt to exceed the minimum height
      * @throws ComponentFailedException
      *             Thrown if method is called when component is failed.
      */
+    @Override
     public void movecontrolrods(int amount) throws InvalidRodsException, ComponentFailedException {
         plant.movecontrolrods(amount);
     }
