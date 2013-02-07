@@ -1,45 +1,51 @@
 package gui;
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+import javax.swing.event.*;
+
 
 /**
  *
  * @author drm511
  */
-public class MainWindow extends javax.swing.JFrame {
+public class MainWindow extends JFrame implements ActionListener, ChangeListener {
 
-    private javax.swing.JMenu fileMenu;
-    private javax.swing.JMenu helpMenu;
-    private javax.swing.JMenuBar menuBar;
-    private javax.swing.JPanel controlPanel;
-    private javax.swing.JPanel viewPanel;
+    private JMenu fileMenu;
+    private JMenu helpMenu;
+    private JMenuBar menuBar;
+    private JPanel controlPanel;
+    private JPanel viewPanel;
+    private JSlider rodSlider;
 
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
-        viewPanel = new javax.swing.JPanel();
-        controlPanel = new javax.swing.JPanel();
-        menuBar = new javax.swing.JMenuBar();
-        fileMenu = new javax.swing.JMenu();
-        helpMenu = new javax.swing.JMenu();
+        viewPanel = new JPanel();
+        controlPanel = new JPanel();
+        menuBar = new JMenuBar();
+        fileMenu = new JMenu();
+        helpMenu = new JMenu();
+        
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        javax.swing.GroupLayout viewPanelLayout = new javax.swing.GroupLayout(viewPanel);
+        GroupLayout viewPanelLayout = new GroupLayout(viewPanel);
         viewPanel.setLayout(viewPanelLayout);
         viewPanelLayout.setHorizontalGroup(
-                viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                viewPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGap(0, 0, Short.MAX_VALUE));
         viewPanelLayout.setVerticalGroup(
-                viewPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                viewPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGap(0, 399, Short.MAX_VALUE));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(controlPanel);
+        GroupLayout jPanel2Layout = new GroupLayout(controlPanel);
         controlPanel.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGap(0, 912, Short.MAX_VALUE));
         jPanel2Layout.setVerticalGroup(
-                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGap(0, 121, Short.MAX_VALUE));
 
         fileMenu.setText("File");
@@ -47,29 +53,31 @@ public class MainWindow extends javax.swing.JFrame {
 
         helpMenu.setText("Help");
         menuBar.add(helpMenu);
-
+        
         setJMenuBar(menuBar);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        
+              
+        GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(viewPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                .addComponent(viewPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
                               Short.MAX_VALUE)
                 .addGroup(layout.createSequentialGroup()
-                .addComponent(controlPanel, javax.swing.GroupLayout.PREFERRED_SIZE,
-                              javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(controlPanel, GroupLayout.PREFERRED_SIZE,
+                              GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)));
         layout.setVerticalGroup(
-                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
-                .addComponent(viewPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE,
-                              javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED,
-                                 javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(controlPanel, javax.swing.GroupLayout.PREFERRED_SIZE,
-                              javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)));
-
+                .addComponent(viewPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                              GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
+                                 GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(controlPanel, GroupLayout.PREFERRED_SIZE,
+                              GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
+        
+        
         pack();
     }
 
@@ -82,9 +90,9 @@ public class MainWindow extends javax.swing.JFrame {
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
             }
@@ -92,7 +100,7 @@ public class MainWindow extends javax.swing.JFrame {
         } catch (ClassNotFoundException ex) {
         } catch (InstantiationException ex) {
         } catch (IllegalAccessException ex) {
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (UnsupportedLookAndFeelException ex) {
         }
 
         /* Create and display the form */
@@ -102,5 +110,20 @@ public class MainWindow extends javax.swing.JFrame {
                 new MainWindow().setVisible(true);
             }
         });
+    }
+    /*
+    public void stateChanged(ChangeEvent e){
+        repaint();
+    }
+    */
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        repaint();
+    }
+
+    @Override
+    public void stateChanged(ChangeEvent e) {
+        repaint();
     }
 }
