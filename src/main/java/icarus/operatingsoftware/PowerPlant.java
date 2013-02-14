@@ -182,7 +182,7 @@ public class PowerPlant implements Plant {
      * @throws InvalidValveException Thrown when bad ID is specified
      */
     @Override
-    public boolean isValveOpened(int valveNum) throws InvalidValveException {
+    public boolean isValveOpened(int valveNum) {
         return steamValve.isOpen(valveNum);
     }
 

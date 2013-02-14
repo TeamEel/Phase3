@@ -147,7 +147,7 @@ public interface PlantControl {
      * @returns whether valve is open
      * @throws InvalidValveException Thrown when bad ID is specified
      */
-    boolean isValveOpened(int valveNum) throws InvalidValveException;
+    boolean isValveOpened(int valveNum);
 
     /**
      * Check if a water pump is active

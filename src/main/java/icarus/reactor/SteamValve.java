@@ -119,14 +119,14 @@ public class SteamValve implements Serializable {
      *
      * @throws InvalidValveException Thrown when a bad ID is given
      */
-    public boolean isOpen(int valveID) throws InvalidValveException {
+    public boolean isOpen(int valveID) {
         switch (valveID) {
             case 0:
                 return open1;
             case 1:
                 return open2;
             default:
-                throw new InvalidValveException(valveID);
+                throw new IllegalArgumentException("'" + valveID + "' is not a valid valve ID.");
         }
     }
 }

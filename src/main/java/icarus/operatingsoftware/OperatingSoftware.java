@@ -76,7 +76,7 @@ public class OperatingSoftware extends Observable implements PlantControl{
      * @throws InvalidValveException Thrown when bad ID is specified
      */
     @Override
-    public boolean isValveOpened(int valveNum) throws InvalidValveException {
+    public boolean isValveOpened(int valveNum) {
         return plant.isValveOpened(valveNum);
     }
 

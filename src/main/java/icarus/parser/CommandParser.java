@@ -445,23 +445,15 @@ public class CommandParser {
         } else {
             System.out.println("off");
         }
-        try {
-            if (cf.isValveOpened(0)) {
-                System.out.println("Valve 0: open ");
-            } else {
-                System.out.println("Valve 0: closed ");
-            }
-        } catch (InvalidValveException e) {
-            e.printStackTrace();
+        if (cf.isValveOpened(0)) {
+            System.out.println("Valve 0: open ");
+        } else {
+            System.out.println("Valve 0: closed ");
         }
-        try {
-            if (cf.isValveOpened(1)) {
-                System.out.println("Valve 1: open ");
-            } else {
-                System.out.println("Valve 1: closed ");
-            }
-        } catch (InvalidValveException e) {
-            e.printStackTrace();
+        if (cf.isValveOpened(1)) {
+            System.out.println("Valve 1: open ");
+        } else {
+            System.out.println("Valve 1: closed ");
         }
         System.out.println('\n' + "Power generated: " + cf.getPower() + " MW \n");
         if (cf.doFix()) {
@@ -637,7 +629,7 @@ public class CommandParser {
      * System.out.println("Please enter a whole number after the command. E.g raise 50"); } catch (InvalidRodsException
      * e) { System.out.println(e.toString()); } catch (ComponentFailedException e) { System.out.println("The reactor has
      * failed and isn't responding to commands!"); } }
-    *
+     *
      */
     /**
      * Lowers the rods by the inputed ammount
