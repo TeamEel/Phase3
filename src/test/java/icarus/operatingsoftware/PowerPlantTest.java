@@ -92,7 +92,7 @@ public class PowerPlantTest {
         assertTrue(op.functional(Components.REACTOR));
     }
 
-    @Test(expected = InvalidComponentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testInvalidFunctionalComponent() throws InvalidComponentException {
         op.functional(Components.WATERPUMP);
     }
@@ -102,11 +102,17 @@ public class PowerPlantTest {
         assertTrue(op.functional(Components.WATERPUMP, 0));
     }
 
-    @Test(expected = InvalidComponentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testInvalidFunctionalWaterPump() throws InvalidComponentException {
         op.functional(Components.CONDENSERPUMP, 0);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void functionalShouldThrowOnIncorrectPumpNo() throws InvalidComponentException {
+        op.functional(Components.WATERPUMP, 100);
+    }
+    
+    
     @Test
     public void testRodHeight() {
         Reactor reactor = new Reactor();

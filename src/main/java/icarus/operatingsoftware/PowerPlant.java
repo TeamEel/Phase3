@@ -87,8 +87,6 @@ public class PowerPlant implements Plant {
         return player.getName();
     }
 
-    
-
     /**
      * Opens a SteamValve in the system
      *
@@ -240,7 +238,7 @@ public class PowerPlant implements Plant {
      * @throws InvalidComponentException Thrown when a bad component is specified
      */
     @Override
-    public boolean functional(Components component) throws InvalidComponentException {
+    public boolean functional(Components component) {
         switch (component) {
             case CONDENSER:
                 return condenser.getFunctional();
@@ -251,7 +249,7 @@ public class PowerPlant implements Plant {
             case TURBINE:
                 return turbine.getFunctional();
             default:
-                throw new InvalidComponentException(component.toString());
+                throw new IllegalArgumentException("This method cannot be called with '" + component.toString() + "'");
         }
     }
 
@@ -266,12 +264,14 @@ public class PowerPlant implements Plant {
      * @throws InvalidComponentException Thrown when a bad component is specified
      */
     @Override
-    public boolean functional(Components component, int pumpNum) throws InvalidComponentException {
-        if (component == Components.WATERPUMP) {
-            return waterPump[pumpNum].getFunctional();
-        } else {
-            throw new InvalidComponentException(component.toString());
+    public boolean functional(Components component, int pumpNum) {
+        if (component != Components.WATERPUMP) {
+            throw new IllegalArgumentException("This method cannot be called with '" + component.toString() + "'");
         }
+        if (pumpNum < 0 || pumpNum >= waterPump.length) {
+            throw new IllegalArgumentException("'" + pumpNum + "' is not a valid pump number.");
+        }
+        return waterPump[pumpNum].getFunctional();
     }
 
     /**
