@@ -81,7 +81,7 @@ public interface PlantControl {
      *
      * @throws InvalidComponentException Thrown when a bad component is specified
      */
-    boolean functional(Components component) throws InvalidComponentException;
+    boolean functional(Components component);
 
     /**
      * Variation of functional(Components) for pumps, returns the functionality of a specified pump
@@ -93,7 +93,7 @@ public interface PlantControl {
      *
      * @throws InvalidComponentException Thrown when a bad component is specified
      */
-    boolean functional(Components component, int pumpNum) throws InvalidComponentException;
+    boolean functional(Components component, int pumpNum);
 
     /**
      * Gets the number of timesteps remaining for the current fix to complete. Does not specify what component is being

@@ -67,20 +67,20 @@ public class CommandParser {
         System.out.println();
 
         System.out.println(String
-                                         .format("%s, this is your president, Barack Obama. Aliens are invading Earth!" +
-                                                 '\n' +
-                                                 "Far beyond our stars, an alien race have exhausted their solar system. " +
-                                                 '\n' +
-                                                 "Having destroyed the homes of many inferior species, the aliens have scoured" +
-                                                 '\n' +
-                                                 "their galaxy and have setttled on us as their next target." + '\n' +
-                                                 "We knew this was coming, and we need you, to power the weapons that could" +
-                                                 '\n' +
-                                                 "save Earth. Go to the nuclear plant and create as much power as possible." +
-                                                 '\n' +
-                                                 "Be as fast as you can, most of our agents are already dead and the aliens won't" +
-                                                 '\n' +
-                                                 "take long to work out what you are going to do!\"", cf.getPlayerName()));
+                .format("%s, this is your president, Barack Obama. Aliens are invading Earth!" +
+                        '\n' +
+                        "Far beyond our stars, an alien race have exhausted their solar system. " +
+                        '\n' +
+                        "Having destroyed the homes of many inferior species, the aliens have scoured" +
+                        '\n' +
+                        "their galaxy and have setttled on us as their next target." + '\n' +
+                        "We knew this was coming, and we need you, to power the weapons that could" +
+                        '\n' +
+                        "save Earth. Go to the nuclear plant and create as much power as possible." +
+                        '\n' +
+                        "Be as fast as you can, most of our agents are already dead and the aliens won't" +
+                        '\n' +
+                        "take long to work out what you are going to do!\"", cf.getPlayerName()));
 
         System.out.println("Press enter to continue");
         System.out.println("> ");
@@ -256,12 +256,12 @@ public class CommandParser {
                 case TURNON:
                     turnon(word2);
                     break;
-  /*              case RAISE:
-                    raise(word2);
-                    break;
-                case LOWER:
-                    lower(word2);
-                    break;*/
+                /*              case RAISE:
+                 raise(word2);
+                 break;
+                 case LOWER:
+                 lower(word2);
+                 break;*/
                 case OPEN:
                     open(word2);
                     break;
@@ -475,57 +475,53 @@ public class CommandParser {
      *
      */
     public void reportFailures() {
-        try {
-            if (!cf.functional(Components.REACTOR)) {
-                System.out.print("The reactor " + " is not functioning properly");
-                if (cf.isRepairing(Components.REACTOR)) {
-                    System.out.println(" but is being repaired.");
-                } else {
-                    System.out.println("!");
-                }
+        if (!cf.functional(Components.REACTOR)) {
+            System.out.print("The reactor " + " is not functioning properly");
+            if (cf.isRepairing(Components.REACTOR)) {
+                System.out.println(" but is being repaired.");
+            } else {
+                System.out.println("!");
             }
-            if (!cf.functional(Components.CONDENSER)) {
-                System.out.print("The condenser " + "is broken due to an alien attack");
-                if (cf.isRepairing(Components.CONDENSER)) {
-                    System.out.println(" but is being repaired.");
-                } else {
-                    System.out.println("!");
-                }
+        }
+        if (!cf.functional(Components.CONDENSER)) {
+            System.out.print("The condenser " + "is broken due to an alien attack");
+            if (cf.isRepairing(Components.CONDENSER)) {
+                System.out.println(" but is being repaired.");
+            } else {
+                System.out.println("!");
             }
-            if (!cf.functional(Components.TURBINE)) {
-                System.out.print("The turbine " + "is broken and isn't generating any power");
-                if (cf.isRepairing(Components.TURBINE)) {
-                    System.out.println(" but is being repaired.");
-                } else {
-                    System.out.println("!");
-                }
+        }
+        if (!cf.functional(Components.TURBINE)) {
+            System.out.print("The turbine " + "is broken and isn't generating any power");
+            if (cf.isRepairing(Components.TURBINE)) {
+                System.out.println(" but is being repaired.");
+            } else {
+                System.out.println("!");
             }
-            if (!cf.functional(Components.CONDENSERPUMP)) {
-                System.out.print("The condenser pump (pump 2) " + "was shot in the crossfire and is broken");
-                if (cf.isRepairing(Components.CONDENSERPUMP)) {
-                    System.out.println(" but is being repaired.");
-                } else {
-                    System.out.println("!");
-                }
+        }
+        if (!cf.functional(Components.CONDENSERPUMP)) {
+            System.out.print("The condenser pump (pump 2) " + "was shot in the crossfire and is broken");
+            if (cf.isRepairing(Components.CONDENSERPUMP)) {
+                System.out.println(" but is being repaired.");
+            } else {
+                System.out.println("!");
             }
-            if (!cf.functional(Components.WATERPUMP, 0)) {
-                System.out.print("Pump 0 " + "is badly damaged and not functioning");
-                if (cf.isRepairing(Components.WATERPUMP, 0)) {
-                    System.out.println(" but is being repaired.");
-                } else {
-                    System.out.println("!");
-                }
+        }
+        if (!cf.functional(Components.WATERPUMP, 0)) {
+            System.out.print("Pump 0 " + "is badly damaged and not functioning");
+            if (cf.isRepairing(Components.WATERPUMP, 0)) {
+                System.out.println(" but is being repaired.");
+            } else {
+                System.out.println("!");
             }
-            if (!cf.functional(Components.WATERPUMP, 1)) {
-                System.out.print("Pump 1 " + "is badly damaged and not functioning");
-                if (cf.isRepairing(Components.WATERPUMP, 1)) {
-                    System.out.println(" but is being repaired.");
-                } else {
-                    System.out.println("!");
-                }
+        }
+        if (!cf.functional(Components.WATERPUMP, 1)) {
+            System.out.print("Pump 1 " + "is badly damaged and not functioning");
+            if (cf.isRepairing(Components.WATERPUMP, 1)) {
+                System.out.println(" but is being repaired.");
+            } else {
+                System.out.println("!");
             }
-        } catch (InvalidComponentException e) {
-            e.printStackTrace();
         }
         if (cf.fixUnderway()) {
             System.out.println("Time remaining on current fix: " + cf.getFixTime());
@@ -634,45 +630,27 @@ public class CommandParser {
      * Raises the rods by the inputed ammount
      *
      * @param word2 (string, specifying the ammount to be raised)
-    
-    public void raise(String word2) {
-        try {
-            int amount = cf.raise(Integer.parseInt(word2));
-            System.out.println("Raising the control rods by " + word2 + "...Done");
-            System.out.println("New rod height is " + amount);
-        } catch (MaximumRodsException e) {
-            System.out.println(e.toString());
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter a whole number after the command. E.g raise 50");
-        } catch (InvalidRodsException e) {
-            System.out.println(e.toString());
-        } catch (ComponentFailedException e) {
-            System.out.println("The reactor has failed and isn't responding to commands!");
-        }
-    }
-    *  */
-
+     *
+     * public void raise(String word2) { try { int amount = cf.raise(Integer.parseInt(word2));
+     * System.out.println("Raising the control rods by " + word2 + "...Done"); System.out.println("New rod height is " +
+     * amount); } catch (MaximumRodsException e) { System.out.println(e.toString()); } catch (NumberFormatException e) {
+     * System.out.println("Please enter a whole number after the command. E.g raise 50"); } catch (InvalidRodsException
+     * e) { System.out.println(e.toString()); } catch (ComponentFailedException e) { System.out.println("The reactor has
+     * failed and isn't responding to commands!"); } }
+    *
+     */
     /**
      * Lowers the rods by the inputed ammount
      *
      * @param word2 (string, specifying the ammount to be lower)
-     
-    public void lower(String word2) {
-        try {
-            int amount = cf.lower(Integer.parseInt(word2));
-            System.out.println("Lowering the control rods by " + word2 + "...Done");
-            System.out.println("New rod height is " + amount);
-        } catch (MinimumRodsException e) {
-            System.out.println(e.toString());
-        } catch (NumberFormatException e) {
-            System.out.println("Please enter a whole number after the command. E.g lower 50");
-        } catch (InvalidRodsException e) {
-            System.out.println(e.toString());
-        } catch (ComponentFailedException e) {
-            System.out.println("The reactor has failed and isn't responding to commands!");
-        }
-    }
-*/
+     *
+     * public void lower(String word2) { try { int amount = cf.lower(Integer.parseInt(word2));
+     * System.out.println("Lowering the control rods by " + word2 + "...Done"); System.out.println("New rod height is "
+     * + amount); } catch (MinimumRodsException e) { System.out.println(e.toString()); } catch (NumberFormatException e)
+     * { System.out.println("Please enter a whole number after the command. E.g lower 50"); } catch
+     * (InvalidRodsException e) { System.out.println(e.toString()); } catch (ComponentFailedException e) {
+     * System.out.println("The reactor has failed and isn't responding to commands!"); } }
+     */
     /**
      * Opens a valve
      *

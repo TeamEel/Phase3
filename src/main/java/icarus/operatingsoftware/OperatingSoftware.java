@@ -151,7 +151,7 @@ public class OperatingSoftware extends Observable implements PlantControl{
      * @throws InvalidComponentException Thrown when a bad component is specified
      */
     @Override
-    public boolean functional(Components component) throws InvalidComponentException {
+    public boolean functional(Components component) {
         return plant.functional(component);
     }
 
@@ -166,7 +166,7 @@ public class OperatingSoftware extends Observable implements PlantControl{
      * @throws InvalidComponentException Thrown when a bad component is specified
      */
     @Override
-    public boolean functional(Components component, int pumpID) throws InvalidComponentException {
+    public boolean functional(Components component, int pumpID) {
         return plant.functional(component, pumpID);
     }
 
