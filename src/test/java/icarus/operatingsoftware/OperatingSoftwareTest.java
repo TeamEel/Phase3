@@ -11,11 +11,20 @@ import icarus.exceptions.MaximumRodsException;
 import icarus.exceptions.MinimumRodsException;
 import icarus.exceptions.NoFixNeededException;
 import java.io.File;
+import java.util.Observer;
+import org.jmock.Expectations;
+import org.jmock.auto.Mock;
+import org.jmock.integration.junit4.JUnitRuleMockery;
 import static org.junit.Assert.*;
+import org.junit.Rule;
 import org.junit.Test;
 
 public class OperatingSoftwareTest {
 
+    @Rule
+    public final JUnitRuleMockery context = new JUnitRuleMockery();
+    @Mock
+    Observer observer;
     OperatingSoftware cf = new OperatingSoftware(new PowerPlant());
 
     // OperatingSoftwareTest class which tests the methods in the actual
@@ -62,7 +71,7 @@ public class OperatingSoftwareTest {
     public void testRaiseInvalidInput() throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
         cf.movecontrolrods(-43);
     }
-    
+
     @Test(expected = InvalidRodsException.class)
     public void testRaiseInvalidInput2() throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
         cf.movecontrolrods(101);
@@ -72,8 +81,6 @@ public class OperatingSoftwareTest {
     public void testRaiseValidInput() throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
         cf.movecontrolrods(20);
     }
-
-   
 
     @Test(expected = InvalidValveException.class)
     public void testOpenInvalid() throws InvalidValveException, AlreadyAtStateException {
@@ -123,5 +130,16 @@ public class OperatingSoftwareTest {
     public void testLoadFromFile() {
         cf.saveToFile("test");
         assertTrue(cf.loadFromFile("test"));
+    }
+
+    @Test
+    public void shouldUpdateObservers() {
+        context.checking(new Expectations() {
+            {
+                oneOf(observer).update(cf, null);
+            }
+        });
+        cf.addObserver(observer);
+        cf.next();
     }
 }

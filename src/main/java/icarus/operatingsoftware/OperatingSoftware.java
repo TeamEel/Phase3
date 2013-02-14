@@ -5,6 +5,7 @@ import icarus.util.FileInput;
 import icarus.util.FileOutput;
 import icarus.util.SaveState;
 import java.io.FileNotFoundException;
+import java.util.Observable;
 
 /**
  * Handles commands specified by the UI, including calls to operatorSoftware, saving and loading and calculating
@@ -13,7 +14,7 @@ import java.io.FileNotFoundException;
  * @author Team Haddock
  *
  */
-public class OperatingSoftware implements PlantControl {
+public class OperatingSoftware extends Observable implements PlantControl{
 
     private Plant plant;
     private int score; // stores the score of the player
@@ -292,6 +293,8 @@ public class OperatingSoftware implements PlantControl {
     @Override
     public void next() {
         plant.next();
+        setChanged();
+        notifyObservers();
     }
 
     /**
