@@ -1,9 +1,10 @@
 package gui;
-import java.awt.*;
+
+import icarus.operatingsoftware.OperatingSoftware;
+import icarus.operatingsoftware.PowerPlant;
 import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.event.*;
-
 
 /**
  *
@@ -22,12 +23,13 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
      * Creates new form MainWindow
      */
     public MainWindow() {
+        OperatingSoftware os = new OperatingSoftware(new PowerPlant());
         viewPanel = new JPanel();
-        controlPanel = new JPanel();
+        controlPanel = new ControlPanel(os);
         menuBar = new JMenuBar();
         fileMenu = new JMenu();
         helpMenu = new JMenu();
-        
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         GroupLayout viewPanelLayout = new GroupLayout(viewPanel);
@@ -39,24 +41,14 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
                 viewPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGap(0, 399, Short.MAX_VALUE));
 
-        GroupLayout jPanel2Layout = new GroupLayout(controlPanel);
-        controlPanel.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-                jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGap(0, 912, Short.MAX_VALUE));
-        jPanel2Layout.setVerticalGroup(
-                jPanel2Layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGap(0, 121, Short.MAX_VALUE));
-
         fileMenu.setText("File");
         menuBar.add(fileMenu);
 
         helpMenu.setText("Help");
         menuBar.add(helpMenu);
-        
+
         setJMenuBar(menuBar);
-        
-              
+
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -76,8 +68,8 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
                                  GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(controlPanel, GroupLayout.PREFERRED_SIZE,
                               GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
-        
-        
+
+
         pack();
     }
 
@@ -96,11 +88,8 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
                     break;
                 }
             }
-            // TODO: Decide what to do with exceptions
-        } catch (ClassNotFoundException ex) {
-        } catch (InstantiationException ex) {
-        } catch (IllegalAccessException ex) {
-        } catch (UnsupportedLookAndFeelException ex) {
+            // Ignore all exceptions here :(
+        } catch (Exception e) {
         }
 
         /* Create and display the form */
@@ -112,10 +101,10 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
         });
     }
     /*
-    public void stateChanged(ChangeEvent e){
-        repaint();
-    }
-    */
+     public void stateChanged(ChangeEvent e){
+     repaint();
+     }
+     */
 
     @Override
     public void actionPerformed(ActionEvent e) {
