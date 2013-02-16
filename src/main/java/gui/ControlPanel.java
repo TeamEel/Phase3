@@ -31,13 +31,14 @@ public class ControlPanel extends JPanel implements Observer {
         for (ControlWidget cw : controlWidgets) {
             box.add(cw);
             plant.addObserver(cw);
-        }        
+        }
         setBorder(BorderFactory.createLineBorder(Color.black));
-        //plant.addObserver(this);
+        //propagate changes to children
+        update(plant, null);
     }
 
     @Override
-    public void update(Observable o, Object o1) {
+    public final void update(Observable o, Object o1) {
         for (ControlWidget cw : controlWidgets) {
             cw.update(o, o1);
         }

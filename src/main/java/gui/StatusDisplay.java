@@ -1,7 +1,6 @@
 package gui;
 
 import icarus.operatingsoftware.Components;
-import icarus.operatingsoftware.Plant;
 import icarus.operatingsoftware.PlantControl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
