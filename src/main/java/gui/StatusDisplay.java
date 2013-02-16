@@ -54,7 +54,7 @@ public class StatusDisplay extends ControlWidget implements ActionListener {
         power = new StatusLabel("Power", "");
         vbox.add(Align.left(power));
         
-        nextButton = new JButton("Next");
+        nextButton = new JButton("Next" + " "); //Seriously, what the hell
         nextButton.addActionListener(this);
         vbox.add(nextButton);
     }
