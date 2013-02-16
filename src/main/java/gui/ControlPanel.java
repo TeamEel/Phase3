@@ -1,6 +1,8 @@
 package gui;
 
 import icarus.operatingsoftware.OperatingSoftware;
+import icarus.operatingsoftware.Plant;
+import icarus.operatingsoftware.PlantControl;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Observable;
