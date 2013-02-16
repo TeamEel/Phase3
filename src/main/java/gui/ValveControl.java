@@ -4,14 +4,12 @@
  */
 package gui;
 
-import icarus.exceptions.InvalidValveException;
-import icarus.operatingsoftware.Components;
-import icarus.operatingsoftware.OperatingSoftware;
-import icarus.operatingsoftware.Plant;
 import icarus.operatingsoftware.PlantControl;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JToggleButton;
