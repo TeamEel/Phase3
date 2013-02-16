@@ -4,6 +4,8 @@
  */
 package icarus.operatingsoftware;
 
+import java.util.Observable;
+
 /**
  *
  * @author drm511

@@ -14,7 +14,7 @@ import java.util.Observable;
  * @author Team Haddock
  *
  */
-public class OperatingSoftware extends Observable implements PlantControl{
+public class OperatingSoftware extends Observable implements PlantControl {
 
     private Plant plant;
     private int score; // stores the score of the player

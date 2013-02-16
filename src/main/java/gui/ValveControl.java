@@ -4,15 +4,10 @@
  */
 package gui;
 
-import icarus.exceptions.InvalidValveException;
 import icarus.operatingsoftware.PlantControl;
 import java.util.Observable;
-import java.util.Observer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.Box;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.JToggleButton;
 
 /**

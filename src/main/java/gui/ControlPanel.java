@@ -1,6 +1,6 @@
 package gui;
 
-import icarus.operatingsoftware.PlantControl;
+import icarus.operatingsoftware.OperatingSoftware;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Observable;
@@ -16,19 +16,22 @@ import javax.swing.JPanel;
 public class ControlPanel extends JPanel implements Observer {
         ArrayList<ControlWidget> controlWidgets;
     
-    public ControlPanel(PlantControl plant) {
+    public ControlPanel(OperatingSoftware plant) {
         controlWidgets = new ArrayList<ControlWidget>();
         controlWidgets.add(new ReactorControl(plant));
         controlWidgets.add(new PumpControl(plant, 0));
         controlWidgets.add(new PumpControl(plant, 1));
         controlWidgets.add(new ValveControl(plant, 0));
         controlWidgets.add(new ValveControl(plant, 1));
+        controlWidgets.add(new StatusDisplay(plant));
         Box box = Box.createHorizontalBox();
         add(box);
         for (ControlWidget cw : controlWidgets) {
             box.add(cw);
+            plant.addObserver(cw);
         }        
         setBorder(BorderFactory.createLineBorder(Color.black));
+        //plant.addObserver(this);
     }
 
     @Override
