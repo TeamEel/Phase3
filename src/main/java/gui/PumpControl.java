@@ -34,7 +34,7 @@ public class PumpControl extends ControlWidget implements ActionListener {
         Box box = Box.createVerticalBox();
         JLabel title = new JLabel("Pump " + pumpNumber);
         onButton = new JToggleButton("On");
-        offButton = new JToggleButton("Off");
+        offButton = new JToggleButton("Off" + " "); //Java sucks
         repairButton = new JToggleButton("Repair");
         add(box);
         box.add(Align.left(title));
