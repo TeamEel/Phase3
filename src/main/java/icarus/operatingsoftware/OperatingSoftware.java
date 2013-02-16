@@ -99,7 +99,7 @@ public class OperatingSoftware extends Observable implements PlantControl{
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
     @Override
-    public double waterLevel(Components component) throws InvalidComponentException {
+    public double waterLevel(Components component) {
         return plant.waterLevel(component);
     }
 
@@ -113,7 +113,7 @@ public class OperatingSoftware extends Observable implements PlantControl{
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
     @Override
-    public double temperature(Components component) throws InvalidComponentException {
+    public double temperature(Components component) {
         return plant.temperature(component);
     }
 
@@ -127,7 +127,7 @@ public class OperatingSoftware extends Observable implements PlantControl{
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
     @Override
-    public double pressure(Components component) throws InvalidComponentException {
+    public double pressure(Components component) {
         return plant.pressure(component);
     }
 

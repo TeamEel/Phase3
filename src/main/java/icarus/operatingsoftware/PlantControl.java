@@ -7,10 +7,7 @@ import icarus.exceptions.InvalidComponentException;
 import icarus.exceptions.InvalidPumpException;
 import icarus.exceptions.InvalidRodsException;
 import icarus.exceptions.InvalidValveException;
-import icarus.exceptions.MaximumRodsException;
-import icarus.exceptions.MinimumRodsException;
 import icarus.exceptions.NoFixNeededException;
-import icarus.util.SaveState;
 
 /**
  *
@@ -183,7 +180,7 @@ public interface PlantControl {
      *
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
-    double pressure(Components component) throws InvalidComponentException;
+    double pressure(Components component);
 
     /**
      * Move the control rods to the specified position
@@ -218,7 +215,7 @@ public interface PlantControl {
      *
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
-    double temperature(Components component) throws InvalidComponentException;
+    double temperature(Components component);
 
     /**
      * Turn off a Pump in the system
@@ -251,5 +248,5 @@ public interface PlantControl {
      *
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
-    double waterLevel(Components component) throws InvalidComponentException;
+    double waterLevel(Components component);
 }

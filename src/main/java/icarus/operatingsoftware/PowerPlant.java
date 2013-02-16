@@ -196,14 +196,15 @@ public class PowerPlant implements Plant {
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
     @Override
-    public double temperature(Components component) throws InvalidComponentException {
+    public double temperature(Components component) {
         switch (component) {
             case CONDENSER:
                 return condenser.getTemperature();
             case REACTOR:
                 return reactor.getTemperature();
             default:
-                throw new InvalidComponentException(component.toString());
+                throw new IllegalArgumentException("'" + component.toString() +
+                                                   "' is not a valid component for this method.");
         }
     }
 
@@ -217,14 +218,15 @@ public class PowerPlant implements Plant {
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
     @Override
-    public double waterLevel(Components component) throws InvalidComponentException {
+    public double waterLevel(Components component) {
         switch (component) {
             case CONDENSER:
                 return condenser.getWaterLevel();
             case REACTOR:
                 return reactor.getWaterLevel();
             default:
-                throw new InvalidComponentException(component.toString());
+                throw new IllegalArgumentException("'" + component.toString() +
+                                                   "' is not a valid component for this method.");
         }
     }
 
@@ -294,14 +296,15 @@ public class PowerPlant implements Plant {
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
     @Override
-    public double pressure(Components component) throws InvalidComponentException {
+    public double pressure(Components component) {
         switch (component) {
             case CONDENSER:
                 return condenser.getPressure();
             case REACTOR:
                 return reactor.getPressure();
             default:
-                throw new InvalidComponentException(component.toString());
+                throw new IllegalArgumentException("'" + component.toString() +
+                                                   "' is not a valid component for this method.");
         }
     }
 

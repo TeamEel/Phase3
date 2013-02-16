@@ -8,9 +8,9 @@ package icarus.parser;
  * @author Team Haddock
  * @version 2012/2013
  */
-import icarus.operatingsoftware.OperatingSoftware;
 import icarus.exceptions.*;
 import icarus.operatingsoftware.Components;
+import icarus.operatingsoftware.OperatingSoftware;
 import icarus.operatingsoftware.PowerPlant;
 import java.text.DecimalFormat;
 import java.util.Scanner;
@@ -410,24 +410,21 @@ public class CommandParser {
      */
     public void updateDisplay() {
         DecimalFormat df = new DecimalFormat("#.##");
-        try {
-            System.out.println(String.format("%-15s%15s%15s", " ", "Reactor", "Condenser"));
-            System.out.println(String.format("%-15s%15s%15s", "Water level",
-                                             df.format(cf.waterLevel(Components.REACTOR)) + " cm", df.format(cf
-                    .waterLevel(Components.CONDENSER)) + " cm"));
-            System.out.println(String.format("%-15s%15s%15s", "Pressure level", df
-                    .format(cf.pressure(Components.REACTOR)) + " kPa", df.format(cf.pressure(Components.CONDENSER)) +
-                                                                       " kPa"));
-            System.out.println(String.format("%-15s%15s%15s", "Temperature", df
-                    .format(cf.temperature(Components.REACTOR)) + " K",
-                                             df.format(cf.temperature(Components.CONDENSER)) +
-                                             " K"));
-            System.out.println(String.format("%-15s%15s", "Rod Height", cf.rodHeight()));
-            System.out.println();
 
-        } catch (InvalidComponentException e) {
-            e.printStackTrace();
-        }
+        System.out.println(String.format("%-15s%15s%15s", " ", "Reactor", "Condenser"));
+        System.out.println(String.format("%-15s%15s%15s", "Water level",
+                                         df.format(cf.waterLevel(Components.REACTOR)) + " cm", df.format(cf
+                .waterLevel(Components.CONDENSER)) + " cm"));
+        System.out.println(String.format("%-15s%15s%15s", "Pressure level", df
+                .format(cf.pressure(Components.REACTOR)) + " kPa", df.format(cf.pressure(Components.CONDENSER)) +
+                                                                   " kPa"));
+        System.out.println(String.format("%-15s%15s%15s", "Temperature", df
+                .format(cf.temperature(Components.REACTOR)) + " K",
+                                         df.format(cf.temperature(Components.CONDENSER)) +
+                                         " K"));
+        System.out.println(String.format("%-15s%15s", "Rod Height", cf.rodHeight()));
+        System.out.println();
+
         if (cf.isWaterPumpActive(0)) {
             System.out.println("Pump 0 (water pump): on ");
         } else {

@@ -65,7 +65,7 @@ public class PowerPlantTest {
         assertFalse(op.isWaterPumpActive(0));
     }
 
-    @Test(expected = InvalidComponentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testInvalidTemperature() throws InvalidComponentException {
         op.temperature(Components.TURBINE);
     }
@@ -76,7 +76,7 @@ public class PowerPlantTest {
         assertEquals(reactor.getTemperature(), op.temperature(Components.REACTOR), 0);
     }
 
-    @Test(expected = InvalidComponentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testInvalidWaterLevel() throws InvalidComponentException {
         op.waterLevel(Components.TURBINE);
     }
@@ -125,7 +125,7 @@ public class PowerPlantTest {
         assertEquals(reactor.getPressure(), op.pressure(Components.REACTOR), 0);
     }
 
-    @Test(expected = InvalidComponentException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void testInvalidPressure() throws InvalidComponentException {
         op.pressure(Components.TURBINE);
     }
