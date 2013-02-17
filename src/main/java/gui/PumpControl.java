@@ -87,15 +87,15 @@ public class PumpControl extends ControlWidget implements ActionListener {
         if (o instanceof PlantControl) {
             PlantControl plantControl = (PlantControl)o;
             onButton.setSelected(plantControl.isWaterPumpActive(pumpNumber));
-            offButton.setSelected(!plantControl.isWaterPumpActive(pumpNumber));
+            offButton.setSelected(!plantControl.isWaterPumpActive(pumpNumber) &&
+                                  plantControl.functional(Components.WATERPUMP, pumpNumber));
             
             onButton.setEnabled(!plantControl.isWaterPumpActive(pumpNumber));
-            offButton.setEnabled(plantControl.isWaterPumpActive(pumpNumber));
+            offButton.setEnabled(plantControl.isWaterPumpActive(pumpNumber) && 
+                                 plantControl.functional(Components.WATERPUMP, pumpNumber));
             
             repairButton.setEnabled(!plantControl.functional(Components.WATERPUMP, pumpNumber));
             repairButton.setSelected(plantControl.isRepairing(Components.WATERPUMP, pumpNumber));
-            
-            
         }
     }
 
