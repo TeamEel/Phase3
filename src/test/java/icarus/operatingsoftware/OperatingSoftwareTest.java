@@ -129,7 +129,7 @@ public class OperatingSoftwareTest {
     @Test
     public void testLoadFromFile() {
         cf.saveToFile("test");
-        assertTrue(cf.loadFromFile("test"));
+        assertTrue(cf.loadFromFile("test.ser"));
     }
 
     @Test
