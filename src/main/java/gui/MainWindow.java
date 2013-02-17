@@ -1,35 +1,43 @@
 package gui;
 
+import icarus.operatingsoftware.FailableOperatingSoftware;
 import icarus.operatingsoftware.OperatingSoftware;
 import icarus.operatingsoftware.PowerPlant;
+import icarus.util.GameFileFilter;
 import java.awt.event.*;
+import java.io.File;
+import java.net.URI;
 import javax.swing.*;
 import javax.swing.event.*;
+import javax.swing.filechooser.FileFilter;
 
 /**
  *
  * @author drm511
  */
 public class MainWindow extends JFrame implements ActionListener, ChangeListener {
-
+    private JFileChooser fc;
     private JMenu fileMenu;
     private JMenu helpMenu;
     private JMenuBar menuBar;
     private JPanel controlPanel;
     private JPanel viewPanel;
     private JSlider rodSlider;
+    private OperatingSoftware os;
 
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
-        OperatingSoftware os = new OperatingSoftware(new PowerPlant());
+        os = new FailableOperatingSoftware(new PowerPlant());
         viewPanel = new JPanel();
         controlPanel = new ControlPanel(os);
         menuBar = new JMenuBar();
         fileMenu = new JMenu();
         helpMenu = new JMenu();
-
+        fc = new JFileChooser();
+        GameFileFilter ff = new GameFileFilter();
+        fc.addChoosableFileFilter(ff);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
         GroupLayout viewPanelLayout = new GroupLayout(viewPanel);
@@ -41,13 +49,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
                 viewPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
                 .addGap(0, 399, Short.MAX_VALUE));
 
-        fileMenu.setText("File");
-        menuBar.add(fileMenu);
-
-        helpMenu.setText("Help");
-        menuBar.add(helpMenu);
-
-        setJMenuBar(menuBar);
+        
 
         GroupLayout layout = new GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -71,6 +73,8 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
 
 
         pack();
+        
+        createMenus();
     }
 
     /**
@@ -108,11 +112,94 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        try
+        {
+            
+            if(e.getActionCommand().equals("New Game"))
+            {
+                os.resetPlant();
+            }
+            else if(e.getActionCommand().equals("Save Game"))
+            {
+                int retval = fc.showSaveDialog(this);
+                if(retval == JFileChooser.APPROVE_OPTION)
+                {
+                    File file = fc.getSelectedFile();
+                    os.saveToFile(file.getAbsolutePath());
+                }
+                
+            }
+            else if(e.getActionCommand().equals("Load Game"))
+            {
+                int retval = fc.showOpenDialog(this);
+                if(retval == JFileChooser.APPROVE_OPTION)
+                {
+                    File file = fc.getSelectedFile();
+                    if(!os.loadFromFile(file.getAbsolutePath()))
+                    {
+                        System.err.println("Error Loading File");
+                    }
+                }
+                
+            }
+            else if(e.getActionCommand().equals("Quit"))
+            {
+                quit();
+            }
+            else if(e.getActionCommand().equals("Online Help"))
+            {
+                java.awt.Desktop.getDesktop().browse( new URI("http://www.teameel.com/help"));
+            }
+            else if(e.getActionCommand().equals("About"))
+            {
+                
+            }
+        }
+        catch(Exception ex)
+        {
+        }
         repaint();
     }
 
     @Override
     public void stateChanged(ChangeEvent e) {
         repaint();
+    }
+
+    private void createMenus() {
+        JMenuItem tmpMenuItem;
+        fileMenu.setText("File");
+        
+        
+        tmpMenuItem = new JMenuItem("New Game");
+        tmpMenuItem.addActionListener(this);
+        fileMenu.add(tmpMenuItem);
+        
+        tmpMenuItem = new JMenuItem("Load Game");
+        tmpMenuItem.addActionListener(this);
+        fileMenu.add(tmpMenuItem);
+        
+        tmpMenuItem = new JMenuItem("Save Game");
+        tmpMenuItem.addActionListener(this);
+        fileMenu.add(tmpMenuItem);
+        
+        tmpMenuItem = new JMenuItem("Quit");
+        tmpMenuItem.addActionListener(this);
+        fileMenu.add(tmpMenuItem);
+        
+        
+        menuBar.add(fileMenu);
+        helpMenu.setText("Help");
+        
+        
+        tmpMenuItem = new JMenuItem("Online Help");
+        tmpMenuItem.addActionListener(this);
+        helpMenu.add(tmpMenuItem);
+        menuBar.add(helpMenu);
+        setJMenuBar(menuBar);
+    }
+
+    private void quit() {
+        this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
     }
 }

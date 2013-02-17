@@ -432,10 +432,23 @@ public class OperatingSoftware extends Observable implements PlantControl {
                 return false;
             }
             plant = new PowerPlant(s);
+            setChanged();
+            notifyObservers();
             return true;
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+        } catch (Exception e) {
+            System.out.println("Error loading from file");
             return false;
         }
+    }
+    
+    /**
+     * Resets the plant
+     *
+     */
+    @Override
+    public void resetPlant() {
+        plant = new PowerPlant();
+        setChanged();        
+        notifyObservers();
     }
 }

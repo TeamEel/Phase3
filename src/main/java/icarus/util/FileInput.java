@@ -23,21 +23,17 @@ public class FileInput {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static SaveState loadObjectFromFile(String fileName) throws FileNotFoundException {
+    public static SaveState loadObjectFromFile(String fileName) throws FileNotFoundException,ClassNotFoundException,IOException {
         SaveState s = null;
-        try {
-            FileInputStream fileIn = new FileInputStream(fileName + ".ser");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
+      
+        FileInputStream fileIn = new FileInputStream(fileName);
+        ObjectInputStream in = new ObjectInputStream(fileIn);
 
-            s = (SaveState)in.readObject();
+        s = (SaveState)in.readObject();
 
-            in.close();
-            fileIn.close();
-        } catch (ClassNotFoundException e) {
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        } catch (IOException e) {
-        }
+        in.close();
+        fileIn.close();
+
 
         return s;
     }
