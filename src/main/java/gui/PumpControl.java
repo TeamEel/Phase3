@@ -94,7 +94,8 @@ public class PumpControl extends ControlWidget implements ActionListener {
             offButton.setEnabled(plantControl.isWaterPumpActive(pumpNumber) && 
                                  plantControl.functional(Components.WATERPUMP, pumpNumber));
             
-            repairButton.setEnabled(!plantControl.functional(Components.WATERPUMP, pumpNumber));
+            repairButton.setEnabled(!plantControl.functional(Components.WATERPUMP, pumpNumber) &&
+                                    !plantControl.fixUnderway());
             repairButton.setSelected(plantControl.isRepairing(Components.WATERPUMP, pumpNumber));
         }
     }

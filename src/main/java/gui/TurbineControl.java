@@ -62,7 +62,8 @@ public class TurbineControl extends ControlWidget implements ActionListener {
     public void update(Observable o, Object o1) {
         if (o instanceof PlantControl) {
             PlantControl plantControl = (PlantControl)o;
-            repairButton.setEnabled(!plantControl.functional(Components.TURBINE));
+            repairButton.setEnabled(!plantControl.functional(Components.TURBINE)&&
+                                    !plantControl.fixUnderway());
             repairButton.setSelected(plantControl.isRepairing(Components.TURBINE));
         }
     }

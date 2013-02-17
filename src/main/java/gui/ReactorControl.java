@@ -70,7 +70,8 @@ public class ReactorControl extends ControlWidget implements ActionListener, Cha
     public void update(Observable o, Object o1) {
         if (o instanceof PlantControl) {
             PlantControl plantControl = (PlantControl)o;
-            repairButton.setEnabled(!plantControl.functional(Components.REACTOR));
+            repairButton.setEnabled(!plantControl.functional(Components.REACTOR) &&
+                                    !plantControl.fixUnderway());
             repairButton.setSelected(plantControl.isRepairing(Components.REACTOR));
             controlRodPosition.setValue(plantControl.rodHeight());
         }

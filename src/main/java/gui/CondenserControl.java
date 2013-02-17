@@ -58,7 +58,7 @@ public class CondenserControl extends ControlWidget implements ActionListener {
     public void update(Observable o, Object o1) {
         if (o instanceof PlantControl) {
             PlantControl plantControl = (PlantControl)o;
-            repairButton.setEnabled(!plantControl.functional(Components.CONDENSER));
+            repairButton.setEnabled(!plantControl.functional(Components.CONDENSER) && !plantControl.fixUnderway());
             repairButton.setSelected(plantControl.isRepairing(Components.CONDENSER));
         }
     }
