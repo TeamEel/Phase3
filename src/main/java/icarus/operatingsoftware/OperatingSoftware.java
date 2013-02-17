@@ -445,7 +445,6 @@ public class OperatingSoftware extends Observable implements PlantControl {
      * Resets the plant
      *
      */
-    @Override
     public void resetPlant() {
         plant = new PowerPlant();
         setChanged();        

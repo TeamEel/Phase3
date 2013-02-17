@@ -11,4 +11,5 @@ import java.util.Observable;
  * @author drm511
  */
 public interface Plant extends PlantControl, Saveable {
+    
 }

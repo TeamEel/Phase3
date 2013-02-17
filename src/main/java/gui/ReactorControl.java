@@ -55,7 +55,7 @@ public class ReactorControl extends ControlWidget implements ActionListener, Cha
                 plant.fix(Components.REACTOR);
                           
             }
-            plant.next();
+            
             
             
         }
@@ -63,6 +63,7 @@ public class ReactorControl extends ControlWidget implements ActionListener, Cha
         {
             Logger.getLogger(PumpControl.class.getName()).log(Level.SEVERE, null, e);
         }
+        plant.next();
     }
     
     @Override

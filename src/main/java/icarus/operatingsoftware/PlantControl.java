@@ -250,5 +250,5 @@ public interface PlantControl {
      */
     double waterLevel(Components component);
     
-    void resetPlant();
+    
 }
