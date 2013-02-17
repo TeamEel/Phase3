@@ -22,7 +22,7 @@ public class Condenser extends MajorComponent implements Serializable {
      * @param pump The CondenserPump associated with the coolant for this condenser
      */
     public Condenser(CondenserPump pump) {
-        super(300, 400, 400, 290, .8, 2);
+        super(300, 400, 400, 290, .04, 2);
         steamInTemperature = 0;
         condensation = 0;
         condenserPump = pump;

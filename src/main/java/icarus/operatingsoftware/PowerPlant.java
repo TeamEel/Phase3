@@ -54,7 +54,7 @@ public class PowerPlant implements Plant {
     /**
      * Constructor used when loading the game from a save state.
      *
-     * @param HashTable with Reactor objects
+     * @param HfashTable with Reactor objects
      */
     public PowerPlant(SaveState state) {
         reactor = state.reactor;
@@ -162,6 +162,10 @@ public class PowerPlant implements Plant {
      */
     @Override
     public boolean isWaterPumpActive(int pumpNum) {
+        if(pumpNum==2)
+        {
+            return isCondenserPumpActive();
+        }
         return waterPump[pumpNum].isActive();
     }
 
@@ -271,6 +275,10 @@ public class PowerPlant implements Plant {
             throw new IllegalArgumentException("This method cannot be called with '" + component.toString() + "'");
         }
         if (pumpNum < 0 || pumpNum >= waterPump.length) {
+            if(pumpNum ==2)
+            {
+                return functional(Components.CONDENSERPUMP);
+            }
             throw new IllegalArgumentException("'" + pumpNum + "' is not a valid pump number.");
         }
         return waterPump[pumpNum].getFunctional();
@@ -406,7 +414,17 @@ public class PowerPlant implements Plant {
         generator.calculatePower();
 
         checkFailures();
-        // UPDATE DISPLAY
+        doFixes();
+        
+    }
+
+    private void doFixes() {
+        waterPump[0].fixCycle();
+        waterPump[1].fixCycle();
+        condenserPump.fixCycle();
+        reactor.fixCycle();
+        turbine.fixCycle();
+        condenser.fixCycle();
     }
 
     /**

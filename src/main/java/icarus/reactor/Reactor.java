@@ -20,7 +20,7 @@ public class Reactor extends MajorComponent implements Serializable {
      * Primary constructor for use when initialising a new game
      */
     public Reactor() {
-        super(300, 500, 900, 290, .8, 2);
+        super(300, 500, 900, 290, .02, 2);
         rodHeight = 50;
         activity = 600;
         waterIn = 0;

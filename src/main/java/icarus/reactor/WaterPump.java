@@ -23,7 +23,7 @@ public class WaterPump extends Component implements Serializable {
      * @param mcomp2 The MajorComponent to push water to
      */
     public WaterPump(MajorComponent mcomp1, MajorComponent mcomp2) {
-        super(0.2, 1);
+        super(0.1, 1);
         this.mcomp1 = mcomp1;
         this.mcomp2 = mcomp2;
         active = true;

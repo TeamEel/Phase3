@@ -23,6 +23,7 @@ public class ControlPanel extends JPanel implements Observer {
         controlWidgets.add(new ReactorControl(plant));
         controlWidgets.add(new PumpControl(plant, 0));
         controlWidgets.add(new PumpControl(plant, 1));
+        controlWidgets.add(new PumpControl(plant, 2));
         controlWidgets.add(new ValveControl(plant, 0));
         controlWidgets.add(new ValveControl(plant, 1));
         controlWidgets.add(new TurbineControl(plant));
