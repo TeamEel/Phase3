@@ -152,7 +152,9 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
             }
             else if(e.getActionCommand().equals("About"))
             {
-                
+                AboutDialog aboutDialog = new AboutDialog(this,true);
+                aboutDialog.pack();
+                aboutDialog.setVisible(true);
             }
         }
         catch(Exception ex)
@@ -193,6 +195,9 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
         
         
         tmpMenuItem = new JMenuItem("Online Help");
+        tmpMenuItem.addActionListener(this);
+        helpMenu.add(tmpMenuItem);
+        tmpMenuItem = new JMenuItem("About");
         tmpMenuItem.addActionListener(this);
         helpMenu.add(tmpMenuItem);
         menuBar.add(helpMenu);
