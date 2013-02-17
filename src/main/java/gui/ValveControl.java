@@ -62,6 +62,7 @@ public class ValveControl extends ControlWidget implements ActionListener {
             {
                 plant.close(valveNumber);
             }
+            plant.next();
             
         }
         catch(Exception  e)

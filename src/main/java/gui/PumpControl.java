@@ -73,6 +73,7 @@ public class PumpControl extends ControlWidget implements ActionListener {
             {
                 plant.fix(Components.WATERPUMP, pumpNumber);
             }
+            plant.next();
         }
         catch(Exception  e)
         {

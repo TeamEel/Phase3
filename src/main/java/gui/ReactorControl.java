@@ -55,6 +55,7 @@ public class ReactorControl extends ControlWidget implements ActionListener, Cha
                 plant.fix(Components.REACTOR);
                           
             }
+            plant.next();
             
             
         }
