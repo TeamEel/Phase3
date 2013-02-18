@@ -376,7 +376,14 @@ public class PowerPlant implements Plant {
                 if (validPumpNum(pumpNum)) {
                     waterPump[pumpNum].beginFix();
                 } else {
-                    throw new InvalidPumpException(pumpNum);
+                    if(pumpNum==2)
+                    {
+                        condenserPump.beginFix();
+                    }
+                    else
+                    {
+                        throw new InvalidPumpException(pumpNum);
+                    }
                 }
             } else {
                 throw new InvalidComponentException(component.toString());

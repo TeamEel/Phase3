@@ -79,7 +79,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
         pack();
         os.addObserver(this);
         createMenus();
-        setUsername();
+        startNewGame();
     }
 
     /**
@@ -122,9 +122,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
             
             if(e.getActionCommand().equals("New Game"))
             {
-                
-                os.resetPlant();
-                setUsername();
+                startNewGame();
                 
             }
             else if(e.getActionCommand().equals("Save Game"))
@@ -152,9 +150,8 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
             }
             else if(e.getActionCommand().equals("About"))
             {
-                AboutDialog aboutDialog = new AboutDialog(this,true);
-                aboutDialog.pack();
-                aboutDialog.setVisible(true);
+                showAboutDialog();
+                
             }
         }
         catch(Exception ex)
@@ -192,7 +189,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
                 switch(n)
                 {
                     case JOptionPane.YES_OPTION:
-                        os.resetPlant();
+                        startNewGame();
                         break;
                     case JOptionPane.NO_OPTION:
                         loadGame();
@@ -268,5 +265,23 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
                 System.err.println("Error Loading File");
             }
         }
+    }
+
+    private void startNewGame() {
+        os.resetPlant();
+        setUsername();
+        showIntroTextDialog();
+    }
+
+    private void showIntroTextDialog() {
+        IntroDialog introDialog = new IntroDialog(this,true);
+        introDialog.pack();
+        introDialog.setVisible(true);        
+    }
+
+    private void showAboutDialog() {
+        AboutDialog aboutDialog = new AboutDialog(this,true);
+        aboutDialog.pack();
+        aboutDialog.setVisible(true);
     }
 }
