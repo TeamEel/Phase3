@@ -75,6 +75,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
         pack();
         
         createMenus();
+        setUsername();
     }
 
     /**
@@ -117,7 +118,10 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
             
             if(e.getActionCommand().equals("New Game"))
             {
+                
                 os.resetPlant();
+                setUsername();
+                
             }
             else if(e.getActionCommand().equals("Save Game"))
             {
@@ -207,5 +211,16 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
 
     private void quit() {
         this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
+    }
+
+    private void setUsername() {
+        String userName = JOptionPane.showInputDialog(null, "Enter username: ", "Enter Username", 1);
+        
+        if(userName == null || userName.trim().isEmpty())
+        {
+            setUsername();
+        }
+        
+        os.setPlayerName(userName);        
     }
 }
