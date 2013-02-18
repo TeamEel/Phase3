@@ -137,6 +137,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
                     File file = fc.getSelectedFile();
                     if(!os.loadFromFile(file.getAbsolutePath()))
                     {
+                        JOptionPane.showMessageDialog(null,"Unable to load this file");
                         System.err.println("Error Loading File");
                     }
                 }
