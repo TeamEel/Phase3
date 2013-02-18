@@ -1,12 +1,16 @@
 package gui;
 
+import icarus.operatingsoftware.Components;
 import icarus.operatingsoftware.FailableOperatingSoftware;
 import icarus.operatingsoftware.OperatingSoftware;
+import icarus.operatingsoftware.PlantControl;
 import icarus.operatingsoftware.PowerPlant;
 import icarus.util.GameFileFilter;
 import java.awt.event.*;
 import java.io.File;
 import java.net.URI;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.filechooser.FileFilter;
@@ -15,7 +19,7 @@ import javax.swing.filechooser.FileFilter;
  *
  * @author drm511
  */
-public class MainWindow extends JFrame implements ActionListener, ChangeListener {
+public class MainWindow extends JFrame implements ActionListener, ChangeListener, Observer {
     private JFileChooser fc;
     private JMenu fileMenu;
     private JMenu helpMenu;
@@ -73,7 +77,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
 
 
         pack();
-        
+        os.addObserver(this);
         createMenus();
         setUsername();
     }
@@ -135,16 +139,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
             }
             else if(e.getActionCommand().equals("Load Game"))
             {
-                int retval = fc.showOpenDialog(this);
-                if(retval == JFileChooser.APPROVE_OPTION)
-                {
-                    File file = fc.getSelectedFile();
-                    if(!os.loadFromFile(file.getAbsolutePath()))
-                    {
-                        JOptionPane.showMessageDialog(null,"Unable to load this file");
-                        System.err.println("Error Loading File");
-                    }
-                }
+                loadGame();
                 
             }
             else if(e.getActionCommand().equals("Quit"))
@@ -171,6 +166,44 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
     @Override
     public void stateChanged(ChangeEvent e) {
         repaint();
+    }
+
+    @Override
+    public void update(Observable o, Object o1) {
+        
+        if (o instanceof PlantControl) {
+            PlantControl plantControl = (PlantControl)o;
+            
+            if(plantControl.checkIfGameOver())
+            {
+                Object[] options = {"New Game",
+                    "Load Game",
+                    "Quit"};
+                int n = JOptionPane.showOptionDialog(this,
+                    os.getPlayerName()+ ", you have blown up the nuclear power plant. The game is now over\n"
+                    + "Start new game?",
+                    "Game Over",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]);
+                
+                switch(n)
+                {
+                    case JOptionPane.YES_OPTION:
+                        os.resetPlant();
+                        break;
+                    case JOptionPane.NO_OPTION:
+                        loadGame();
+                        break;
+                    case JOptionPane.CANCEL_OPTION:
+                        quit();
+                        break;
+                        
+                }
+            }
+        }
     }
 
     private void createMenus() {
@@ -222,5 +255,18 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
         }
         
         os.setPlayerName(userName);        
+    }
+
+    private void loadGame() {
+        int retval = fc.showOpenDialog(this);
+        if(retval == JFileChooser.APPROVE_OPTION)
+        {
+            File file = fc.getSelectedFile();
+            if(!os.loadFromFile(file.getAbsolutePath()))
+            {
+                JOptionPane.showMessageDialog(null,"Unable to load this file");
+                System.err.println("Error Loading File");
+            }
+        }
     }
 }
