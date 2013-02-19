@@ -1,17 +1,17 @@
 package gui;
 
-import drawing.ImageLoader;
-import drawing.SpriteCanvas;
+import icarus.operatingsoftware.Components;
 import icarus.operatingsoftware.FailableOperatingSoftware;
 import icarus.operatingsoftware.OperatingSoftware;
+import icarus.operatingsoftware.PlantControl;
 import icarus.operatingsoftware.PowerPlant;
 import icarus.util.GameFileFilter;
 import java.awt.event.*;
 import java.io.File;
 import java.io.IOException;
 import java.net.URI;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.filechooser.FileFilter;
@@ -20,7 +20,7 @@ import javax.swing.filechooser.FileFilter;
  *
  * @author drm511
  */
-public class MainWindow extends JFrame implements ActionListener, ChangeListener {
+public class MainWindow extends JFrame implements ActionListener, ChangeListener, Observer {
     private JFileChooser fc;
     private JMenu fileMenu;
     private JMenu helpMenu;
@@ -116,7 +116,8 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
             
             if(e.getActionCommand().equals("New Game"))
             {
-                os.resetPlant();
+                startNewGame();
+                
             }
             else if(e.getActionCommand().equals("Save Game"))
             {
@@ -130,15 +131,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
             }
             else if(e.getActionCommand().equals("Load Game"))
             {
-                int retval = fc.showOpenDialog(this);
-                if(retval == JFileChooser.APPROVE_OPTION)
-                {
-                    File file = fc.getSelectedFile();
-                    if(!os.loadFromFile(file.getAbsolutePath()))
-                    {
-                        System.err.println("Error Loading File");
-                    }
-                }
+                loadGame();
                 
             }
             else if(e.getActionCommand().equals("Quit"))
@@ -147,13 +140,12 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
             }
             else if(e.getActionCommand().equals("Online Help"))
             {
-                java.awt.Desktop.getDesktop().browse( new URI("http://www.teameel.com/help"));
+                java.awt.Desktop.getDesktop().browse( new URI("http://www.teameel.com/user-manual"));
             }
             else if(e.getActionCommand().equals("About"))
             {
-                AboutDialog aboutDialog = new AboutDialog(this,true);
-                aboutDialog.pack();
-                aboutDialog.setVisible(true);
+                showAboutDialog();
+                
             }
         }
         catch(Exception ex)
@@ -165,6 +157,44 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
     @Override
     public void stateChanged(ChangeEvent e) {
         repaint();
+    }
+
+    @Override
+    public void update(Observable o, Object o1) {
+        
+        if (o instanceof PlantControl) {
+            PlantControl plantControl = (PlantControl)o;
+            
+            if(plantControl.checkIfGameOver())
+            {
+                Object[] options = {"New Game",
+                    "Load Game",
+                    "Quit"};
+                int n = JOptionPane.showOptionDialog(this,
+                    os.getPlayerName()+ ", you have blown up the nuclear power plant. The game is now over\n"
+                    + "Start new game?",
+                    "Game Over",
+                    JOptionPane.YES_NO_CANCEL_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    options,
+                    options[0]);
+                
+                switch(n)
+                {
+                    case JOptionPane.YES_OPTION:
+                        startNewGame();
+                        break;
+                    case JOptionPane.NO_OPTION:
+                        loadGame();
+                        break;
+                    case JOptionPane.CANCEL_OPTION:
+                        quit();
+                        break;
+                        
+                }
+            }
+        }
     }
 
     private void createMenus() {
@@ -205,5 +235,47 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
 
     private void quit() {
         this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
+    }
+
+    private void setUsername() {
+        String userName = JOptionPane.showInputDialog(null, "Enter username: ", "Enter Username", 1);
+        
+        if(userName == null || userName.trim().isEmpty())
+        {
+            setUsername();
+        }
+        
+        os.setPlayerName(userName);        
+    }
+
+    private void loadGame() {
+        int retval = fc.showOpenDialog(this);
+        if(retval == JFileChooser.APPROVE_OPTION)
+        {
+            File file = fc.getSelectedFile();
+            if(!os.loadFromFile(file.getAbsolutePath()))
+            {
+                JOptionPane.showMessageDialog(null,"Unable to load this file");
+                System.err.println("Error Loading File");
+            }
+        }
+    }
+
+    private void startNewGame() {
+        os.resetPlant();
+        setUsername();
+        showIntroTextDialog();
+    }
+
+    private void showIntroTextDialog() {
+        IntroDialog introDialog = new IntroDialog(this,true);
+        introDialog.pack();
+        introDialog.setVisible(true);        
+    }
+
+    private void showAboutDialog() {
+        AboutDialog aboutDialog = new AboutDialog(this,true);
+        aboutDialog.pack();
+        aboutDialog.setVisible(true);
     }
 }

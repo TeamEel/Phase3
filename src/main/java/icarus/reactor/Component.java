@@ -97,13 +97,10 @@ public abstract class Component implements Serializable {
      *
      * @throws NoFixNeededException
      */
-    public boolean beginFix() throws NoFixNeededException {
+    public void beginFix() throws NoFixNeededException {
         if (!functional) {
             if (!repairing) {
                 repairing = true;
-                return true;
-            } else {
-                return false;
             }
         } else {
             throw new NoFixNeededException();

@@ -19,8 +19,7 @@ public class PowerPlant implements Plant {
     Turbine turbine;
     Generator generator;
     SteamValve steamValve;
-    WaterPump[] waterPump;
-    CondenserPump condenserPump;
+    Pump[] waterPump;
     Components currentFix;
     Player player;
 
@@ -28,19 +27,21 @@ public class PowerPlant implements Plant {
      * Default constructor for PowerPlant, typically used upon starting a new game.
      */
     public PowerPlant() {
-        condenserPump = new CondenserPump();
+        waterPump = new Pump[3];
+        waterPump[2] = new CondenserPump();
 
         reactor = new Reactor();
-        condenser = new Condenser(condenserPump);
+        condenser = new Condenser((CondenserPump)waterPump[2]);
 
         turbine = new Turbine();
         generator = new Generator(turbine);
 
         steamValve = new SteamValve(reactor, turbine, condenser);
 
-        waterPump = new WaterPump[2];
+        
         waterPump[0] = new WaterPump(condenser, reactor);
         waterPump[1] = new WaterPump(condenser, reactor);
+        
         try {
             waterPump[1].turnOff();
         } catch (AlreadyAtStateException e) {
@@ -63,7 +64,6 @@ public class PowerPlant implements Plant {
         generator = state.generator;
         waterPump = state.waterPumps;
         steamValve = state.steamValve;
-        condenserPump = state.condenserPump;
         player = state.player;
     }
 
@@ -126,8 +126,6 @@ public class PowerPlant implements Plant {
     public void turnOn(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
         if (validPumpNum(pumpNum)) {
             waterPump[pumpNum].turnOn();
-        } else if (pumpNum == 2) {
-            condenserPump.turnOn();
         } else {
             throw new InvalidPumpException(pumpNum);
         }
@@ -146,8 +144,7 @@ public class PowerPlant implements Plant {
     public void turnOff(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
         if (validPumpNum(pumpNum)) {
             waterPump[pumpNum].turnOff();
-        } else if (pumpNum == 2) {
-            condenserPump.turnOff();
+        
         } else {
             throw new InvalidPumpException(pumpNum);
         }
@@ -176,7 +173,7 @@ public class PowerPlant implements Plant {
      */
     @Override
     public boolean isCondenserPumpActive() {
-        return condenserPump.isActive();
+        return waterPump[2].isActive();
     }
 
     /**
@@ -251,7 +248,7 @@ public class PowerPlant implements Plant {
             case REACTOR:
                 return reactor.getFunctional();
             case CONDENSERPUMP:
-                return condenserPump.getFunctional();
+                return waterPump[2].getFunctional();
             case TURBINE:
                 return turbine.getFunctional();
             default:
@@ -348,7 +345,7 @@ public class PowerPlant implements Plant {
                     turbine.beginFix();
                     break;
                 case CONDENSERPUMP:
-                    condenserPump.beginFix();
+                    ((CondenserPump)waterPump[2]).beginFix();
                     break;
                 default:
                     throw new InvalidComponentException(component.toString());
@@ -376,7 +373,7 @@ public class PowerPlant implements Plant {
                 if (validPumpNum(pumpNum)) {
                     waterPump[pumpNum].beginFix();
                 } else {
-                    throw new InvalidPumpException(pumpNum);
+                        throw new InvalidPumpException(pumpNum);
                 }
             } else {
                 throw new InvalidComponentException(component.toString());
@@ -394,8 +391,8 @@ public class PowerPlant implements Plant {
     public void next() {
         reactor.calculateActivity();
 
-        waterPump[0].pumpWater();
-        waterPump[1].pumpWater();
+        ((WaterPump)waterPump[0]).pumpWater();
+        ((WaterPump)waterPump[1]).pumpWater();
 
         reactor.calculateTemperature();
 
@@ -419,9 +416,9 @@ public class PowerPlant implements Plant {
     }
 
     private void doFixes() {
-        waterPump[0].fixCycle();
-        waterPump[1].fixCycle();
-        condenserPump.fixCycle();
+        ((Component)waterPump[0]).fixCycle();
+        ((Component)waterPump[1]).fixCycle();
+        ((Component)waterPump[2]).fixCycle();
         reactor.fixCycle();
         turbine.fixCycle();
         condenser.fixCycle();
@@ -505,7 +502,7 @@ public class PowerPlant implements Plant {
             case TURBINE:
                 return turbine.getRepairing();
             case CONDENSERPUMP:
-                return condenserPump.getRepairing();
+                return waterPump[2].getRepairing();
             default:
                 return false;
         }
@@ -521,11 +518,8 @@ public class PowerPlant implements Plant {
      */
     @Override
     public boolean isRepairing(Components component, int id) {
-        if (component == Components.WATERPUMP && id == 0) {
-            return waterPump[0].getRepairing();
-        }
-        if (component == Components.WATERPUMP && id == 1) {
-            return waterPump[1].getRepairing();
+        if (component == Components.WATERPUMP && id <3) {
+            return waterPump[id].getRepairing();
         }
         return false;
     }
@@ -554,7 +548,6 @@ public class PowerPlant implements Plant {
         s.turbine = turbine;
         s.steamValve = steamValve;
         s.waterPumps = waterPump;
-        s.condenserPump = condenserPump;
         s.player = player;
         return s;
     }
@@ -577,14 +570,14 @@ public class PowerPlant implements Plant {
             reactor,
             condenser,
             turbine,
-            waterPump[0],
-            waterPump[1],
-            condenserPump
+            (WaterPump)waterPump[0],
+            (WaterPump)waterPump[1],
+            (CondenserPump)waterPump[2],
         };
         return result;
     }
 
     private boolean validPumpNum(int pumpNum) {
-        return pumpNum == 0 || pumpNum == 1;
+        return pumpNum >= 0 || pumpNum <= 2;
     }
 }

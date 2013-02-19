@@ -10,12 +10,12 @@ import java.awt.event.WindowEvent;
  *
  * @author James
  */
-public class AboutDialog extends javax.swing.JDialog {
+public class IntroDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form AboutDialog
      */
-    public AboutDialog(java.awt.Frame parent, boolean modal) {
+    public IntroDialog(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
@@ -35,9 +35,9 @@ public class AboutDialog extends javax.swing.JDialog {
         jTextPane1 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("About");
+        setTitle("Intro");
 
-        jButton1.setText("Close");
+        jButton1.setText("Start Game");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -45,7 +45,8 @@ public class AboutDialog extends javax.swing.JDialog {
         });
 
         jTextPane1.setEditable(false);
-        jTextPane1.setText("Chernobyl Crisis is an EXCITING simulation game which lets you take control of a nuclear reactor!\nWritten in Java, it was created by Team EEL for their second year Computer Science software project at the University of York.\n\nVersion 0.0.000.0.0.01a");
+        jTextPane1.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
+        jTextPane1.setText(">>>INCOMING MESSAGE>>>\n>>>25th April 1986\n>>>CONFIDENTIAL\n\nWELCOME COMRADE,\n\nCONGRATULATIONS ON YOUR APPOINTMENT AS THE NEW OPERATOR OF THE CHERNOBYL NUCLEAR POWER PLANT. THIS GREAT HONOUR HAS BEEN AWARDED YOU BY THE STATE COUNCIL OF THE USSR IN RECOGNITION OF YOUR ACCOMPLISHMENTS IN THE FIELD OF NUCLEAR PLANT ADMINISTRATION.\nTHIS USER MANUAL WILL AID YOU IN YOUR OPERATION OF THE PLANT, BE SURE TO READ THE WHOLE DOCUMENT TO AVOID CATASTROPHIC MELTDOWN!\nGOOD LUCK COMRADE, CREATE MUCH ENERGY FOR THE GLORY OF MOTHER RUSSIA!\n\nALEXANDER AKIMOV\nPRESIDENT OF THE USSR\n\n>>>END TRANSMISSION>>>");
         jScrollPane2.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -56,7 +57,7 @@ public class AboutDialog extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 321, Short.MAX_VALUE)
+                        .addGap(0, 293, Short.MAX_VALUE)
                         .addComponent(jButton1))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
@@ -95,16 +96,16 @@ public class AboutDialog extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AboutDialog.class.getName())
+            java.util.logging.Logger.getLogger(IntroDialog.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AboutDialog.class.getName())
+            java.util.logging.Logger.getLogger(IntroDialog.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AboutDialog.class.getName())
+            java.util.logging.Logger.getLogger(IntroDialog.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AboutDialog.class.getName())
+            java.util.logging.Logger.getLogger(IntroDialog.class.getName())
                     .log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
@@ -112,7 +113,7 @@ public class AboutDialog extends javax.swing.JDialog {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                AboutDialog dialog = new AboutDialog(new javax.swing.JFrame(), true);
+                IntroDialog dialog = new IntroDialog(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {
