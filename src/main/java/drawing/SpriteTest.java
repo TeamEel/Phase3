@@ -6,6 +6,8 @@ import drawing.builders.BuildAnimation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -33,55 +35,39 @@ public class SpriteTest extends JFrame implements ActionListener, ChangeListener
     private JButton yellowButton;
 
     public SpriteTest() {
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-
-        vbox = Box.createVerticalBox();
-        add(vbox);
-        hbox = Box.createHorizontalBox();
-        vbox.add(hbox);
-
-        advanceButton = addButton("Advance");
-        leftButton = addButton("Left");
-        upButton = addButton("Up");
-        downButton = addButton("Down");
-        rightButton = addButton("Right");
-        blackButton = addButton("Black");
-        yellowButton = addButton("Yellow");
-
         try {
-//            canvas = new SpriteCanvas(ImageIO.read(getClass().getResource("/test_background.png")));
-            canvas = new SpriteCanvas(ImageLoader.imageResource("/test_background.png"));
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+
+            vbox = Box.createVerticalBox();
+            add(vbox);
+            hbox = Box.createHorizontalBox();
+            vbox.add(hbox);
+
+            advanceButton = addButton("Advance");
+            leftButton = addButton("Left");
+            upButton = addButton("Up");
+            downButton = addButton("Down");
+            rightButton = addButton("Right");
+            blackButton = addButton("Black");
+            yellowButton = addButton("Yellow");
+
+    //            canvas = new SpriteCanvas(ImageIO.read(getClass().getResource("/test_background.png")));
+            canvas = new SpriteCanvas(ImageLoader.imageResource("/scaled/plant.png"));
             vbox.add(canvas);
             Animation[] animations = {
                 BuildAnimation.range()
-                .format("/test_valvebody_%d.png")
-                .from(1)
-                .to(6)
-                .loop(),
-                //                .frame("/test_valvebody_1.png")
-                BuildAnimation.frames()
-                .frame("/test_valvebody_yellow_1.png")
-                .frame("/test_valvebody_yellow_2.png")
-                .frame("/test_valvebody_yellow_3.png")
-                .frame("/test_valvebody_yellow_4.png")
-                .frame("/test_valvebody_yellow_5.png")
-                .frame("/test_valvebody_yellow_6.png")
-                .frame("/test_valvebody_yellow_1.png")
-                .frame("/test_valvebody_yellow_2.png")
-                .frame("/test_valvebody_yellow_3.png")
-                .frame("/test_valvebody_yellow_4.png")
-                .frame("/test_valvebody_yellow_5.png")
-                .frame("/test_valvebody_yellow_6.png")
-                .frame("/test_valvebody_yellow_1.png")
-                .end()
+                .format("/scaled/pump_%03d.png")
+                .from(0)
+                .to(121)
+                .loop()
             };
             valve = new Sprite(new AnimationSet(animations));
             canvas.add(valve, 0);
-            canvas.setFrameInterval(100);
+            canvas.setFrameInterval(30);
             canvas.start();
             pack();
         } catch (IOException ex) {
-            System.err.println("Unable to load background image!");
+            ex.printStackTrace();
         }
     }
 
@@ -125,9 +111,9 @@ public class SpriteTest extends JFrame implements ActionListener, ChangeListener
         } else if (source == downButton) {
             valve.moveBy(new Coordinate(0, 10));
         } else if (source == blackButton) {
-            valve.select(0);
+            valve.selectAnimation(0);
         } else if (source == yellowButton) {
-            valve.select(1);
+            valve.selectAnimation(1);
         }
 
         repaint();

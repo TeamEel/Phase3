@@ -1,12 +1,17 @@
 package gui;
 
+import drawing.ImageLoader;
+import drawing.SpriteCanvas;
 import icarus.operatingsoftware.FailableOperatingSoftware;
 import icarus.operatingsoftware.OperatingSoftware;
 import icarus.operatingsoftware.PowerPlant;
 import icarus.util.GameFileFilter;
 import java.awt.event.*;
 import java.io.File;
+import java.io.IOException;
 import java.net.URI;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.event.*;
 import javax.swing.filechooser.FileFilter;
@@ -24,57 +29,51 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
     private JPanel viewPanel;
     private JSlider rodSlider;
     private OperatingSoftware os;
-
+    private PlantDisplay plantDisplay;
+    
     /**
      * Creates new form MainWindow
      */
     public MainWindow() {
-        os = new FailableOperatingSoftware(new PowerPlant());
-        viewPanel = new JPanel();
-        controlPanel = new ControlPanel(os);
-        menuBar = new JMenuBar();
-        fileMenu = new JMenu();
-        helpMenu = new JMenu();
-        fc = new JFileChooser();
-        GameFileFilter ff = new GameFileFilter();
-        fc.addChoosableFileFilter(ff);
-        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        try {
+            os = new FailableOperatingSoftware(new PowerPlant());
+            viewPanel = new PlantDisplay(os);
+            controlPanel = new ControlPanel(os);
+            menuBar = new JMenuBar();
+            fileMenu = new JMenu();
+            helpMenu = new JMenu();
+            fc = new JFileChooser();
+            GameFileFilter ff = new GameFileFilter();
+            fc.addChoosableFileFilter(ff);
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);            
 
-        GroupLayout viewPanelLayout = new GroupLayout(viewPanel);
-        viewPanel.setLayout(viewPanelLayout);
-        viewPanelLayout.setHorizontalGroup(
-                viewPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGap(0, 0, Short.MAX_VALUE));
-        viewPanelLayout.setVerticalGroup(
-                viewPanelLayout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGap(0, 399, Short.MAX_VALUE));
-
-        
-
-        GroupLayout layout = new GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addComponent(viewPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
-                              Short.MAX_VALUE)
-                .addGroup(layout.createSequentialGroup()
-                .addComponent(controlPanel, GroupLayout.PREFERRED_SIZE,
-                              GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)));
-        layout.setVerticalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                .addGroup(layout.createSequentialGroup()
-                .addComponent(viewPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-                              GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
-                                 GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(controlPanel, GroupLayout.PREFERRED_SIZE,
-                              GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
+            GroupLayout layout = new GroupLayout(getContentPane());
+            getContentPane().setLayout(layout);
+            layout.setHorizontalGroup(
+                    layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(viewPanel, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+                                  Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(controlPanel, GroupLayout.PREFERRED_SIZE,
+                                  GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)));
+            layout.setVerticalGroup(
+                    layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                    .addComponent(viewPanel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+                                  GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED,
+                                     GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(controlPanel, GroupLayout.PREFERRED_SIZE,
+                                  GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)));
 
 
-        pack();
-        
-        createMenus();
+            pack();
+            
+            createMenus();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     /**

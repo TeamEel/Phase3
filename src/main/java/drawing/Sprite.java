@@ -20,8 +20,12 @@ public class Sprite {
         this.position = position;
     }
     
-    public void select(int state) {
+    public void selectAnimation(int state) {
         animations.select(state);
+    }
+    
+    public void ensureAnimationSelected(int state) {
+        animations.ensureSelected(state);
     }
 
     public void advance() {
