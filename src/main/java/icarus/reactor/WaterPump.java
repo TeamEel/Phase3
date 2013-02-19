@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @author Team Haddock
  *
  */
-public class WaterPump extends Component implements Serializable {
+public class WaterPump extends Component implements Serializable, Pump {
 
     private MajorComponent mcomp1;
     private MajorComponent mcomp2;
@@ -52,6 +52,7 @@ public class WaterPump extends Component implements Serializable {
      * @throws AlreadyAtStateException  Thrown if pump is already on
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
+    @Override
     public void turnOn() throws AlreadyAtStateException, ComponentFailedException {
         if (functional) {
             if (active) {
@@ -69,6 +70,7 @@ public class WaterPump extends Component implements Serializable {
      * @throws AlreadyAtStateException  Thrown if pump is already off
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
+    @Override
     public void turnOff() throws AlreadyAtStateException, ComponentFailedException {
         if (functional) {
             if (!active) {
@@ -96,7 +98,13 @@ public class WaterPump extends Component implements Serializable {
      *
      * @return Whether the current pump is currently on.
      */
+    @Override
     public boolean isActive() {
         return active;
+    }
+
+    @Override
+    public void beginFix() throws NoFixNeededException {
+        super.beginFix();
     }
 }

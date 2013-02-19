@@ -99,9 +99,9 @@ public class Reactor extends MajorComponent implements Serializable {
     public void calculateTemperature() {
         // stops divide by zero error
         if (waterLevel < 1) {
-            temperature = temperature + ((activity / 1) * 100);
+            temperature = temperature + ((activity / 1) * 60) -20;
         } else {
-            temperature = temperature + ((activity / waterLevel) * 100);
+            temperature = temperature + ((activity / waterLevel) * 60) -20;
         }
         // cools temperature proportional to the water being put in
         temperature += (waterIn * 4);

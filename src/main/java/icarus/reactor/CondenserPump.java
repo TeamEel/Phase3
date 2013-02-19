@@ -2,6 +2,7 @@ package icarus.reactor;
 
 import icarus.exceptions.AlreadyAtStateException;
 import icarus.exceptions.ComponentFailedException;
+import icarus.exceptions.NoFixNeededException;
 import java.io.Serializable;
 
 /**
@@ -10,7 +11,7 @@ import java.io.Serializable;
  * @author Team Haddock
  *
  */
-public class CondenserPump extends Component implements Serializable {
+public class CondenserPump extends Component implements Serializable, Pump {
 
     private boolean active;
     private static final long serialVersionUID = 1;
@@ -50,6 +51,7 @@ public class CondenserPump extends Component implements Serializable {
      * @throws AlreadyAtStateException  Thrown if pump is already on
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
+    @Override
     public void turnOn() throws AlreadyAtStateException, ComponentFailedException {
         if (functional) {
             if (active) {
@@ -67,6 +69,7 @@ public class CondenserPump extends Component implements Serializable {
      * @throws AlreadyAtStateException  Thrown if pump is already off
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
+    @Override
     public void turnOff() throws AlreadyAtStateException, ComponentFailedException {
         if (functional) {
             if (!active) {
@@ -82,7 +85,13 @@ public class CondenserPump extends Component implements Serializable {
      *
      * @return Whether the pump is currently running
      */
+    @Override
     public boolean isActive() {
         return active;
+    }
+    
+    @Override
+    public void beginFix() throws NoFixNeededException {
+        super.beginFix();
     }
 }

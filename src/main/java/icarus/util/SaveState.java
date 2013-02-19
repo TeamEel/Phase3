@@ -18,8 +18,7 @@ public class SaveState implements Serializable {
     public Condenser condenser;
     public Turbine turbine;
     public Generator generator;
-    public WaterPump[] waterPumps;
+    public Pump[] waterPumps;
     public SteamValve steamValve;
-    public CondenserPump condenserPump;
     public Player player;
 }
