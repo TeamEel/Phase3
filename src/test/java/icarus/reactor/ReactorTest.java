@@ -45,6 +45,8 @@ public class ReactorTest {
     public void testMoveRod() throws InvalidRodsException, MinimumRodsException, ComponentFailedException {
         reactor.movecontrolrods(60);
         assertEquals(reactor.getRodHeight(), 60);
+        reactor.movecontrolrods(20);
+        assertEquals(reactor.getRodHeight(), 20);
     }
 
 
