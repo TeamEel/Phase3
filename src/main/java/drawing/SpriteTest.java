@@ -2,7 +2,7 @@ package drawing;
 
 import drawing.animation.Animation;
 import drawing.animation.AnimationSet;
-import static drawing.builders.AnimationBuilder.buildAnimation;
+import drawing.builders.BuildAnimation;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
@@ -53,15 +53,13 @@ public class SpriteTest extends JFrame implements ActionListener, ChangeListener
             canvas = new SpriteCanvas(ImageLoader.imageResource("/test_background.png"));
             vbox.add(canvas);
             Animation[] animations = {
-                buildAnimation()
-                .frame("/test_valvebody_1.png")
-                .frame("/test_valvebody_2.png")
-                .frame("/test_valvebody_3.png")
-                .frame("/test_valvebody_4.png")
-                .frame("/test_valvebody_5.png")
-                .frame("/test_valvebody_6.png")
+                BuildAnimation.range()
+                .format("/test_valvebody_%d.png")
+                .from(1)
+                .to(6)
                 .loop(),
-                buildAnimation()
+                //                .frame("/test_valvebody_1.png")
+                BuildAnimation.frames()
                 .frame("/test_valvebody_yellow_1.png")
                 .frame("/test_valvebody_yellow_2.png")
                 .frame("/test_valvebody_yellow_3.png")
