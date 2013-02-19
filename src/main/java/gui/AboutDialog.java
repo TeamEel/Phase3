@@ -45,7 +45,7 @@ public class AboutDialog extends javax.swing.JDialog {
         });
 
         jTextPane1.setEditable(false);
-        jTextPane1.setText("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris in ipsum nec dui gravida pellentesque vehicula sed lectus. Donec a velit nisi, quis auctor eros. Integer sagittis viverra sapien vitae vestibulum. Vivamus vitae metus ornare sapien feugiat ultricies. Morbi tincidunt, velit at varius posuere, justo turpis ornare lectus, et venenatis massa lectus vel arcu. Sed eu nibh id nisi consequat elementum at ut neque. Quisque bibendum dignissim tincidunt.");
+        jTextPane1.setText("Chernobyl Crisis is an EXCITING simulation game which lets you take control of a nuclear reactor!\nWritten in Java, it was created by Team EEL for their second year Computer Science software project at the University of York.\n\nVersion 0.0.000.0.0.01a");
         jScrollPane2.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
