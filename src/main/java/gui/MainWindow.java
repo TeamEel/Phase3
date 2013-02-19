@@ -1,7 +1,7 @@
 package gui;
 
 import icarus.operatingsoftware.Components;
-import icarus.operatingsoftware.FailableOperatingSoftware;
+import icarus.operatingsoftware.OperatingSoftware;
 import icarus.operatingsoftware.OperatingSoftware;
 import icarus.operatingsoftware.PlantControl;
 import icarus.operatingsoftware.PowerPlant;
@@ -36,7 +36,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
      */
     public MainWindow() {
         try {
-            os = new FailableOperatingSoftware(new PowerPlant());
+            os = new OperatingSoftware(new PowerPlant());
             os.addObserver(this);
             
             

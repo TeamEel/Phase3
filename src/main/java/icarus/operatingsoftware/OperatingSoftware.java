@@ -1,32 +1,212 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package icarus.operatingsoftware;
 
-import icarus.exceptions.*;
+import icarus.exceptions.AlreadyAtStateException;
+import icarus.exceptions.ComponentFailedException;
+import icarus.exceptions.FixAlreadyUnderwayException;
+import icarus.exceptions.InvalidComponentException;
+import icarus.exceptions.InvalidPumpException;
+import icarus.exceptions.InvalidRodsException;
+import icarus.exceptions.InvalidValveException;
+import icarus.exceptions.NoFixNeededException;
 import icarus.util.FileInput;
 import icarus.util.FileOutput;
 import icarus.util.SaveState;
-import java.io.FileNotFoundException;
 import java.util.Observable;
+import java.util.Random;
 
 /**
- * Handles commands specified by the UI, including calls to operatorSoftware, saving and loading and calculating
- * player's score
  *
- * @author Team Haddock
- *
+ * @author James
  */
 public class OperatingSoftware extends Observable implements PlantControl {
 
+    private final int pumpCount = 2;
+    private final int valveCount = 2;
+    private final int maxControlRodPosition = 100;
+    private Random randomGenerator = new Random();
     private Plant plant;
-    private int score; // stores the score of the player
-
-    /**
-     * Default constructor for OperatingSoftware
-     */
+    private int score;
     public OperatingSoftware(Plant plant) {
         this.plant = plant;
-        // commands = new CommandWords();
     }
 
+    /**
+     * Turn off a Pump in the system
+     *
+     * @param pumpNum The id of the pump to turn off
+     *
+     * @throws InvalidPumpException Thrown when a bad pump ID is specified
+     * @throws AlreadyAtStateException Thrown if the specified pump is already on
+     * @throws ComponentFailedException Thrown if method is called when component is failed.
+     */
+    @Override
+    public void turnOff(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
+        if (!softwareFailure()) {
+            plant.turnOff(pumpNum);
+        }
+    }
+
+    /**
+     * Turn on a Pump in the system
+     *
+     * @param pumpNum The id of the pump to turn on
+     *
+     * @throws InvalidPumpException Thrown when a bad pump ID is specified
+     * @throws AlreadyAtStateException Thrown if the specified pump is already on
+     * @throws ComponentFailedException Thrown if method is called when component is failed.
+     */
+    @Override
+    public void turnOn(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
+        if (!softwareFailure()) {
+            plant.turnOn(pumpNum);
+        }
+    }
+
+    /**
+     * Move the control rods in the reactor to the amount specified
+     * 
+     * @param amount
+     *            The amount to lower the control rods by
+     * @return The new height of the control rods
+     * @throws InvalidRodsException
+     *             Thrown when amount specified is negative
+     * @throws ComponentFailedException
+     *             Thrown if method is called when component is failed.
+     */
+    @Override
+    public void movecontrolrods(int amount) throws InvalidRodsException, ComponentFailedException {
+        if (!softwareFailure()) {
+            plant.movecontrolrods(amount);
+        }
+    }
+    
+    /**
+     * Open a SteamValve in the system
+     *
+     * @param valveNum The id of the valve to close
+     *
+     * @throws InvalidValveException Thrown when a bad valve ID is specified
+     * @throws AlreadyAtStateException Thrown if the specified valve is already closed
+     */
+    @Override
+    public void open(int amount) throws InvalidValveException, AlreadyAtStateException {
+        if (!softwareFailure()) {
+            plant.open(amount);
+        }
+    }
+
+    /**
+     * Close a SteamValve in the system
+     *
+     * @param valveNum The id of the valve to close
+     *
+     * @throws InvalidValveException Thrown when a bad valve ID is specified
+     * @throws AlreadyAtStateException Thrown if the specified valve is already closed
+     */
+    @Override
+    public void close(int valveNum) throws InvalidValveException, AlreadyAtStateException {
+        if (!softwareFailure()) {
+            plant.close(valveNum);
+        }
+    }
+
+    /**
+     * Begins a fix on any non-pump fixable component
+     *
+     * @param component The component to begin the fix upon
+     *
+     * @throws InvalidComponentException Thrown when a bad component is specified
+     * @throws FixAlreadyUnderwayException Thrown when a fix is already occurring in the system
+     * @throws NoFixNeededException
+     */
+    @Override
+    public void fix(Components component) throws InvalidComponentException, FixAlreadyUnderwayException,
+                                                 NoFixNeededException {
+        if (!softwareFailure()) {
+            plant.fix(component);
+        }
+    }
+
+    /**
+     * Begins fixes for pumps
+     *
+     * @param component Must be set to WaterPump, used as a check to ensure desired functionality
+     * @param pumpNum The id of the pump to be fixed
+     *
+     * @throws InvalidComponentException Thrown when a non-pump component is specified
+     * @throws FixAlreadyUnderwayException Thrown when a fix is already occurring in the system
+     * @throws NoFixNeededException
+     */
+    @Override
+    public void fix(Components component, int pumpNum) throws InvalidPumpException, InvalidComponentException,
+                                                              FixAlreadyUnderwayException, NoFixNeededException {
+        if (!softwareFailure()) {
+            plant.fix(component, pumpNum);
+        }
+    }
+
+    private boolean softwareFailure() {
+        /*
+         * A 1 in 8 chance of a software failure occuring
+         */
+        if (randomGenerator.nextInt(8) == 0) {
+            /*
+             * Do nothing or invoke a random command
+             */
+            if (randomGenerator.nextBoolean()) {
+                randomCommand();
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private void randomCommand() {
+        /*
+         * Pick a random command and execute it.
+         */
+        try {
+            switch (randomGenerator.nextInt(5)) {
+                case 0:
+
+                    plant.turnOn(randomGenerator.nextInt(pumpCount));
+
+
+                    break;
+                case 1:
+
+                    plant.turnOff(randomGenerator.nextInt(pumpCount));
+
+
+                    break;
+                case 2:
+
+                    plant.open(randomGenerator.nextInt(valveCount));
+
+                    break;
+                case 3:
+
+                    plant.close(randomGenerator.nextInt(valveCount));
+
+
+                    break;
+                case 4:
+
+                    plant.movecontrolrods(randomGenerator.nextInt(maxControlRodPosition + 1));
+                    break;
+            }
+        } catch (Exception e) {/*Do nothing*/
+
+        }
+  
+    }
+    
+    
+    
     /**
      * sets the name of the player
      *
@@ -307,107 +487,18 @@ public class OperatingSoftware extends Observable implements PlantControl {
         return plant.doFix();
     }
 
-    /**
-     * Turn off a Pump in the system
-     *
-     * @param pumpNum The id of the pump to turn off
-     *
-     * @throws InvalidPumpException Thrown when a bad pump ID is specified
-     * @throws AlreadyAtStateException Thrown if the specified pump is already on
-     * @throws ComponentFailedException Thrown if method is called when component is failed.
-     */
-    @Override
-    public void turnOff(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
-        plant.turnOff(pumpNum);
-    }
-
-    /**
-     * Turn on a Pump in the system
-     *
-     * @param pumpNum The id of the pump to turn on
-     *
-     * @throws InvalidPumpException Thrown when a bad pump ID is specified
-     * @throws AlreadyAtStateException Thrown if the specified pump is already on
-     * @throws ComponentFailedException Thrown if method is called when component is failed.
-     */
-    @Override
-    public void turnOn(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
-        plant.turnOn(pumpNum);
-    }
+    
 
 
-    /**
-     * Move the control rods in the reactor to the amount specified
-     * 
-     * @param amount
-     *            The amount to lower the control rods by
-     * @return The new height of the control rods
-     * @throws InvalidRodsException
-     *             Thrown when amount specified is negative
-     * @throws ComponentFailedException
-     *             Thrown if method is called when component is failed.
-     */
-    @Override
-    public void movecontrolrods(int amount) throws InvalidRodsException, ComponentFailedException {
-        plant.movecontrolrods(amount);
-    }
 
-    /**
-     * Opens a SteamValve in the system
-     *
-     * @param valveNum The id of the valve to open
-     *
-     * @throws InvalidValveException Thrown when a bad valve ID is specified
-     * @throws AlreadyAtStateException Thrown if the specified valve is already open
-     */
-    @Override
-    public void open(int amount) throws InvalidValveException, AlreadyAtStateException {
-        plant.open(amount);
-    }
+    
+   
 
-    /**
-     * Close a SteamValve in the system
-     *
-     * @param valveNum The id of the valve to close
-     *
-     * @throws InvalidValveException Thrown when a bad valve ID is specified
-     * @throws AlreadyAtStateException Thrown if the specified valve is already closed
-     */
-    @Override
-    public void close(int valveNum) throws InvalidValveException, AlreadyAtStateException {
-        plant.close(valveNum);
-    }
+    
 
-    /**
-     * Begins a fix on any non-pump fixable component
-     *
-     * @param component The component to begin the fix upon
-     *
-     * @throws InvalidComponentException Thrown when a bad component is specified
-     * @throws FixAlreadyUnderwayException Thrown when a fix is already occurring in the system
-     * @throws NoFixNeededException
-     */
-    @Override
-    public void fix(Components component) throws InvalidComponentException, FixAlreadyUnderwayException,
-                                                 NoFixNeededException {
-        plant.fix(component);
-    }
 
-    /**
-     * Begins fixes for pumps
-     *
-     * @param component Must be set to WaterPump, used as a check to ensure desired functionality
-     * @param pumpNum The id of the pump to be fixed
-     *
-     * @throws InvalidComponentException Thrown when a non-pump component is specified
-     * @throws FixAlreadyUnderwayException Thrown when a fix is already occurring in the system
-     * @throws NoFixNeededException
-     */
-    @Override
-    public void fix(Components component, int pumpNum) throws InvalidPumpException, InvalidComponentException,
-                                                              FixAlreadyUnderwayException, NoFixNeededException {
-        plant.fix(component, pumpNum);
-    }
+    
+   
 
     /**
      * Save the reactor objects to a file
