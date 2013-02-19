@@ -27,11 +27,10 @@ public class PumpControl extends ControlWidget implements ActionListener {
     int pumpNumber;
     JToggleButton onButton;
     JToggleButton repairButton;
-    PlantControl plant;
+
     public PumpControl (PlantControl plant, int pumpNumber) {
         super(plant);
-        this.plant = plant;
-        
+       
         
         this.pumpNumber = pumpNumber;
         
