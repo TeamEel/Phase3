@@ -40,7 +40,12 @@ public class ReactorTest {
     public void testLowerExcessive() throws InvalidRodsException, MinimumRodsException, ComponentFailedException {
         reactor.movecontrolrods(-1);
     }
-
+    
+    @Test
+    public void testMoveRod() throws InvalidRodsException, MinimumRodsException, ComponentFailedException {
+        reactor.movecontrolrods(60);
+        assertEquals(reactor.getRodHeight(), 60);
+    }
 
 
     @Test
@@ -66,9 +71,8 @@ public class ReactorTest {
     @Test
     public void testCalculateTemperature() {
         //temp = 1000, activity = 200, water = 200, waterIn = 0
-        //temp = 1000 + 200/200*100 = 1100
         reactor2.calculateTemperature();
-        assertEquals(reactor2.getTemperature(), 1100, 0.001);
+        assertEquals(reactor2.getTemperature(), 1040, 0.001);
     }
 
     public void testCalculatePressure() {
