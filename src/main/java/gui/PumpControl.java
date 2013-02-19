@@ -26,20 +26,25 @@ import javax.swing.JToggleButton;
 public class PumpControl extends ControlWidget implements ActionListener {
     int pumpNumber;
     JToggleButton onButton;
-    JToggleButton offButton;
     JToggleButton repairButton;
+    PlantControl plant;
     public PumpControl (PlantControl plant, int pumpNumber) {
         super(plant);
+        this.plant = plant;
+        
+        
         this.pumpNumber = pumpNumber;
+        
+        
         Box box = Box.createVerticalBox();
         JLabel title = new JLabel("Pump " + pumpNumber);
+        
         onButton = new JToggleButton("On");
-        offButton = new JToggleButton("Off" + " "); //Java sucks
         repairButton = new JToggleButton("Repair");
+        
         add(box);
         box.add(Align.left(title));
         box.add(Align.centerVertical(onButton));
-        box.add(Align.centerVertical(offButton));
         box.add(Box.createVerticalGlue());
         box.add(Align.centerVertical(repairButton));
         
@@ -50,7 +55,6 @@ public class PumpControl extends ControlWidget implements ActionListener {
     private void addActionListeners()
     {
         onButton.addActionListener(this);
-        offButton.addActionListener(this);
         repairButton.addActionListener(this);
     }
     
@@ -63,11 +67,14 @@ public class PumpControl extends ControlWidget implements ActionListener {
         {
             if(source==onButton)
             {
-                plant.turnOn(pumpNumber);
-            }
-            else if(source==offButton)
-            {
-                plant.turnOff(pumpNumber);
+                if(!plant.isWaterPumpActive(pumpNumber))
+                {
+                    plant.turnOn(pumpNumber);
+                }
+                else
+                {
+                    plant.turnOff(pumpNumber);
+                }
             }
             else if(source==repairButton)
             {
@@ -86,14 +93,11 @@ public class PumpControl extends ControlWidget implements ActionListener {
     public void update(Observable o, Object o1) {
         if (o instanceof PlantControl) {
             PlantControl plantControl = (PlantControl)o;
+            
             onButton.setSelected(plantControl.isWaterPumpActive(pumpNumber));
-            offButton.setSelected(!plantControl.isWaterPumpActive(pumpNumber) &&
-                                  plantControl.functional(Components.WATERPUMP, pumpNumber));
-            
-            onButton.setEnabled(!plantControl.isWaterPumpActive(pumpNumber));
-            offButton.setEnabled(plantControl.isWaterPumpActive(pumpNumber) && 
-                                 plantControl.functional(Components.WATERPUMP, pumpNumber));
-            
+            onButton.setEnabled(plantControl.functional(Components.WATERPUMP, pumpNumber));
+             
+   
             repairButton.setEnabled(!plantControl.functional(Components.WATERPUMP, pumpNumber) &&
                                     !plantControl.fixUnderway());
             repairButton.setSelected(plantControl.isRepairing(Components.WATERPUMP, pumpNumber));

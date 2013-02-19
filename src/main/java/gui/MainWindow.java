@@ -37,6 +37,9 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
     public MainWindow() {
         try {
             os = new FailableOperatingSoftware(new PowerPlant());
+            os.addObserver(this);
+            
+            
             viewPanel = new PlantDisplay(os);
             controlPanel = new ControlPanel(os);
             menuBar = new JMenuBar();

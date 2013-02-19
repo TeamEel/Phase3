@@ -21,7 +21,6 @@ import javax.swing.JToggleButton;
 public class ValveControl extends ControlWidget implements ActionListener {
     int valveNumber;
     JToggleButton openButton;
-    JToggleButton closeButton;
     
     public ValveControl(PlantControl plant, int valveNumber) {
         super(plant);
@@ -29,13 +28,10 @@ public class ValveControl extends ControlWidget implements ActionListener {
         Box box = Box.createVerticalBox();
         JLabel title = new JLabel("Valve " + valveNumber);
         openButton = new JToggleButton("Open");
-        closeButton = new JToggleButton("Close");
         add(box);
         box.add(Align.left(title));
         box.add(Align.centerVertical(openButton));
-        box.add(Align.centerVertical(closeButton));
-        
-        
+
         addActionListeners();
     }
 
@@ -43,7 +39,6 @@ public class ValveControl extends ControlWidget implements ActionListener {
     private void addActionListeners()
     {
         openButton.addActionListener(this);
-        closeButton.addActionListener(this);
         
     }
     
@@ -56,12 +51,16 @@ public class ValveControl extends ControlWidget implements ActionListener {
         {
             if(source==openButton)
             {
-                plant.open(valveNumber);
+                if(!plant.isValveOpened(valveNumber))
+                {
+                    plant.open(valveNumber);
+                }
+                else
+                {
+                    plant.close(valveNumber);
+                }
             }
-            else if(source==closeButton)
-            {
-                plant.close(valveNumber);
-            }
+            
             plant.next();
             
         }
@@ -77,10 +76,8 @@ public class ValveControl extends ControlWidget implements ActionListener {
         if (o instanceof PlantControl) {
             PlantControl plantControl = (PlantControl)o;
             openButton.setSelected(plantControl.isValveOpened(valveNumber));
-            closeButton.setSelected(!plantControl.isValveOpened(valveNumber));
             
-            openButton.setEnabled(!plantControl.isValveOpened(valveNumber));
-            closeButton.setEnabled(plantControl.isValveOpened(valveNumber));
+         
         }
     }
 }
