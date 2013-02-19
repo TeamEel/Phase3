@@ -146,7 +146,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
             }
             else if(e.getActionCommand().equals("Online Help"))
             {
-                java.awt.Desktop.getDesktop().browse( new URI("http://www.teameel.com/help"));
+                java.awt.Desktop.getDesktop().browse( new URI("http://www.teameel.com/user-manual"));
             }
             else if(e.getActionCommand().equals("About"))
             {
