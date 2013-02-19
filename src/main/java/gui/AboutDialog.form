@@ -67,7 +67,7 @@
         <Component class="javax.swing.JTextPane" name="jTextPane1">
           <Properties>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="text" type="java.lang.String" value="Chernobyl Crisis is an EXCITING simulation game which lets you take control of a nuclear reactor!&#xa;Written in Java, it was created by Team EEL for their second year Computer Science software project at the University of York.&#xa;&#xa;Version 0.0.000.0.0.01a"/>
+            <Property name="text" type="java.lang.String" value="Chernobyl Crisis is an EXCITING simulation game which lets you take control of a nuclear reactor!&#xa;Written in Java, it was created by Team EEL for their second year Computer Science software project at the University of York.&#xa;&#xa;Version 2.0&#xa;&#xa9;Team Eel 2013 / University of York&#xa;www.teameel.com"/>
           </Properties>
         </Component>
       </SubComponents>
