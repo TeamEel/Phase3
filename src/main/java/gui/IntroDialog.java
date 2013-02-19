@@ -45,7 +45,8 @@ public class IntroDialog extends javax.swing.JDialog {
         });
 
         jTextPane1.setEditable(false);
-        jTextPane1.setText("Welcome Comrade\n\nYou are in charge of a nuclear thing");
+        jTextPane1.setFont(new java.awt.Font("Consolas", 0, 11)); // NOI18N
+        jTextPane1.setText(">>>INCOMING MESSAGE>>>\n>>>25th April 1986\n>>>CONFIDENTIAL\n\nWELCOME COMRADE ,\n\nCONGRATULATIONS ON YOUR APPOINTMENT AS THE NEW OPERATOR OF THE CHERNOBYL NUCLEAR POWER PLANT. THIS GREAT HONOUR HAS BEEN AWARDED YOU BY THE STATE COUNCIL OF THE USSR IN RECOGNITION OF YOUR ACCOMPLISHMENTS IN THE FIELD OF NUCLEAR PLANT ADMINISTRATION.\nTHIS USER MANUAL WILL AID YOU IN YOUR OPERATION OF THE PLANT, BE SURE TO READ THE WHOLE DOCUMENT TO AVOID CATASTROPHIC MELTDOWN!\nGOOD LUCK COMRADE, CREATE MUCH ENERGY FOR THE GLORY OF MOTHER RUSSIA!\n\nALEXANDER AKIMOV\n\n>>>END TRANSMISSION>>>");
         jScrollPane2.setViewportView(jTextPane1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
