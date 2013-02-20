@@ -575,6 +575,6 @@ public class PowerPlant implements Plant {
     }
 
     private boolean validPumpNum(int pumpNum) {
-        return pumpNum >= 0 || pumpNum <= 2;
+        return pumpNum >= 0 && pumpNum <= 2;
     }
 }

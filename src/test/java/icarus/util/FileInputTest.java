@@ -2,6 +2,7 @@ package icarus.util;
 
 import icarus.operatingsoftware.OperatingSoftware;
 import icarus.operatingsoftware.PowerPlant;
+import icarus.operatingsoftware.RandomProbabilitySource;
 import icarus.util.FileInput;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,7 +14,7 @@ public class FileInputTest {
 
     @Test
     public void testLoadObjectFromFilePos() throws FileNotFoundException, IOException, ClassNotFoundException {
-        OperatingSoftware cf = new OperatingSoftware(new PowerPlant());
+        OperatingSoftware cf = new OperatingSoftware(new PowerPlant(), new RandomProbabilitySource());
         cf.saveToFile("test123");
         assertNotNull(FileInput.loadObjectFromFile("test123.ser"));
     }

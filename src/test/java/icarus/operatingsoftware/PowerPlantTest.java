@@ -145,7 +145,7 @@ public class PowerPlantTest {
     @Test(expected = InvalidPumpException.class)
     public void testFixInvalidWaterPump() throws NumberFormatException, InvalidComponentException,
                                                  FixAlreadyUnderwayException, NoFixNeededException, InvalidPumpException {
-        op.fix(Components.WATERPUMP, 2);
+        op.fix(Components.WATERPUMP, 3);
     }
 
     @Test

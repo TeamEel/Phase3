@@ -27,12 +27,13 @@ public class OperatingSoftware extends Observable implements PlantControl {
     private final int pumpCount = 2;
     private final int valveCount = 2;
     private final int maxControlRodPosition = 100;
-    private Random randomGenerator = new Random();
+    private ProbabilitySource probability;
     private Plant plant;
     private int score;
 
-    public OperatingSoftware(Plant plant) {
+    public OperatingSoftware(Plant plant, ProbabilitySource probability) {
         this.plant = plant;
+        this.probability = probability;
     }
 
     /**
@@ -160,11 +161,11 @@ public class OperatingSoftware extends Observable implements PlantControl {
         /*
          * A 1 in 8 chance of a software failure occuring
          */
-        if (randomGenerator.nextInt(8) == 0) {
+        if (probability.trueOnceIn(8)) {
             /*
              * Do nothing or invoke a random command
              */
-            if (randomGenerator.nextBoolean()) {
+            if (probability.trueOnceIn(2)) {
                 randomCommand();
             }
             return true;
@@ -177,21 +178,21 @@ public class OperatingSoftware extends Observable implements PlantControl {
          * Pick a random command and execute it.
          */
         try {
-            switch (randomGenerator.nextInt(5)) {
+            switch (probability.choiceFromZeroTo(5)) {
                 case 0:
-                    plant.turnOn(randomGenerator.nextInt(pumpCount));
+                    plant.turnOn(probability.choiceFromZeroTo(pumpCount));
                     break;
                 case 1:
-                    plant.turnOff(randomGenerator.nextInt(pumpCount));
+                    plant.turnOff(probability.choiceFromZeroTo(pumpCount));
                     break;
                 case 2:
-                    plant.open(randomGenerator.nextInt(valveCount));
+                    plant.open(probability.choiceFromZeroTo(valveCount));
                     break;
                 case 3:
-                    plant.close(randomGenerator.nextInt(valveCount));
+                    plant.close(probability.choiceFromZeroTo(valveCount));
                     break;
                 case 4:
-                    plant.movecontrolrods(randomGenerator.nextInt(maxControlRodPosition + 1));
+                    plant.movecontrolrods(probability.choiceFromZeroTo(maxControlRodPosition + 1));
                     break;
             }
         } catch (Exception e) {/*Do nothing*/

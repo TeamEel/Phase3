@@ -12,6 +12,7 @@ import icarus.exceptions.*;
 import icarus.operatingsoftware.Components;
 import icarus.operatingsoftware.OperatingSoftware;
 import icarus.operatingsoftware.PowerPlant;
+import icarus.operatingsoftware.RandomProbabilitySource;
 import java.text.DecimalFormat;
 import java.util.Scanner;
 
@@ -28,7 +29,7 @@ public class CommandParser {
     public CommandParser() {
         reader = new Scanner(System.in);
         commands = new CommandWords();
-        cf = new OperatingSoftware(new PowerPlant());
+        cf = new OperatingSoftware(new PowerPlant(), new RandomProbabilitySource());
     }
 
     /**
@@ -39,7 +40,7 @@ public class CommandParser {
     public CommandParser(Scanner reader) {
         this.reader = reader;
         commands = new CommandWords();
-        cf = new OperatingSoftware(new PowerPlant());
+        cf = new OperatingSoftware(new PowerPlant(), new RandomProbabilitySource());
     }
 
     /**
@@ -219,7 +220,7 @@ public class CommandParser {
                             userResponse = reader.nextLine();
                         }
                         if (userResponse.equals("y")) {
-                            cf = new OperatingSoftware(new PowerPlant());
+                            cf = new OperatingSoftware(new PowerPlant(), new RandomProbabilitySource());
                             finished = false;
                             userResponse = "";
                             updateDisplay();

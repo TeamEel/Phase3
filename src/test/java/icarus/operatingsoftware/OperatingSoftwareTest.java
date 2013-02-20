@@ -15,6 +15,7 @@ import org.jmock.Expectations;
 import org.jmock.auto.Mock;
 import org.jmock.integration.junit4.JUnitRuleMockery;
 import static org.junit.Assert.*;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -24,121 +25,218 @@ public class OperatingSoftwareTest {
     public final JUnitRuleMockery context = new JUnitRuleMockery();
     @Mock
     Observer observer;
-    OperatingSoftware cf = new OperatingSoftware(new PowerPlant());
+    @Mock
+    ProbabilitySource probability;
+    OperatingSoftware os;
+
+    @Before
+    public void setup() {
+        os = new OperatingSoftware(new PowerPlant(), probability);
+    }
 
     // OperatingSoftwareTest class which tests the methods in the actual
     // OperatingSoftware class (whether they work, given a valid and invalid
     // parameters)
     @Test
     public void testSetPlayerName() {
-        cf.setPlayerName("player1");
-        assertEquals("player1", cf.getPlayerName());
+        os.setPlayerName("player1");
+        assertEquals("player1", os.getPlayerName());
     }
 
     @Test
     public void testGetPlayerName() {
-        cf.setPlayerName("player1");
-        assertEquals("player1", cf.getPlayerName());
+        os.setPlayerName("player1");
+        assertEquals("player1", os.getPlayerName());
     }
 
     @Test
     public void testCheckIfGameOver() {
-        assertFalse(cf.checkIfGameOver());
+        assertFalse(os.checkIfGameOver());
     }
 
     @Test(expected = InvalidPumpException.class)
     public void testTurnoffInvalidInput() throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
-        cf.turnOff(-4);
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.turnOff(-4);
     }
 
     @Test
     public void testTurnoffValidInput() throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
-        cf.turnOff(2);
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.turnOff(2);
     }
 
     @Test(expected = InvalidPumpException.class)
     public void testTurnonInvalidInput() throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
-        cf.turnOn(-4);
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.turnOn(-4);
     }
 
     @Test(expected = AlreadyAtStateException.class)
     public void testTurnonValidInput() throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
-        cf.turnOn(2);
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.turnOn(2);
     }
 
     @Test(expected = InvalidRodsException.class)
     public void testRaiseInvalidInput() throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
-        cf.movecontrolrods(-43);
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.movecontrolrods(-43);
     }
 
     @Test(expected = InvalidRodsException.class)
     public void testRaiseInvalidInput2() throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
-        cf.movecontrolrods(101);
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.movecontrolrods(101);
     }
 
     @Test
     public void testRaiseValidInput() throws InvalidRodsException, MaximumRodsException, ComponentFailedException {
-        cf.movecontrolrods(20);
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.movecontrolrods(20);
     }
 
     @Test(expected = InvalidValveException.class)
     public void testOpenInvalid() throws InvalidValveException, AlreadyAtStateException {
-        cf.open(-4);
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.open(-4);
     }
 
     @Test(expected = AlreadyAtStateException.class)
     public void testOpenValid() throws InvalidValveException, AlreadyAtStateException {
-        cf.open(1);
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.open(1);
     }
 
     @Test(expected = InvalidValveException.class)
     public void testCloseInvalid() throws InvalidValveException, AlreadyAtStateException {
-        cf.close(-4);
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.close(-4);
     }
 
     @Test
     public void testCloseValid() throws InvalidValveException, AlreadyAtStateException {
-        cf.close(1);
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.close(1);
     }
 
     @Test(expected = NoFixNeededException.class)
     public void testFixWithoutWaterPump() throws InvalidComponentException, FixAlreadyUnderwayException,
                                                  NoFixNeededException, NoFixNeededException {
-        cf.fix(Components.CONDENSER);
-        cf.fix(Components.CONDENSERPUMP);
-        cf.fix(Components.REACTOR);
-        cf.fix(Components.TURBINE);
-        cf.fix(Components.WATERPUMP);
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.fix(Components.CONDENSER);
+        os.fix(Components.CONDENSERPUMP);
+        os.fix(Components.REACTOR);
+        os.fix(Components.TURBINE);
+        os.fix(Components.WATERPUMP);
     }
 
     @Test(expected = NoFixNeededException.class)
     public void testFixWaterPump() throws NumberFormatException, InvalidComponentException, FixAlreadyUnderwayException,
                                           NoFixNeededException, InvalidPumpException {
-        cf.fix(Components.WATERPUMP, 1);
-        cf.fix(Components.WATERPUMP, 3);
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.fix(Components.WATERPUMP, 1);
+        os.fix(Components.WATERPUMP, 3);
     }
 
     @Test
     public void testSaveToFile() {
-        cf.saveToFile("test");
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.saveToFile("test");
         File file = new File("test.ser");
         assertTrue(file.exists());
     }
 
     @Test
     public void testLoadFromFile() {
-        cf.saveToFile("test");
-        assertTrue(cf.loadFromFile("test.ser"));
+        context.checking(new Expectations() {
+            {
+                allowing(probability).trueOnceIn(8);
+                will(returnValue(false));
+            }
+        });
+        os.saveToFile("test");
+        assertTrue(os.loadFromFile("test.ser"));
     }
 
     @Test
-    public void shouldUpdateObservers() {
+    public void shouldUpdateObservers() {        
         context.checking(new Expectations() {
             {
-                oneOf(observer).update(cf, null);
+                oneOf(observer).update(os, null);
             }
         });
-        cf.addObserver(observer);
-        cf.next();
+        os.addObserver(observer);
+        os.next();
     }
 }

@@ -5,6 +5,7 @@ import icarus.operatingsoftware.OperatingSoftware;
 import icarus.operatingsoftware.OperatingSoftware;
 import icarus.operatingsoftware.PlantControl;
 import icarus.operatingsoftware.PowerPlant;
+import icarus.operatingsoftware.RandomProbabilitySource;
 import icarus.util.GameFileFilter;
 import java.awt.event.*;
 import java.io.File;
@@ -37,7 +38,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
      */
     public MainWindow() {
         try {
-            os = new OperatingSoftware(new PowerPlant());
+            os = new OperatingSoftware(new PowerPlant(), new RandomProbabilitySource());
             os.addObserver(this);
 
 
