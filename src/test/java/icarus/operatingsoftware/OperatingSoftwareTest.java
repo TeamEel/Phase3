@@ -8,7 +8,6 @@ import icarus.exceptions.InvalidPumpException;
 import icarus.exceptions.InvalidRodsException;
 import icarus.exceptions.InvalidValveException;
 import icarus.exceptions.MaximumRodsException;
-import icarus.exceptions.MinimumRodsException;
 import icarus.exceptions.NoFixNeededException;
 import java.io.File;
 import java.util.Observer;
