@@ -11,7 +11,8 @@ import java.io.IOException;
 import java.util.Observable;
 
 /**
- *
+ * Render the reactor onto the sprite canvas 
+ * 
  * @author drm
  */
 public class ReactorSprite implements ComponentSprite {

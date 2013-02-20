@@ -19,39 +19,36 @@ import javax.swing.Box;
 import javax.swing.JPanel;
 
 /**
+ * Container for control/status widgets
  *
  * @author drm
  */
-public class ControlPanel extends JPanel implements Observer {
+public class ControlPanel extends JPanel {
 
+    OperatingSoftware plant;
     ArrayList<ControlWidget> controlWidgets;
+    Box hbox;
 
     public ControlPanel(OperatingSoftware plant) {
-        controlWidgets = new ArrayList<ControlWidget>();
-        controlWidgets.add(new ReactorControl(plant));
-        controlWidgets.add(new PumpControl(plant, 0));
-        controlWidgets.add(new PumpControl(plant, 1));
-        controlWidgets.add(new PumpControl(plant, 2));
-        controlWidgets.add(new ValveControl(plant, 0));
-        controlWidgets.add(new ValveControl(plant, 1));
-        controlWidgets.add(new TurbineControl(plant));
-        controlWidgets.add(new CondenserControl(plant));
-        controlWidgets.add(new StatusDisplay(plant));
-        Box box = Box.createHorizontalBox();
-        add(box);
-        for (ControlWidget cw : controlWidgets) {
-            box.add(cw);
-            plant.addObserver(cw);
-        }
-        setBorder(BorderFactory.createLineBorder(Color.black));
-        //propagate changes to children
-        update(plant, null);
+        this.plant = plant;
+        this.controlWidgets = new ArrayList<ControlWidget>();
+        this.hbox = Box.createHorizontalBox();
+        add(hbox);
+        
+        addControlWidget(new ReactorControl(plant));
+        addControlWidget(new PumpControl(plant, 0));
+        addControlWidget(new PumpControl(plant, 1));
+        addControlWidget(new PumpControl(plant, 2));
+        addControlWidget(new ValveControl(plant, 0));
+        addControlWidget(new ValveControl(plant, 1));
+        addControlWidget(new TurbineControl(plant));
+        addControlWidget(new CondenserControl(plant));
+        addControlWidget(new StatusDisplay(plant));
     }
 
-    @Override
-    public final void update(Observable o, Object o1) {
-        for (ControlWidget cw : controlWidgets) {
-            cw.update(o, o1);
-        }
+    private void addControlWidget(ControlWidget cw) {
+        controlWidgets.add(cw);
+        plant.addObserver(cw);
+        hbox.add(cw);
     }
 }

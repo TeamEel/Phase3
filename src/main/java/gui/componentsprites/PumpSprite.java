@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.util.Observable;
 
 /**
- *
+ * Render and animate a pump onto the sprite canvas
  * @author david
  */
 public class PumpSprite implements ComponentSprite {

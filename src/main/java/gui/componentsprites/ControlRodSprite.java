@@ -9,7 +9,8 @@ import java.io.IOException;
 import java.util.Observable;
 
 /**
- *
+ * Render the Control Rods onto the sprite canvas
+ * 
  * @author david
  */
 public class ControlRodSprite implements ComponentSprite {

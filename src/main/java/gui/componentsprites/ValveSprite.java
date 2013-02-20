@@ -18,12 +18,6 @@ public class ValveSprite implements ComponentSprite {
     private Sprite sprite;
     private int valveNumber;
 
-    public enum Orientation {
-
-        NORMAL,
-        ROTATED
-    }
-
     public ValveSprite(int number) throws IOException {
         String pathFormat = "/fullsize/valve_%03d.png";
 

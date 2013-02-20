@@ -12,7 +12,8 @@ import java.io.IOException;
 import java.util.Observable;
 
 /**
- *
+ * Render the Condenser onto the Sprite Canvas
+ * 
  * @author drm
  */
 public class CondenserSprite implements ComponentSprite {

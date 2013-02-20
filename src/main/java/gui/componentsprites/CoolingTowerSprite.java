@@ -10,7 +10,8 @@ import static drawing.builders.BuildAnimationSet.singleAnimation;
 import java.io.IOException;
 
 /**
- *
+ * Render the animated cooling tower onto the sprite canvas
+ * 
  * @author david
  */
 public class CoolingTowerSprite implements ComponentSprite {

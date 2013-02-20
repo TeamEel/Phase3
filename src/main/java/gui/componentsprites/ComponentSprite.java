@@ -4,7 +4,8 @@ import drawing.SpriteCanvas;
 import java.util.Observer;
 
 /**
- *
+ * Common interface for all Sprite-based plant renderers
+ * 
  * @author drm
  */
 public interface ComponentSprite extends Observer {

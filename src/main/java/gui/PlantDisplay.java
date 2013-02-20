@@ -37,6 +37,9 @@ public class PlantDisplay extends JPanel {
         operatingSoftware = os;
         canvas = new SpriteCanvas(ImageLoader.imageResource("/scaled/plant2_empty.png"));
         add(canvas);
+        canvas.setFrameInterval(10);
+        canvas.start();
+
         addComponentSprite(new ReactorSprite(), 3, 30);
         addComponentSprite(new ValveSprite(0), 315, 28);
         addComponentSprite(new ValveSprite(1), 392, 130);
@@ -47,8 +50,6 @@ public class PlantDisplay extends JPanel {
         addComponentSprite(new PumpSprite(1), 295, 430);
         addComponentSprite(new PumpSprite(2), 590, 315);
         addComponentSprite(new CoolingTowerSprite(), 675, 185);
-        canvas.setFrameInterval(10);
-        canvas.start();
     }
 
     public SpriteCanvas canvas() {

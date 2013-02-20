@@ -12,7 +12,8 @@ import java.io.IOException;
 import java.util.Observable;
 
 /**
- *
+ * Render and animate the turbine onto the sprite canvas
+ * 
  * @author drm
  */
 public class TurbineSprite implements ComponentSprite {
