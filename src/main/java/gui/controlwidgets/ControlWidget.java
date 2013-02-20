@@ -1,8 +1,10 @@
 package gui.controlwidgets;
 
 import icarus.operatingsoftware.PlantControl;
+import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.Observer;
+import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.JButton;
 import javax.swing.JLabel;
@@ -21,6 +23,7 @@ public abstract class ControlWidget extends JPanel implements Observer, ActionLi
     public ControlWidget(PlantControl plantControl) {
         this.plant = plantControl;
         this.vbox = Box.createVerticalBox();
+        add(vbox);
     }
     
     protected JLabel addTitle(String text) {
