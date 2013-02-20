@@ -21,14 +21,14 @@ public class CondenserSprite implements ComponentSprite {
 
     public CondenserSprite() throws IOException {
         sprite = new Sprite(buildAnimationSet()
-                .animation(
-                range()
-                .format("/scaled/condenser_2_%03d.png")
-                .from(0)
-                .to(39)
-                .loop())
-                .animation(singleFrame("/scaled/condenser_failed.png"))
-                .done());
+                                .animation(
+                                    range()
+                                        .format("/scaled/condenser_2_%03d.png")
+                                        .from(0)
+                                        .to(39)
+                                        .loop())
+                                .animation(singleFrame("/scaled/condenser_failed.png"))
+                                .done());
     }
 
     @Override

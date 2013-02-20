@@ -22,15 +22,15 @@ public class PumpSprite implements ComponentSprite {
     public PumpSprite(int number) throws IOException {
         pumpNumber = number;
         sprite = new Sprite(buildAnimationSet()
-                .animation(singleFrame("/scaled/pump_000.png"))
-                .animation(
-                range()
-                .format("/scaled/pump_%03d.png")
-                .from(0)
-                .to(121)
-                .loop())
-                .animation(singleFrame("/scaled/pump_failed.png"))
-                .done());
+                                .animation(singleFrame("/scaled/pump_000.png"))
+                                .animation(
+                                    range()
+                                        .format("/scaled/pump_%03d.png")
+                                        .from(0)
+                                        .to(121)
+                                        .loop())
+                                .animation(singleFrame("/scaled/pump_failed.png"))
+                                .done());
     }
 
     @Override

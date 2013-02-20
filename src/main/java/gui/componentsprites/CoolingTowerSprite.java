@@ -19,11 +19,11 @@ public class CoolingTowerSprite implements ComponentSprite {
 
     public CoolingTowerSprite() throws IOException {
         sprite = new Sprite(singleAnimation(
-                range()
-                .format("/scaled/cooling_tower_2_%03d.png")
-                .from(0)
-                .to(39)
-                .loop()));
+                                range()
+                                    .format("/scaled/cooling_tower_2_%03d.png")
+                                    .from(0)
+                                    .to(39)
+                                    .loop()));
     }
 
     @Override

@@ -21,13 +21,14 @@ public class TurbineSprite implements ComponentSprite {
 
     public TurbineSprite() throws IOException {
         sprite = new Sprite(buildAnimationSet()
-                .animation(
-                range()
-                .format("/fullsize/turbine_%03d.png")
-                .from(0).to(121)
-                .loop())
-                .animation(singleFrame("/fullsize/turbine_failed.png"))
-                .done());
+                                .animation(
+                                    range()
+                                        .format("/fullsize/turbine_%03d.png")
+                                        .from(0)
+                                        .to(121)
+                                        .loop())
+                                .animation(singleFrame("/fullsize/turbine_failed.png"))
+                                .done());
     }
 
     @Override

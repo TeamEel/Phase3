@@ -20,9 +20,9 @@ public class ReactorSprite implements ComponentSprite {
 
     public ReactorSprite() throws IOException {
         sprite = new Sprite(buildAnimationSet()
-                .animation(singleFrame("/fullsize/reactor.png"))
-                .animation(singleFrame("/fullsize/reactor_failed.png"))
-                .done());
+                                .animation(singleFrame("/fullsize/reactor.png"))
+                                .animation(singleFrame("/fullsize/reactor_failed.png"))
+                                .done());
     }
 
     @Override

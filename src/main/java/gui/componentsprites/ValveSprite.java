@@ -29,17 +29,17 @@ public class ValveSprite implements ComponentSprite {
 
         valveNumber = number;
         sprite = new Sprite(buildAnimationSet()
-                .animation(
-                range()
-                .format(pathFormat)
-                .from(0).to(39)
-                .stop())
-                .animation(
-                range()
-                .format(pathFormat)
-                .from(39).to(0)
-                .stop())
-                .done());
+                                .animation(range()
+                                    .format(pathFormat)
+                                    .from(0)
+                                    .to(39)
+                                    .stop())
+                                .animation(range()
+                                    .format(pathFormat)
+                                    .from(39)
+                                    .to(0)
+                                    .stop())
+                                    .done());
     }
 
     @Override
