@@ -38,7 +38,7 @@ public class StatusDisplay extends ControlWidget {
         status.rows[2] = new StatusRow("Reactor Water Level", 0.0);
         status.rows[3] = new StatusRow("Condenser Water Level", 0.0);
         status.rows[4] = new StatusRow("Reactor Pressure", 0.0);
-        status.rows[5] = new StatusRow("Condenser Temperature", 0.0);
+        status.rows[5] = new StatusRow("Condenser Pressure", 0.0);
         status.rows[6] = new StatusRow("Power Output", 0.0);
 
         // extra space character to work with certain Swing themes
