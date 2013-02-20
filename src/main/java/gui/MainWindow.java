@@ -166,7 +166,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
                          "Start new game?",
                                                      "Game Over",
                                                      JOptionPane.YES_NO_CANCEL_OPTION,
-                                                     JOptionPane.QUESTION_MESSAGE,
+                                                     JOptionPane.ERROR_MESSAGE,
                                                      null,
                                                      options,
                                                      options[0]);
