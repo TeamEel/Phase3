@@ -2,6 +2,7 @@ package gui.controlwidgets;
 
 import icarus.operatingsoftware.Components;
 import icarus.operatingsoftware.PlantControl;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Observable;
@@ -33,7 +34,10 @@ public class StatusDisplay extends ControlWidget implements ActionListener {
         status = new StatusTableModel();
 
         table = new JTable(status);
-
+        table.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        table.getColumnModel().getColumn(0).setPreferredWidth(180);
+        table.getColumnModel().getColumn(1).setPreferredWidth(80);
+        table.setBackground(Color.lightGray);
 
         vbox.add(Align.left(title));
         vbox.add(table);
@@ -58,13 +62,13 @@ public class StatusDisplay extends ControlWidget implements ActionListener {
         if (o instanceof PlantControl) {
             PlantControl plantControl = (PlantControl)o;
 
-            status.rows[0].Update(plantControl.temperature(Components.REACTOR));
-            status.rows[1].Update(plantControl.temperature(Components.CONDENSER));
-            status.rows[2].Update(plantControl.waterLevel(Components.REACTOR));
-            status.rows[3].Update(plantControl.waterLevel(Components.CONDENSER));
-            status.rows[4].Update(plantControl.pressure(Components.REACTOR));
-            status.rows[5].Update(plantControl.pressure(Components.CONDENSER));
-            status.rows[6].Update((double)plantControl.getPower());
+            status.rows[0].update(plantControl.temperature(Components.REACTOR));
+            status.rows[1].update(plantControl.temperature(Components.CONDENSER));
+            status.rows[2].update(plantControl.waterLevel(Components.REACTOR));
+            status.rows[3].update(plantControl.waterLevel(Components.CONDENSER));
+            status.rows[4].update(plantControl.pressure(Components.REACTOR));
+            status.rows[5].update(plantControl.pressure(Components.CONDENSER));
+            status.rows[6].update((double)plantControl.getPower());
             table.updateUI();
 
         }

@@ -33,10 +33,10 @@ class StatusTableModel extends AbstractTableModel implements TableModel {
     @Override
     public Object getValueAt(int row, int col) {
         if (col == 0) {
-            return rows[row].Key();
+            return rows[row].key();
         }
         if (col == 1) {
-            return rows[row].Value();
+            return rows[row].value();
         }
         return null;
     }

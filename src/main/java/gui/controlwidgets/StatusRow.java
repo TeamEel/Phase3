@@ -18,15 +18,15 @@ class StatusRow {
         this.value = initialValue;
     }
 
-    public void Update(Double newValue) {
+    public void update(Double newValue) {
         this.value = newValue;
     }
 
-    public String Key() {
+    public String key() {
         return this.key;
     }
 
-    public Double Value() {
-        return this.value;
+    public String value() {
+        return String.format("%.03f",this.value);
     }
 }
