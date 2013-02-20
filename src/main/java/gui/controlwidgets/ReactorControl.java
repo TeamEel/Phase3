@@ -8,6 +8,7 @@ import icarus.exceptions.ComponentFailedException;
 import icarus.exceptions.InvalidRodsException;
 import icarus.operatingsoftware.Components;
 import icarus.operatingsoftware.PlantControl;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.util.Observable;
 import java.util.logging.Level;
@@ -30,6 +31,8 @@ public class ReactorControl extends ControlWidget implements ChangeListener {
         super(plant);
         addTitle("Reactor");
         controlRodPosition = new JSlider(JSlider.VERTICAL, 0, 100, 0);
+        controlRodPosition.setPreferredSize(new Dimension(30, 110));
+        controlRodPosition.addChangeListener(this);
         vbox.add(Align.centerVertical(controlRodPosition));
         repairButton = addToggleButton("Repair");        
     }
