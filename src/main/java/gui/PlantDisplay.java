@@ -42,7 +42,7 @@ public class PlantDisplay extends JPanel {
         addComponentSprite(new ValveSprite(1), 392, 130);
         addComponentSprite(new TurbineSprite(), 380, 35);
         addComponentSprite(new CondenserSprite(), 425, 180);
-        addComponentSprite(new ControlRodSprite(100), 10, 10);
+        addComponentSprite(new ControlRodSprite(100), 53, 160);
         addComponentSprite(new PumpSprite(0), 295, 342);
         addComponentSprite(new PumpSprite(1), 295, 430);
         addComponentSprite(new PumpSprite(2), 590, 315);

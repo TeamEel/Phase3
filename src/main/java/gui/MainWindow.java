@@ -75,6 +75,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
             pack();
 
             createMenus();
+            startNewGame();
         } catch (IOException ex) {
             ex.printStackTrace();
         }

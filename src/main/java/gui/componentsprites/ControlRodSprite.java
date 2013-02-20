@@ -20,7 +20,7 @@ public class ControlRodSprite implements ComponentSprite {
     private int yOffset;
 
     public ControlRodSprite(int yRange) throws IOException {
-        sprite = BuildSprite.staticSprite("/scaled/control_rods.png");
+        sprite = BuildSprite.staticSprite("/fullsize/control_rods.png");
         this.yRange = yRange;
         yOffset = 0;
     }
