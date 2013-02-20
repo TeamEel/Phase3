@@ -85,6 +85,7 @@ public class ReactorControl extends ControlWidget implements ActionListener, Cha
             if(source==controlRodPosition)
             {
                 plant.movecontrolrods(controlRodPosition.getValue());
+                plant.next();
             }
         }
         catch(Exception e)
