@@ -19,9 +19,10 @@ import javax.swing.JToggleButton;
  * @author drm
  */
 public class ValveControl extends ControlWidget implements ActionListener {
+
     int valveNumber;
     JToggleButton openButton;
-    
+
     public ValveControl(PlantControl plant, int valveNumber) {
         super(plant);
         this.valveNumber = valveNumber;
@@ -35,49 +36,33 @@ public class ValveControl extends ControlWidget implements ActionListener {
         addActionListeners();
     }
 
-
-    private void addActionListeners()
-    {
+    private void addActionListeners() {
         openButton.addActionListener(this);
-        
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent event) {
-        
-        
         Object source = event.getSource();
-        try
-        {
-            if(source==openButton)
-            {
-                if(!plant.isValveOpened(valveNumber))
-                {
+        try {
+            if (source == openButton) {
+                if (!plant.isValveOpened(valveNumber)) {
                     plant.open(valveNumber);
-                }
-                else
-                {
+                } else {
                     plant.close(valveNumber);
                 }
             }
-            
-            plant.next();
-            
-        }
-        catch(Exception  e)
-        {
+        } catch (Exception e) {
             Logger.getLogger(PumpControl.class.getName()).log(Level.SEVERE, null, e);
         }
-       
     }
-    
+
     @Override
     public void update(Observable o, Object o1) {
         if (o instanceof PlantControl) {
             PlantControl plantControl = (PlantControl)o;
             openButton.setSelected(plantControl.isValveOpened(valveNumber));
-            
-         
+
+
         }
     }
 }

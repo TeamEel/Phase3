@@ -20,59 +20,46 @@ import javax.swing.JToggleButton;
  * @author James
  */
 public class TurbineControl extends ControlWidget implements ActionListener {
-    
+
     JToggleButton repairButton;
-    
-    public TurbineControl (PlantControl plant) {
+
+    public TurbineControl(PlantControl plant) {
         super(plant);
-        Box box = Box.createVerticalBox();        
+        Box box = Box.createVerticalBox();
         JLabel title = new JLabel("Turbine");
-        repairButton = new JToggleButton("Repair");        
+        repairButton = new JToggleButton("Repair");
         add(box);
         box.add(Align.left(title));
         box.add(Box.createVerticalGlue());
         box.add(Align.centerVertical(repairButton));
-        
+
         addActionListeners();
     }
-    
-    
 
     @Override
     public void actionPerformed(ActionEvent event) {
         Object source = event.getSource();
-        try
-        {
-            if(source==repairButton)
-            {
+        try {
+            if (source == repairButton) {
                 plant.fix(Components.TURBINE);
-                          
+
             }
-            plant.next();
-            
-            
-        }
-        catch(Exception  e)
-        {
+        } catch (Exception e) {
             Logger.getLogger(PumpControl.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
+
     @Override
     public void update(Observable o, Object o1) {
         if (o instanceof PlantControl) {
             PlantControl plantControl = (PlantControl)o;
-            repairButton.setEnabled(!plantControl.functional(Components.TURBINE)&&
+            repairButton.setEnabled(!plantControl.functional(Components.TURBINE) &&
                                     !plantControl.fixUnderway());
             repairButton.setSelected(plantControl.isRepairing(Components.TURBINE));
         }
     }
 
-
-
     private void addActionListeners() {
         repairButton.addActionListener(this);
     }
-
-    
 }

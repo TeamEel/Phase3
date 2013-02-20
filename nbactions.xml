@@ -26,4 +26,11 @@
                 <exec.classpathScope>runtime</exec.classpathScope>
             </properties>
         </action>
+    <action>
+            <actionName>CUSTOM-Build .jar</actionName>
+            <displayName>Build .jar</displayName>
+            <goals>
+                <goal>assembly:single</goal>
+            </goals>
+        </action>
 </actions>

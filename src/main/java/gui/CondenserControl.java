@@ -16,44 +16,35 @@ import javax.swing.JToggleButton;
  * @author James
  */
 public class CondenserControl extends ControlWidget implements ActionListener {
-    
+
     JToggleButton repairButton;
-    
-    public CondenserControl (PlantControl plant) {
+
+    public CondenserControl(PlantControl plant) {
         super(plant);
-        Box box = Box.createVerticalBox();        
+        Box box = Box.createVerticalBox();
         JLabel title = new JLabel("Condenser");
-        repairButton = new JToggleButton("Repair");        
+        repairButton = new JToggleButton("Repair");
         add(box);
         box.add(Align.left(title));
         box.add(Box.createVerticalGlue());
         box.add(Align.centerVertical(repairButton));
-        
+
         addActionListeners();
     }
-    
-    
 
     @Override
     public void actionPerformed(ActionEvent event) {
         Object source = event.getSource();
-        try
-        {
-            if(source==repairButton)
-            {
+        try {
+            if (source == repairButton) {
                 plant.fix(Components.CONDENSER);
-                          
+
             }
-            plant.next();
-            
-            
-        }
-        catch(Exception  e)
-        {
+        } catch (Exception e) {
             Logger.getLogger(PumpControl.class.getName()).log(Level.SEVERE, null, e);
         }
     }
-    
+
     @Override
     public void update(Observable o, Object o1) {
         if (o instanceof PlantControl) {
@@ -63,11 +54,7 @@ public class CondenserControl extends ControlWidget implements ActionListener {
         }
     }
 
-
-
     private void addActionListeners() {
         repairButton.addActionListener(this);
     }
-
-    
 }

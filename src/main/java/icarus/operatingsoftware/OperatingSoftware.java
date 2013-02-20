@@ -30,6 +30,7 @@ public class OperatingSoftware extends Observable implements PlantControl {
     private Random randomGenerator = new Random();
     private Plant plant;
     private int score;
+
     public OperatingSoftware(Plant plant) {
         this.plant = plant;
     }
@@ -39,8 +40,8 @@ public class OperatingSoftware extends Observable implements PlantControl {
      *
      * @param pumpNum The id of the pump to turn off
      *
-     * @throws InvalidPumpException Thrown when a bad pump ID is specified
-     * @throws AlreadyAtStateException Thrown if the specified pump is already on
+     * @throws InvalidPumpException     Thrown when a bad pump ID is specified
+     * @throws AlreadyAtStateException  Thrown if the specified pump is already on
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
     @Override
@@ -48,6 +49,7 @@ public class OperatingSoftware extends Observable implements PlantControl {
         if (!softwareFailure()) {
             plant.turnOff(pumpNum);
         }
+        updateObservers();
     }
 
     /**
@@ -55,8 +57,8 @@ public class OperatingSoftware extends Observable implements PlantControl {
      *
      * @param pumpNum The id of the pump to turn on
      *
-     * @throws InvalidPumpException Thrown when a bad pump ID is specified
-     * @throws AlreadyAtStateException Thrown if the specified pump is already on
+     * @throws InvalidPumpException     Thrown when a bad pump ID is specified
+     * @throws AlreadyAtStateException  Thrown if the specified pump is already on
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
     @Override
@@ -64,32 +66,33 @@ public class OperatingSoftware extends Observable implements PlantControl {
         if (!softwareFailure()) {
             plant.turnOn(pumpNum);
         }
+        updateObservers();
     }
 
     /**
      * Move the control rods in the reactor to the amount specified
-     * 
-     * @param amount
-     *            The amount to lower the control rods by
+     *
+     * @param amount The amount to lower the control rods by
+     *
      * @return The new height of the control rods
-     * @throws InvalidRodsException
-     *             Thrown when amount specified is negative
-     * @throws ComponentFailedException
-     *             Thrown if method is called when component is failed.
+     *
+     * @throws InvalidRodsException Thrown when amount specified is negative
+     * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
     @Override
     public void movecontrolrods(int amount) throws InvalidRodsException, ComponentFailedException {
         if (!softwareFailure()) {
             plant.movecontrolrods(amount);
         }
+        updateObservers();
     }
-    
+
     /**
      * Open a SteamValve in the system
      *
      * @param valveNum The id of the valve to close
      *
-     * @throws InvalidValveException Thrown when a bad valve ID is specified
+     * @throws InvalidValveException   Thrown when a bad valve ID is specified
      * @throws AlreadyAtStateException Thrown if the specified valve is already closed
      */
     @Override
@@ -97,6 +100,7 @@ public class OperatingSoftware extends Observable implements PlantControl {
         if (!softwareFailure()) {
             plant.open(amount);
         }
+        updateObservers();
     }
 
     /**
@@ -104,7 +108,7 @@ public class OperatingSoftware extends Observable implements PlantControl {
      *
      * @param valveNum The id of the valve to close
      *
-     * @throws InvalidValveException Thrown when a bad valve ID is specified
+     * @throws InvalidValveException   Thrown when a bad valve ID is specified
      * @throws AlreadyAtStateException Thrown if the specified valve is already closed
      */
     @Override
@@ -112,6 +116,7 @@ public class OperatingSoftware extends Observable implements PlantControl {
         if (!softwareFailure()) {
             plant.close(valveNum);
         }
+        updateObservers();
     }
 
     /**
@@ -119,7 +124,7 @@ public class OperatingSoftware extends Observable implements PlantControl {
      *
      * @param component The component to begin the fix upon
      *
-     * @throws InvalidComponentException Thrown when a bad component is specified
+     * @throws InvalidComponentException   Thrown when a bad component is specified
      * @throws FixAlreadyUnderwayException Thrown when a fix is already occurring in the system
      * @throws NoFixNeededException
      */
@@ -129,15 +134,16 @@ public class OperatingSoftware extends Observable implements PlantControl {
         if (!softwareFailure()) {
             plant.fix(component);
         }
+        updateObservers();
     }
 
     /**
      * Begins fixes for pumps
      *
      * @param component Must be set to WaterPump, used as a check to ensure desired functionality
-     * @param pumpNum The id of the pump to be fixed
+     * @param pumpNum   The id of the pump to be fixed
      *
-     * @throws InvalidComponentException Thrown when a non-pump component is specified
+     * @throws InvalidComponentException   Thrown when a non-pump component is specified
      * @throws FixAlreadyUnderwayException Thrown when a fix is already occurring in the system
      * @throws NoFixNeededException
      */
@@ -147,6 +153,7 @@ public class OperatingSoftware extends Observable implements PlantControl {
         if (!softwareFailure()) {
             plant.fix(component, pumpNum);
         }
+        updateObservers();
     }
 
     private boolean softwareFailure() {
@@ -172,41 +179,27 @@ public class OperatingSoftware extends Observable implements PlantControl {
         try {
             switch (randomGenerator.nextInt(5)) {
                 case 0:
-
                     plant.turnOn(randomGenerator.nextInt(pumpCount));
-
-
                     break;
                 case 1:
-
                     plant.turnOff(randomGenerator.nextInt(pumpCount));
-
-
                     break;
                 case 2:
-
                     plant.open(randomGenerator.nextInt(valveCount));
-
                     break;
                 case 3:
-
                     plant.close(randomGenerator.nextInt(valveCount));
-
-
                     break;
                 case 4:
-
                     plant.movecontrolrods(randomGenerator.nextInt(maxControlRodPosition + 1));
                     break;
             }
         } catch (Exception e) {/*Do nothing*/
 
         }
-  
+        updateObservers();
     }
-    
-    
-    
+
     /**
      * sets the name of the player
      *
@@ -215,6 +208,7 @@ public class OperatingSoftware extends Observable implements PlantControl {
     @Override
     public void setPlayerName(String name) {
         plant.setPlayerName(name);
+        updateObservers();
     }
 
     /**
@@ -339,7 +333,7 @@ public class OperatingSoftware extends Observable implements PlantControl {
      * Variation of functional(Components) for pumps, returns the functionality of a specified pump
      *
      * @param component Required to be set to Components.WATERPUMP, specifies the component to inspect
-     * @param pumpNum The id of the pump to inspect
+     * @param pumpNum   The id of the pump to inspect
      *
      * @return whether the specified pump is functional
      *
@@ -366,7 +360,7 @@ public class OperatingSoftware extends Observable implements PlantControl {
      * The pump variant of isRepairing(Components). Returns whether a specified pump is currently being repaired.
      *
      * @param component required to be set to Components.WATERPUMP, specifies the component to inspect
-     * @param id The pump ID to inspect
+     * @param id        The pump ID to inspect
      *
      * @return Whether the specified pump is being repaired
      */
@@ -411,7 +405,6 @@ public class OperatingSoftware extends Observable implements PlantControl {
     private void calculateScore() {
         score = 0;
         score = (int)plant.getPower() * 5;
-
     }
 
     /**
@@ -443,13 +436,13 @@ public class OperatingSoftware extends Observable implements PlantControl {
                                     '\n' +
                                     "Awarded for \"Gallantry and intrepidity at risk of life above and beyond the call of duty\"." +
                                     '\n' +
-                             "Your power led to the destruction of ALL the alien ships!!", playerName);
+                                    "Your power led to the destruction of ALL the alien ships!!", playerName);
                 } else {
                     // if above bronze tier but doesn't reach gold awarded
                     // silver medal
                     response = String
-                            .format("Congratulations %s! You've been awarded a Silver Star for \"Gallantry in action\"!" +
-                                    '\n' + "You destroyed nearly all", playerName);
+                                    .format("Congratulations %s! You've been awarded a Silver Star for \"Gallantry in action\"!" +
+                                            '\n' + "You destroyed nearly all", playerName);
                 }
             } else {
                 // bronze reponse
@@ -457,7 +450,7 @@ public class OperatingSoftware extends Observable implements PlantControl {
                         .format(
                         "Well done %s! You have been awarded a Bronze Star for your efforts against the aliens." + '\n' +
                         "You took out a good number with your party powered superweapon, maybe play again to take out some more?",
-                                playerName);
+                        playerName);
             } // under 3000 but over 1000 awarde bronze medal
         } else {
             // player did not reach any of the goals, gains no medal
@@ -473,8 +466,7 @@ public class OperatingSoftware extends Observable implements PlantControl {
     @Override
     public void next() {
         plant.next();
-        setChanged();
-        notifyObservers();
+        updateObservers();
     }
 
     /**
@@ -484,21 +476,10 @@ public class OperatingSoftware extends Observable implements PlantControl {
      */
     @Override
     public boolean doFix() {
-        return plant.doFix();
+        boolean value = plant.doFix();
+        updateObservers();
+        return value;
     }
-
-    
-
-
-
-    
-   
-
-    
-
-
-    
-   
 
     /**
      * Save the reactor objects to a file
@@ -523,22 +504,25 @@ public class OperatingSoftware extends Observable implements PlantControl {
                 return false;
             }
             plant = new PowerPlant(s);
-            setChanged();
-            notifyObservers();
+            updateObservers();
             return true;
         } catch (Exception e) {
             System.out.println("Error loading from file");
             return false;
         }
     }
-    
+
     /**
      * Resets the plant
      *
      */
     public void resetPlant() {
         plant = new PowerPlant();
-        setChanged();        
+        updateObservers();
+    }
+
+    private void updateObservers() {
+        setChanged();
         notifyObservers();
     }
 }
