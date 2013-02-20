@@ -107,7 +107,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>eel.seprphase2.App</mainClass>
+                            <mainClass>gui.MainWindow</mainClass>
                         </manifest>
                     </archive>
                     <descriptorRefs>
