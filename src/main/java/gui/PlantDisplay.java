@@ -12,6 +12,8 @@ import gui.componentsprites.TurbineSprite;
 import gui.componentsprites.ValveSprite;
 import icarus.operatingsoftware.OperatingSoftware;
 import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.io.IOException;
 import java.util.ResourceBundle;
 import javax.swing.BorderFactory;
@@ -36,8 +38,10 @@ public class PlantDisplay extends JPanel {
     public PlantDisplay(OperatingSoftware os) throws IOException {
         operatingSoftware = os;
         canvas = new SpriteCanvas(ImageLoader.imageResource("/scaled/plant2_empty.png"));
-        add(canvas);
+        
         canvas.setFrameInterval(10);
+        canvas.setScaleFactor(0.8);
+                add(canvas);
         canvas.start();
 
         addComponentSprite(new ReactorSprite(), 3, 30);
@@ -54,7 +58,7 @@ public class PlantDisplay extends JPanel {
 
     public SpriteCanvas canvas() {
         return canvas;
-    }
+    }    
 
     private void addComponentSprite(ComponentSprite sprite,
                                     int x, int y) {

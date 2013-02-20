@@ -2,6 +2,7 @@ package drawing;
 
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -21,14 +22,25 @@ public class SpriteCanvas extends JPanel implements ActionListener {
     private Image background;
     private SpriteSet sprites;
     private Timer timer;
-
+    private double scaleFactor;
+    
     public SpriteCanvas(Image background) {
         this.background = background;
         this.sprites = new SpriteSet();
         this.timer = new Timer(1000, this);
+        this.scaleFactor = 1;
         setPreferredSize(new Dimension(background.getWidth(null), background.getHeight(null)));
     }
 
+    public void setScaleFactor(double scaleFactor) {
+        if (scaleFactor > 1 || scaleFactor <= 0) {
+            throw new IllegalArgumentException("Cannot set scale factor outside the range (0,1]");
+        }
+        this.scaleFactor = scaleFactor;
+        setPreferredSize(new Dimension((int)Math.ceil(background.getWidth(null) * scaleFactor),
+                                       (int)Math.ceil(background.getHeight(null) * scaleFactor)));
+    }
+    
     /**
      * Set the interval between animation frames for the canvas
      * 
@@ -76,6 +88,8 @@ public class SpriteCanvas extends JPanel implements ActionListener {
 
     @Override
     public void paintComponent(Graphics g) {
+        // mildly hacky scaling to fit onto smaller screens
+        ((Graphics2D)g).scale(scaleFactor, scaleFactor);
         g.drawImage(background, 0, 0, this);
         sprites.paint(g);
     }
