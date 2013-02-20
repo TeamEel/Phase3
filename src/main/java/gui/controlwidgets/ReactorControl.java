@@ -4,17 +4,14 @@
  */
 package gui.controlwidgets;
 
+import icarus.exceptions.ComponentFailedException;
+import icarus.exceptions.InvalidRodsException;
 import icarus.operatingsoftware.Components;
-import icarus.operatingsoftware.OperatingSoftware;
-import icarus.operatingsoftware.Plant;
 import icarus.operatingsoftware.PlantControl;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Box;
-import javax.swing.JLabel;
 import javax.swing.JSlider;
 import javax.swing.JToggleButton;
 import javax.swing.event.ChangeEvent;
@@ -24,24 +21,17 @@ import javax.swing.event.ChangeListener;
  *
  * @author drm
  */
-public class ReactorControl extends ControlWidget implements ActionListener, ChangeListener {
+public class ReactorControl extends ControlWidget implements ChangeListener {
 
     JSlider controlRodPosition;
     JToggleButton repairButton;
 
     public ReactorControl(PlantControl plant) {
         super(plant);
-        Box box = Box.createVerticalBox();
-        JLabel title = new JLabel("Reactor");
+        addTitle("Reactor");
         controlRodPosition = new JSlider(JSlider.VERTICAL, 0, 100, 0);
-        repairButton = new JToggleButton("Repair");
-        add(box);
-        box.add(Align.left(title));
-        box.add(Align.centerVertical(controlRodPosition));
-        box.add(Box.createVerticalGlue());
-        box.add(Align.centerVertical(repairButton));
-
-        addActionListeners();
+        vbox.add(Align.centerVertical(controlRodPosition));
+        repairButton = addToggleButton("Repair");        
     }
 
     @Override
@@ -61,10 +51,11 @@ public class ReactorControl extends ControlWidget implements ActionListener, Cha
     public void update(Observable o, Object o1) {
         if (o instanceof PlantControl) {
             PlantControl plantControl = (PlantControl)o;
-            repairButton.setEnabled(!plantControl.functional(Components.REACTOR) &&
-                                    !plantControl.fixUnderway());
+            final boolean reactorIsFunctional = plantControl.functional(Components.REACTOR);
+            repairButton.setEnabled(!reactorIsFunctional && !plantControl.fixUnderway());
             repairButton.setSelected(plantControl.isRepairing(Components.REACTOR));
             controlRodPosition.setValue(plantControl.rodHeight());
+            controlRodPosition.setEnabled(reactorIsFunctional);
         }
     }
 
@@ -75,13 +66,10 @@ public class ReactorControl extends ControlWidget implements ActionListener, Cha
             if (source == controlRodPosition) {
                 plant.movecontrolrods(controlRodPosition.getValue());
             }
-        } catch (Exception e) {
+        } catch (ComponentFailedException e) {
+            Logger.getLogger(PumpControl.class.getName()).log(Level.SEVERE, null, e);
+        } catch (InvalidRodsException e) {
             Logger.getLogger(PumpControl.class.getName()).log(Level.SEVERE, null, e);
         }
-    }
-
-    private void addActionListeners() {
-        repairButton.addActionListener(this);
-        controlRodPosition.addChangeListener(this);
     }
 }

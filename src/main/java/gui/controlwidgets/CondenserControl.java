@@ -3,33 +3,23 @@ package gui.controlwidgets;
 import icarus.operatingsoftware.Components;
 import icarus.operatingsoftware.PlantControl;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Box;
-import javax.swing.JLabel;
 import javax.swing.JToggleButton;
 
 /**
  *
  * @author James
  */
-public class CondenserControl extends ControlWidget implements ActionListener {
+public class CondenserControl extends ControlWidget {
 
     JToggleButton repairButton;
 
     public CondenserControl(PlantControl plant) {
         super(plant);
-        Box box = Box.createVerticalBox();
-        JLabel title = new JLabel("Condenser");
-        repairButton = new JToggleButton("Repair");
-        add(box);
-        box.add(Align.left(title));
-        box.add(Box.createVerticalGlue());
-        box.add(Align.centerVertical(repairButton));
-
-        addActionListeners();
+        addTitle("Condenser");
+        repairButton = addToggleButton("Repair");
     }
 
     @Override
@@ -52,9 +42,5 @@ public class CondenserControl extends ControlWidget implements ActionListener {
             repairButton.setEnabled(!plantControl.functional(Components.CONDENSER) && !plantControl.fixUnderway());
             repairButton.setSelected(plantControl.isRepairing(Components.CONDENSER));
         }
-    }
-
-    private void addActionListeners() {
-        repairButton.addActionListener(this);
     }
 }

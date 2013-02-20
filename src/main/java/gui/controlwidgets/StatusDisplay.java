@@ -4,20 +4,15 @@ import icarus.operatingsoftware.Components;
 import icarus.operatingsoftware.PlantControl;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Observable;
-import javax.swing.Box;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JTable;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
 
 /**
  *
  * @author drm
  */
-public class StatusDisplay extends ControlWidget implements ActionListener {
+public class StatusDisplay extends ControlWidget {
 
     private JButton nextButton;
     private StatusTableModel status;
@@ -25,11 +20,7 @@ public class StatusDisplay extends ControlWidget implements ActionListener {
 
     public StatusDisplay(PlantControl plant) {
         super(plant);
-        Box vbox = Box.createVerticalBox();
-        add(vbox);
-
-        JLabel title = new JLabel("Status");
-
+        addTitle("Status");
 
         status = new StatusTableModel();
 
@@ -39,7 +30,6 @@ public class StatusDisplay extends ControlWidget implements ActionListener {
         table.getColumnModel().getColumn(1).setPreferredWidth(80);
         table.setBackground(Color.lightGray);
 
-        vbox.add(Align.left(title));
         vbox.add(table);
 
 
@@ -51,10 +41,8 @@ public class StatusDisplay extends ControlWidget implements ActionListener {
         status.rows[5] = new StatusRow("Condenser Temperature", 0.0);
         status.rows[6] = new StatusRow("Power Output", 0.0);
 
-
-        nextButton = new JButton("Next" + " "); //Seriously, what the hell
-        nextButton.addActionListener(this);
-        vbox.add(nextButton);
+        // extra space character to work with certain Swing themes
+        nextButton = addButton("Next" + " ");
     }
 
     @Override

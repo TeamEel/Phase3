@@ -7,33 +7,23 @@ package gui.controlwidgets;
 import icarus.operatingsoftware.Components;
 import icarus.operatingsoftware.PlantControl;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Box;
-import javax.swing.JLabel;
 import javax.swing.JToggleButton;
 
 /**
  *
  * @author James
  */
-public class TurbineControl extends ControlWidget implements ActionListener {
+public class TurbineControl extends ControlWidget {
 
     JToggleButton repairButton;
 
     public TurbineControl(PlantControl plant) {
         super(plant);
-        Box box = Box.createVerticalBox();
-        JLabel title = new JLabel("Turbine");
-        repairButton = new JToggleButton("Repair");
-        add(box);
-        box.add(Align.left(title));
-        box.add(Box.createVerticalGlue());
-        box.add(Align.centerVertical(repairButton));
-
-        addActionListeners();
+        addTitle("Turbine");
+        repairButton = addToggleButton("Repair");
     }
 
     @Override
@@ -57,9 +47,5 @@ public class TurbineControl extends ControlWidget implements ActionListener {
                                     !plantControl.fixUnderway());
             repairButton.setSelected(plantControl.isRepairing(Components.TURBINE));
         }
-    }
-
-    private void addActionListeners() {
-        repairButton.addActionListener(this);
     }
 }

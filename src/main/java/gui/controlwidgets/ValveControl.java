@@ -6,19 +6,16 @@ package gui.controlwidgets;
 
 import icarus.operatingsoftware.PlantControl;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.Box;
-import javax.swing.JLabel;
 import javax.swing.JToggleButton;
 
 /**
  *
  * @author drm
  */
-public class ValveControl extends ControlWidget implements ActionListener {
+public class ValveControl extends ControlWidget {
 
     int valveNumber;
     JToggleButton openButton;
@@ -26,18 +23,8 @@ public class ValveControl extends ControlWidget implements ActionListener {
     public ValveControl(PlantControl plant, int valveNumber) {
         super(plant);
         this.valveNumber = valveNumber;
-        Box box = Box.createVerticalBox();
-        JLabel title = new JLabel("Valve " + valveNumber);
-        openButton = new JToggleButton("Open");
-        add(box);
-        box.add(Align.left(title));
-        box.add(Align.centerVertical(openButton));
-
-        addActionListeners();
-    }
-
-    private void addActionListeners() {
-        openButton.addActionListener(this);
+        addTitle("Valve " + valveNumber);
+        openButton = addToggleButton("Open");
     }
 
     @Override
@@ -61,8 +48,6 @@ public class ValveControl extends ControlWidget implements ActionListener {
         if (o instanceof PlantControl) {
             PlantControl plantControl = (PlantControl)o;
             openButton.setSelected(plantControl.isValveOpened(valveNumber));
-
-
         }
     }
 }
