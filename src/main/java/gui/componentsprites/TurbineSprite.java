@@ -4,7 +4,10 @@ import drawing.Coordinate;
 import drawing.Sprite;
 import drawing.SpriteCanvas;
 import static drawing.builders.BuildAnimation.range;
-import static drawing.builders.BuildAnimationSet.singleAnimation;
+import static drawing.builders.BuildAnimation.singleFrame;
+import static drawing.builders.BuildAnimationSet.buildAnimationSet;
+import icarus.operatingsoftware.Components;
+import icarus.operatingsoftware.PlantControl;
 import java.io.IOException;
 import java.util.Observable;
 
@@ -16,11 +19,14 @@ public class TurbineSprite implements ComponentSprite {
     Sprite sprite;
 
     public TurbineSprite() throws IOException {
-        sprite = new Sprite(singleAnimation(
+        sprite = new Sprite(buildAnimationSet()
+                            .animation(
                             range()
                             .format("/fullsize/turbine_%03d.png")
                             .from(0).to(121)
-                            .loop()));
+                            .loop())
+                            .animation(singleFrame("/fullsize/turbine_failed.png"))
+                            .done());
     }
     
     @Override
@@ -35,7 +41,14 @@ public class TurbineSprite implements ComponentSprite {
 
     @Override
     public void update(Observable o, Object o1) {
-        //do nothing;
+        if (o instanceof PlantControl) {
+            PlantControl plantControl = (PlantControl)o;
+            if (plantControl.functional(Components.TURBINE)) {
+                sprite.ensureAnimationSelected(0);
+            } else {
+                sprite.ensureAnimationSelected(1);
+            }
+        }
     }
     
     

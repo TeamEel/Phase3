@@ -3,7 +3,10 @@ package gui.componentsprites;
 import drawing.Coordinate;
 import drawing.Sprite;
 import drawing.SpriteCanvas;
-import static drawing.builders.BuildSprite.staticSprite;
+import static drawing.builders.BuildAnimationSet.buildAnimationSet;
+import static drawing.builders.BuildAnimation.singleFrame;
+import icarus.operatingsoftware.Components;
+import icarus.operatingsoftware.PlantControl;
 import java.io.IOException;
 import java.util.Observable;
 
@@ -16,7 +19,10 @@ public class ReactorSprite implements ComponentSprite {
     private Sprite sprite;
 
     public ReactorSprite() throws IOException {
-        sprite = staticSprite("/fullsize/reactor.png");
+        sprite = new Sprite(buildAnimationSet()
+                .animation(singleFrame("/fullsize/reactor.png"))
+                .animation(singleFrame("/fullsize/reactor_failed.png"))
+                .done());
     }
 
     @Override
@@ -31,6 +37,13 @@ public class ReactorSprite implements ComponentSprite {
 
     @Override
     public void update(Observable o, Object o1) {
-        // do nothing
+        if (o instanceof PlantControl) {
+            PlantControl plantControl = (PlantControl)o;
+            if (plantControl.functional(Components.REACTOR)) {
+                sprite.ensureAnimationSelected(0);
+            } else {
+                sprite.ensureAnimationSelected(1);
+            }
+        }
     }
 }

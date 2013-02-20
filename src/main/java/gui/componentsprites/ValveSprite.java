@@ -17,31 +17,28 @@ public class ValveSprite implements ComponentSprite {
 
     private Sprite sprite;
     private int valveNumber;
-    
+
     public enum Orientation {
+
         NORMAL,
         ROTATED
     }
-    
-    public ValveSprite(int number, Orientation orientaton) throws IOException {
-        String pathFormat;
-        if (orientaton == Orientation.NORMAL) {
-            pathFormat = "/fullsize/valve_%03d.png";
-        } else {
-            pathFormat = "/fullsize/valve_rotated_%03d.png";
-        }
+
+    public ValveSprite(int number) throws IOException {
+        String pathFormat = "/fullsize/valve_%03d.png";
+
         valveNumber = number;
         sprite = new Sprite(buildAnimationSet()
                 .animation(
-                    range()
-                    .format(pathFormat)
-                    .from(0).to(39)
-                    .end())
+                range()
+                .format(pathFormat)
+                .from(0).to(39)
+                .end())
                 .animation(
-                    range()
-                    .format(pathFormat)
-                    .from(39).to(0)
-                    .end())
+                range()
+                .format(pathFormat)
+                .from(39).to(0)
+                .end())
                 .done());
     }
 
@@ -49,7 +46,7 @@ public class ValveSprite implements ComponentSprite {
     public void addToCanvas(SpriteCanvas canvas) {
         canvas.add(sprite, 2);
     }
-        
+
     @Override
     public void moveTo(int x, int y) {
         sprite.moveTo(new Coordinate(x, y));

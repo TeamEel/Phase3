@@ -4,7 +4,10 @@ import drawing.Coordinate;
 import drawing.Sprite;
 import drawing.SpriteCanvas;
 import static drawing.builders.BuildAnimation.range;
-import static drawing.builders.BuildAnimationSet.singleAnimation;
+import static drawing.builders.BuildAnimation.singleFrame;
+import static drawing.builders.BuildAnimationSet.buildAnimationSet;
+import icarus.operatingsoftware.Components;
+import icarus.operatingsoftware.PlantControl;
 import java.io.IOException;
 import java.util.Observable;
 
@@ -17,12 +20,15 @@ public class CondenserSprite implements ComponentSprite {
     private Sprite sprite;
 
     public CondenserSprite() throws IOException {
-        sprite = new Sprite(singleAnimation(
+        sprite = new Sprite(buildAnimationSet()
+                .animation(
                 range()
-                .format("/scaled/condenser_%03d.png")
+                .format("/scaled/condenser_2_%03d.png")
                 .from(0)
                 .to(39)
-                .loop()));
+                .loop())
+                .animation(singleFrame("/scaled/condenser_failed.png"))
+                .done());
     }
 
     @Override
@@ -37,6 +43,13 @@ public class CondenserSprite implements ComponentSprite {
 
     @Override
     public void update(Observable o, Object o1) {
-        //do nothing
+        if (o instanceof PlantControl) {
+            PlantControl plantControl = (PlantControl)o;
+            if (plantControl.functional(Components.CONDENSER)) {
+                sprite.ensureAnimationSelected(0);
+            } else {
+                sprite.ensureAnimationSelected(1);
+            }
+        }
     }
 }

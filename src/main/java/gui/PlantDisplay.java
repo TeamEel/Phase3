@@ -2,13 +2,18 @@ package gui;
 
 import drawing.ImageLoader;
 import drawing.SpriteCanvas;
+import gui.componentsprites.ComponentSprite;
 import gui.componentsprites.CondenserSprite;
+import gui.componentsprites.ControlRodSprite;
+import gui.componentsprites.CoolingTowerSprite;
+import gui.componentsprites.PumpSprite;
 import gui.componentsprites.ReactorSprite;
 import gui.componentsprites.TurbineSprite;
 import gui.componentsprites.ValveSprite;
 import icarus.operatingsoftware.OperatingSoftware;
 import java.awt.Color;
 import java.io.IOException;
+import java.util.ResourceBundle;
 import javax.swing.BorderFactory;
 import javax.swing.JPanel;
 
@@ -24,34 +29,36 @@ public class PlantDisplay extends JPanel {
     private ValveSprite valve1;
     private TurbineSprite turbine;
     private CondenserSprite condenser;
+    private ControlRodSprite controlRods;
+    private PumpSprite pump0;
+    private OperatingSoftware operatingSoftware;
 
     public PlantDisplay(OperatingSoftware os) throws IOException {
-        canvas = new SpriteCanvas(ImageLoader.imageResource("/scaled/plant_empty.png"));
+        operatingSoftware = os;
+        canvas = new SpriteCanvas(ImageLoader.imageResource("/scaled/plant2_empty.png"));
         add(canvas);
-        reactor = new ReactorSprite();
-        reactor.addToCanvas(canvas);
-        reactor.moveTo(3, 25);
-        valve0 = new ValveSprite(0, ValveSprite.Orientation.NORMAL);
-        valve0.addToCanvas(canvas);
-        valve0.moveTo(275, 63);
-        valve1 = new ValveSprite(1, ValveSprite.Orientation.ROTATED);
-        valve1.addToCanvas(canvas);
-        valve1.moveTo(400, 63);
-        turbine = new TurbineSprite();
-        turbine.addToCanvas(canvas);
-        turbine.moveTo(360, 28);
-        condenser = new CondenserSprite();
-        condenser.addToCanvas(canvas);
-        condenser.moveTo(423, 190);
-        setPreferredSize(canvas.getPreferredSize());
-        setBorder(BorderFactory.createLineBorder(Color.black));
+        addComponentSprite(new ReactorSprite(), 3, 30);
+        addComponentSprite(new ValveSprite(0), 315, 28);
+        addComponentSprite(new ValveSprite(1), 392, 130);
+        addComponentSprite(new TurbineSprite(), 380, 35);
+        addComponentSprite(new CondenserSprite(), 425, 180);
+        addComponentSprite(new ControlRodSprite(100), 10, 10);
+        addComponentSprite(new PumpSprite(0), 295, 342);
+        addComponentSprite(new PumpSprite(1), 295, 430);
+        addComponentSprite(new PumpSprite(2), 590, 315);
+        addComponentSprite(new CoolingTowerSprite(), 675, 185);
         canvas.setFrameInterval(10);
         canvas.start();
-        os.addObserver(valve0);
-        os.addObserver(valve1);
     }
 
     public SpriteCanvas canvas() {
         return canvas;
+    }
+
+    private void addComponentSprite(ComponentSprite sprite,
+                                    int x, int y) {
+        sprite.addToCanvas(canvas);
+        sprite.moveTo(x, y);
+        operatingSoftware.addObserver(sprite);
     }
 }
