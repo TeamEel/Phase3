@@ -23,9 +23,10 @@ public class FileInput {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static SaveState loadObjectFromFile(String fileName) throws FileNotFoundException,ClassNotFoundException,IOException {
+    public static SaveState loadObjectFromFile(String fileName) throws FileNotFoundException, ClassNotFoundException,
+                                                                       IOException {
         SaveState s = null;
-      
+
         FileInputStream fileIn = new FileInputStream(fileName);
         ObjectInputStream in = new ObjectInputStream(fileIn);
 

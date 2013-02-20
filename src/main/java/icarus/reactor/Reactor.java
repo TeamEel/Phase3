@@ -99,9 +99,9 @@ public class Reactor extends MajorComponent implements Serializable {
     public void calculateTemperature() {
         // stops divide by zero error
         if (waterLevel < 1) {
-            temperature = temperature + ((activity / 1) * 60) -20;
+            temperature = temperature + ((activity / 1) * 60) - 20;
         } else {
-            temperature = temperature + ((activity / waterLevel) * 60) -20;
+            temperature = temperature + ((activity / waterLevel) * 60) - 20;
         }
         // cools temperature proportional to the water being put in
         temperature += (waterIn * 4);
@@ -114,8 +114,6 @@ public class Reactor extends MajorComponent implements Serializable {
 
     }
 
-    
-    
     public void movecontrolrods(int amount) throws InvalidRodsException, ComponentFailedException {
 
         if (functional) {
@@ -123,14 +121,12 @@ public class Reactor extends MajorComponent implements Serializable {
             if (amount < 0 || amount > 100) {
                 throw new InvalidRodsException(amount);
             } else {
-                rodHeight =  amount;
+                rodHeight = amount;
             }
         } else {
             throw new ComponentFailedException();
         }
     }
-
-    
 
     /**
      *

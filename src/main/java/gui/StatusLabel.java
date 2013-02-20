@@ -9,7 +9,9 @@ import javax.swing.JPanel;
  * @author drm
  */
 public class StatusLabel extends JPanel {
+
     private JLabel dataLabel;
+
     public StatusLabel(String name, String initialText) {
         Box box = Box.createHorizontalBox();
         add(box);
@@ -17,7 +19,7 @@ public class StatusLabel extends JPanel {
         box.add(Box.createHorizontalGlue());
         box.add(dataLabel = new JLabel(initialText));
     }
-    
+
     public void setData(String text) {
         dataLabel.setText(text);
     }

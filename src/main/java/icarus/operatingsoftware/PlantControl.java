@@ -249,6 +249,4 @@ public interface PlantControl {
      * @throws InvalidComponentException Thrown when a non-reactor/-condenser component is specified
      */
     double waterLevel(Components component);
-    
-    
 }

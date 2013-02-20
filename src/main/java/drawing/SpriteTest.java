@@ -51,7 +51,7 @@ public class SpriteTest extends JFrame implements ActionListener, ChangeListener
             blackButton = addButton("Black");
             yellowButton = addButton("Yellow");
 
-    //            canvas = new SpriteCanvas(ImageIO.read(getClass().getResource("/test_background.png")));
+            //            canvas = new SpriteCanvas(ImageIO.read(getClass().getResource("/test_background.png")));
             canvas = new SpriteCanvas(ImageLoader.imageResource("/scaled/plant.png"));
             vbox.add(canvas);
             Animation[] animations = {

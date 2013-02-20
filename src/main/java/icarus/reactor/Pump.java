@@ -13,10 +13,16 @@ import icarus.exceptions.NoFixNeededException;
  * @author James
  */
 public interface Pump {
+
     void turnOn() throws AlreadyAtStateException, ComponentFailedException;
+
     void turnOff() throws AlreadyAtStateException, ComponentFailedException;
+
     boolean isActive();
+
     boolean getFunctional();
+
     boolean getRepairing();
+
     void beginFix() throws NoFixNeededException;
 }

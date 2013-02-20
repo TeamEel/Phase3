@@ -28,15 +28,15 @@ public class SpriteCanvas extends JPanel implements ActionListener {
     public void setFrameInterval(int ms) {
         timer.setDelay(ms);
     }
-    
+
     public void start() {
         timer.start();
     }
-    
+
     public void stop() {
         timer.stop();
     }
-    
+
     public void add(Sprite s, int z) {
         sprites.add(s, z);
     }

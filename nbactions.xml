@@ -15,22 +15,22 @@
         </goals>
     </action>
     <action>
-            <actionName>run</actionName>
-            <goals>
-                <goal>process-classes</goal>
-                <goal>org.codehaus.mojo:exec-maven-plugin:1.2:exec</goal>
-            </goals>
-            <properties>
-                <exec.args>-classpath %classpath gui.MainWindow</exec.args>
-                <exec.executable>java</exec.executable>
-                <exec.classpathScope>runtime</exec.classpathScope>
-            </properties>
-        </action>
+        <actionName>run</actionName>
+        <goals>
+            <goal>process-classes</goal>
+            <goal>org.codehaus.mojo:exec-maven-plugin:1.2:exec</goal>
+        </goals>
+        <properties>
+            <exec.args>-classpath %classpath gui.MainWindow</exec.args>
+            <exec.executable>java</exec.executable>
+            <exec.classpathScope>runtime</exec.classpathScope>
+        </properties>
+    </action>
     <action>
-            <actionName>CUSTOM-Build .jar</actionName>
-            <displayName>Build .jar</displayName>
-            <goals>
-                <goal>assembly:single</goal>
-            </goals>
-        </action>
+        <actionName>CUSTOM-Build .jar</actionName>
+        <displayName>Build .jar</displayName>
+        <goals>
+            <goal>assembly:single</goal>
+        </goals>
+    </action>
 </actions>

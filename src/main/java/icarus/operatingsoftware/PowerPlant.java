@@ -38,10 +38,10 @@ public class PowerPlant implements Plant {
 
         steamValve = new SteamValve(reactor, turbine, condenser);
 
-        
+
         waterPump[0] = new WaterPump(condenser, reactor);
         waterPump[1] = new WaterPump(condenser, reactor);
-        
+
         try {
             waterPump[1].turnOff();
         } catch (AlreadyAtStateException e) {
@@ -144,7 +144,7 @@ public class PowerPlant implements Plant {
     public void turnOff(int pumpNum) throws InvalidPumpException, AlreadyAtStateException, ComponentFailedException {
         if (validPumpNum(pumpNum)) {
             waterPump[pumpNum].turnOff();
-        
+
         } else {
             throw new InvalidPumpException(pumpNum);
         }
@@ -159,8 +159,7 @@ public class PowerPlant implements Plant {
      */
     @Override
     public boolean isWaterPumpActive(int pumpNum) {
-        if(pumpNum==2)
-        {
+        if (pumpNum == 2) {
             return isCondenserPumpActive();
         }
         return waterPump[pumpNum].isActive();
@@ -272,8 +271,7 @@ public class PowerPlant implements Plant {
             throw new IllegalArgumentException("This method cannot be called with '" + component.toString() + "'");
         }
         if (pumpNum < 0 || pumpNum >= waterPump.length) {
-            if(pumpNum ==2)
-            {
+            if (pumpNum == 2) {
                 return functional(Components.CONDENSERPUMP);
             }
             throw new IllegalArgumentException("'" + pumpNum + "' is not a valid pump number.");
@@ -373,7 +371,7 @@ public class PowerPlant implements Plant {
                 if (validPumpNum(pumpNum)) {
                     waterPump[pumpNum].beginFix();
                 } else {
-                        throw new InvalidPumpException(pumpNum);
+                    throw new InvalidPumpException(pumpNum);
                 }
             } else {
                 throw new InvalidComponentException(component.toString());
@@ -412,7 +410,7 @@ public class PowerPlant implements Plant {
 
         checkFailures();
         doFixes();
-        
+
     }
 
     private void doFixes() {
@@ -518,7 +516,7 @@ public class PowerPlant implements Plant {
      */
     @Override
     public boolean isRepairing(Components component, int id) {
-        if (component == Components.WATERPUMP && id <3) {
+        if (component == Components.WATERPUMP && id < 3) {
             return waterPump[id].getRepairing();
         }
         return false;
@@ -572,8 +570,7 @@ public class PowerPlant implements Plant {
             turbine,
             (WaterPump)waterPump[0],
             (WaterPump)waterPump[1],
-            (CondenserPump)waterPump[2],
-        };
+            (CondenserPump)waterPump[2],};
         return result;
     }
 

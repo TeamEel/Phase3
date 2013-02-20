@@ -18,7 +18,7 @@ public class FileInputTest {
         assertNotNull(FileInput.loadObjectFromFile("test123.ser"));
     }
 
-    @Test(expected=FileNotFoundException.class)
+    @Test(expected = FileNotFoundException.class)
     public void testLoadObjectFromFileNeg() throws FileNotFoundException, IOException, ClassNotFoundException {
         assertNull(FileInput.loadObjectFromFile("2nju234uj2"));
     }

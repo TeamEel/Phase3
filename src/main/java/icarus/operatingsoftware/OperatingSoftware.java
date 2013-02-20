@@ -76,7 +76,7 @@ public class OperatingSoftware extends Observable implements PlantControl {
      *
      * @return The new height of the control rods
      *
-     * @throws InvalidRodsException Thrown when amount specified is negative
+     * @throws InvalidRodsException     Thrown when amount specified is negative
      * @throws ComponentFailedException Thrown if method is called when component is failed.
      */
     @Override

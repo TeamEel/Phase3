@@ -9,7 +9,9 @@ import javax.swing.JPanel;
  * @author drm
  */
 public abstract class ControlWidget extends JPanel implements Observer {
+
     PlantControl plant;
+
     public ControlWidget(PlantControl plantControl) {
         this.plant = plantControl;
     }

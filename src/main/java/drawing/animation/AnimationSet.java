@@ -21,7 +21,7 @@ public class AnimationSet {
         currentAnimation = animation;
         animations[currentAnimation].reset();
     }
-    
+
     public void ensureSelected(int animation) {
         if (animation != currentAnimation) {
             select(animation);

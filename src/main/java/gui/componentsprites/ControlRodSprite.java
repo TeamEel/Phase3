@@ -13,11 +13,12 @@ import java.util.Observable;
  * @author david
  */
 public class ControlRodSprite implements ComponentSprite {
+
     private Sprite sprite;
     private int yRange;
     private Coordinate position;
     private int yOffset;
-    
+
     public ControlRodSprite(int yRange) throws IOException {
         sprite = BuildSprite.staticSprite("/scaled/control_rods.png");
         this.yRange = yRange;
@@ -43,8 +44,8 @@ public class ControlRodSprite implements ComponentSprite {
             updateLocation();
         }
     }
-    
-    private void updateLocation() {        
+
+    private void updateLocation() {
         sprite.moveTo(position.plus(new Coordinate(0, yOffset)));
     }
 }

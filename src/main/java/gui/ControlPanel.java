@@ -16,8 +16,9 @@ import javax.swing.JPanel;
  * @author drm
  */
 public class ControlPanel extends JPanel implements Observer {
-        ArrayList<ControlWidget> controlWidgets;
-    
+
+    ArrayList<ControlWidget> controlWidgets;
+
     public ControlPanel(OperatingSoftware plant) {
         controlWidgets = new ArrayList<ControlWidget>();
         controlWidgets.add(new ReactorControl(plant));
@@ -46,5 +47,4 @@ public class ControlPanel extends JPanel implements Observer {
             cw.update(o, o1);
         }
     }
-
 }

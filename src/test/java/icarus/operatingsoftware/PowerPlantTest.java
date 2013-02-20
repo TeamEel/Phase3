@@ -33,9 +33,8 @@ public class PowerPlantTest {
     @Test
     public void testSetControlRodPosition() throws Exception {
         op.movecontrolrods(15);
-        assertEquals(15,op.rodHeight());
+        assertEquals(15, op.rodHeight());
     }
-
 
     @Test
     public void testOpen() throws Exception {
@@ -111,8 +110,7 @@ public class PowerPlantTest {
     public void functionalShouldThrowOnIncorrectPumpNo() throws InvalidComponentException {
         op.functional(Components.WATERPUMP, 100);
     }
-    
-    
+
     @Test
     public void testRodHeight() {
         Reactor reactor = new Reactor();

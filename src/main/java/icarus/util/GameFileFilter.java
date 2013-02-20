@@ -15,17 +15,16 @@ public class GameFileFilter extends FileFilter {
 
     @Override
     public boolean accept(File file) {
-        if(file.isDirectory()){
+        if (file.isDirectory()) {
             return true;
         }
-        
+
         String extension = getExtension(file);
-        if(extension!=null) {
-            if(extension.equals(".ser"))
-            {
+        if (extension != null) {
+            if (extension.equals(".ser")) {
                 return true;
             }
-        
+
         }
         return false;
     }
@@ -37,11 +36,9 @@ public class GameFileFilter extends FileFilter {
 
     private String getExtension(File file) {
         int pos = file.getName().lastIndexOf('.');
-        if(pos>0 && pos < file.getName().length()-1)
-        {
+        if (pos > 0 && pos < file.getName().length() - 1) {
             return file.getName().substring(pos);
         }
         return null;
     }
-    
 }

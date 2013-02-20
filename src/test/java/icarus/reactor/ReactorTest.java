@@ -5,7 +5,6 @@ import icarus.exceptions.InvalidRodsException;
 import icarus.exceptions.MaximumRodsException;
 import icarus.exceptions.MinimumRodsException;
 import icarus.exceptions.NoFixNeededException;
-import icarus.reactor.Reactor;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
@@ -40,7 +39,7 @@ public class ReactorTest {
     public void testLowerExcessive() throws InvalidRodsException, MinimumRodsException, ComponentFailedException {
         reactor.movecontrolrods(-1);
     }
-    
+
     @Test
     public void testMoveRod() throws InvalidRodsException, MinimumRodsException, ComponentFailedException {
         reactor.movecontrolrods(60);
@@ -48,7 +47,6 @@ public class ReactorTest {
         reactor.movecontrolrods(20);
         assertEquals(reactor.getRodHeight(), 20);
     }
-
 
     @Test
     public void testAddWater() {

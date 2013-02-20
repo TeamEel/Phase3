@@ -89,7 +89,7 @@ public class CondenserPump extends Component implements Serializable, Pump {
     public boolean isActive() {
         return active;
     }
-    
+
     @Override
     public void beginFix() throws NoFixNeededException {
         super.beginFix();

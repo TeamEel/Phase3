@@ -10,7 +10,7 @@ import java.io.IOException;
  */
 public class BuildSprite {
 
-    public static Sprite staticSprite(String resourcePath) throws IOException {        
+    public static Sprite staticSprite(String resourcePath) throws IOException {
         return new Sprite(BuildAnimationSet.singleImage(resourcePath));
     }
 }

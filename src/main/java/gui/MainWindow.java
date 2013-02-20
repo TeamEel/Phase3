@@ -21,6 +21,7 @@ import javax.swing.filechooser.FileFilter;
  * @author drm511
  */
 public class MainWindow extends JFrame implements ActionListener, ChangeListener, Observer {
+
     private JFileChooser fc;
     private JMenu fileMenu;
     private JMenu helpMenu;
@@ -30,7 +31,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
     private JSlider rodSlider;
     private OperatingSoftware os;
     private PlantDisplay plantDisplay;
-    
+
     /**
      * Creates new form MainWindow
      */
@@ -38,8 +39,8 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
         try {
             os = new OperatingSoftware(new PowerPlant());
             os.addObserver(this);
-            
-            
+
+
             viewPanel = new PlantDisplay(os);
             controlPanel = new ControlPanel(os);
             menuBar = new JMenuBar();
@@ -48,7 +49,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
             fc = new JFileChooser();
             GameFileFilter ff = new GameFileFilter();
             fc.addChoosableFileFilter(ff);
-            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);            
+            setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
             GroupLayout layout = new GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
@@ -72,7 +73,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
 
 
             pack();
-            
+
             createMenus();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -114,45 +115,30 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        try
-        {
-            
-            if(e.getActionCommand().equals("New Game"))
-            {
+        try {
+
+            if (e.getActionCommand().equals("New Game")) {
                 startNewGame();
-                
-            }
-            else if(e.getActionCommand().equals("Save Game"))
-            {
+
+            } else if (e.getActionCommand().equals("Save Game")) {
                 int retval = fc.showSaveDialog(this);
-                if(retval == JFileChooser.APPROVE_OPTION)
-                {
+                if (retval == JFileChooser.APPROVE_OPTION) {
                     File file = fc.getSelectedFile();
                     os.saveToFile(file.getAbsolutePath());
                 }
-                
-            }
-            else if(e.getActionCommand().equals("Load Game"))
-            {
+
+            } else if (e.getActionCommand().equals("Load Game")) {
                 loadGame();
-                
-            }
-            else if(e.getActionCommand().equals("Quit"))
-            {
+
+            } else if (e.getActionCommand().equals("Quit")) {
                 quit();
-            }
-            else if(e.getActionCommand().equals("Online Help"))
-            {
-                java.awt.Desktop.getDesktop().browse( new URI("http://www.teameel.com/user-manual"));
-            }
-            else if(e.getActionCommand().equals("About"))
-            {
+            } else if (e.getActionCommand().equals("Online Help")) {
+                java.awt.Desktop.getDesktop().browse(new URI("http://www.teameel.com/user-manual"));
+            } else if (e.getActionCommand().equals("About")) {
                 showAboutDialog();
-                
+
             }
-        }
-        catch(Exception ex)
-        {
+        } catch (Exception ex) {
         }
         repaint();
     }
@@ -164,27 +150,26 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
 
     @Override
     public void update(Observable o, Object o1) {
-        
+
         if (o instanceof PlantControl) {
             PlantControl plantControl = (PlantControl)o;
-            
-            if(plantControl.checkIfGameOver())
-            {
+
+            if (plantControl.checkIfGameOver()) {
                 Object[] options = {"New Game",
-                    "Load Game",
-                    "Quit"};
+                                    "Load Game",
+                                    "Quit"};
                 int n = JOptionPane.showOptionDialog(this,
-                    os.getPlayerName()+ ", you have blown up the nuclear power plant. The game is now over\n"
-                    + "Start new game?",
-                    "Game Over",
-                    JOptionPane.YES_NO_CANCEL_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,
-                    null,
-                    options,
-                    options[0]);
-                
-                switch(n)
-                {
+                                                     os.getPlayerName() +
+                                                     ", you have blown up the nuclear power plant. The game is now over\n" +
+                         "Start new game?",
+                                                     "Game Over",
+                                                     JOptionPane.YES_NO_CANCEL_OPTION,
+                                                     JOptionPane.QUESTION_MESSAGE,
+                                                     null,
+                                                     options,
+                                                     options[0]);
+
+                switch (n) {
                     case JOptionPane.YES_OPTION:
                         startNewGame();
                         break;
@@ -194,7 +179,7 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
                     case JOptionPane.CANCEL_OPTION:
                         quit();
                         break;
-                        
+
                 }
             }
         }
@@ -203,29 +188,29 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
     private void createMenus() {
         JMenuItem tmpMenuItem;
         fileMenu.setText("File");
-        
-        
+
+
         tmpMenuItem = new JMenuItem("New Game");
         tmpMenuItem.addActionListener(this);
         fileMenu.add(tmpMenuItem);
-        
+
         tmpMenuItem = new JMenuItem("Load Game");
         tmpMenuItem.addActionListener(this);
         fileMenu.add(tmpMenuItem);
-        
+
         tmpMenuItem = new JMenuItem("Save Game");
         tmpMenuItem.addActionListener(this);
         fileMenu.add(tmpMenuItem);
-        
+
         tmpMenuItem = new JMenuItem("Quit");
         tmpMenuItem.addActionListener(this);
         fileMenu.add(tmpMenuItem);
-        
-        
+
+
         menuBar.add(fileMenu);
         helpMenu.setText("Help");
-        
-        
+
+
         tmpMenuItem = new JMenuItem("Online Help");
         tmpMenuItem.addActionListener(this);
         helpMenu.add(tmpMenuItem);
@@ -237,28 +222,25 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
     }
 
     private void quit() {
-        this.dispatchEvent(new WindowEvent(this,WindowEvent.WINDOW_CLOSING));
+        this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
     }
 
     private void setUsername() {
         String userName = JOptionPane.showInputDialog(null, "Enter username: ", "Enter Username", 1);
-        
-        if(userName == null || userName.trim().isEmpty())
-        {
+
+        if (userName == null || userName.trim().isEmpty()) {
             setUsername();
         }
-        
-        os.setPlayerName(userName);        
+
+        os.setPlayerName(userName);
     }
 
     private void loadGame() {
         int retval = fc.showOpenDialog(this);
-        if(retval == JFileChooser.APPROVE_OPTION)
-        {
+        if (retval == JFileChooser.APPROVE_OPTION) {
             File file = fc.getSelectedFile();
-            if(!os.loadFromFile(file.getAbsolutePath()))
-            {
-                JOptionPane.showMessageDialog(null,"Unable to load this file");
+            if (!os.loadFromFile(file.getAbsolutePath())) {
+                JOptionPane.showMessageDialog(null, "Unable to load this file");
                 System.err.println("Error Loading File");
             }
         }
@@ -271,13 +253,13 @@ public class MainWindow extends JFrame implements ActionListener, ChangeListener
     }
 
     private void showIntroTextDialog() {
-        IntroDialog introDialog = new IntroDialog(this,true);
+        IntroDialog introDialog = new IntroDialog(this, true);
         introDialog.pack();
-        introDialog.setVisible(true);        
+        introDialog.setVisible(true);
     }
 
     private void showAboutDialog() {
-        AboutDialog aboutDialog = new AboutDialog(this,true);
+        AboutDialog aboutDialog = new AboutDialog(this, true);
         aboutDialog.pack();
         aboutDialog.setVisible(true);
     }
