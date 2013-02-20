@@ -33,7 +33,7 @@ public class ValveSprite implements ComponentSprite {
                                     .from(39)
                                     .to(0)
                                     .stop())
-                                    .done());
+                                .done());
     }
 
     @Override
