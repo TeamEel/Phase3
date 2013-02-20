@@ -2,6 +2,10 @@ package drawing.animation;
 
 import java.awt.Image;
 
+/**
+ * Concrete Animation implementation for one-shot animations
+ * @author david
+ */
 public class OneShotAnimation extends Animation {
 
     public OneShotAnimation(Image[] images) {

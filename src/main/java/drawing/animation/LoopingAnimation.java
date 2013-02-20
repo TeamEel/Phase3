@@ -2,6 +2,10 @@ package drawing.animation;
 
 import java.awt.Image;
 
+/**
+ * Concrete Animation implementation for looping animations
+ * @author david
+ */
 public class LoopingAnimation extends Animation {
 
     public LoopingAnimation(Image[] images) {

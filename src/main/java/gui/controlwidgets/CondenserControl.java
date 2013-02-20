@@ -1,8 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-package gui;
+package gui.controlwidgets;
 
 import icarus.operatingsoftware.Components;
 import icarus.operatingsoftware.PlantControl;
@@ -19,14 +15,14 @@ import javax.swing.JToggleButton;
  *
  * @author James
  */
-public class TurbineControl extends ControlWidget implements ActionListener {
+public class CondenserControl extends ControlWidget implements ActionListener {
 
     JToggleButton repairButton;
 
-    public TurbineControl(PlantControl plant) {
+    public CondenserControl(PlantControl plant) {
         super(plant);
         Box box = Box.createVerticalBox();
-        JLabel title = new JLabel("Turbine");
+        JLabel title = new JLabel("Condenser");
         repairButton = new JToggleButton("Repair");
         add(box);
         box.add(Align.left(title));
@@ -41,7 +37,7 @@ public class TurbineControl extends ControlWidget implements ActionListener {
         Object source = event.getSource();
         try {
             if (source == repairButton) {
-                plant.fix(Components.TURBINE);
+                plant.fix(Components.CONDENSER);
 
             }
         } catch (Exception e) {
@@ -53,9 +49,8 @@ public class TurbineControl extends ControlWidget implements ActionListener {
     public void update(Observable o, Object o1) {
         if (o instanceof PlantControl) {
             PlantControl plantControl = (PlantControl)o;
-            repairButton.setEnabled(!plantControl.functional(Components.TURBINE) &&
-                                    !plantControl.fixUnderway());
-            repairButton.setSelected(plantControl.isRepairing(Components.TURBINE));
+            repairButton.setEnabled(!plantControl.functional(Components.CONDENSER) && !plantControl.fixUnderway());
+            repairButton.setSelected(plantControl.isRepairing(Components.CONDENSER));
         }
     }
 

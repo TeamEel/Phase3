@@ -1,11 +1,10 @@
 package drawing.builders;
 
 import drawing.Sprite;
-import drawing.animation.Animation;
 import java.io.IOException;
 
 /**
- *
+ * Helper methods to create Sprites
  * @author drm
  */
 public class BuildSprite {

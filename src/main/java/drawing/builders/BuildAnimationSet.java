@@ -5,7 +5,7 @@ import drawing.animation.AnimationSet;
 import java.io.IOException;
 
 /**
- *
+ * Helper methods to create Expression Builders for AnimationSets
  * @author drm
  */
 public class BuildAnimationSet {

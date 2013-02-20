@@ -1,7 +1,8 @@
 package drawing;
 
 /**
- *
+ * Encapsulate an x,y coordinate pair
+ * 
  * @author drm
  */
 public class Coordinate {

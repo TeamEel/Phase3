@@ -1,4 +1,4 @@
-package gui;
+package gui.controlwidgets;
 
 import icarus.exceptions.AlreadyAtStateException;
 import icarus.exceptions.ComponentFailedException;

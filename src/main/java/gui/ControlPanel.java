@@ -1,5 +1,12 @@
 package gui;
 
+import gui.controlwidgets.ControlWidget;
+import gui.controlwidgets.PumpControl;
+import gui.controlwidgets.CondenserControl;
+import gui.controlwidgets.StatusDisplay;
+import gui.controlwidgets.ValveControl;
+import gui.controlwidgets.TurbineControl;
+import gui.controlwidgets.ReactorControl;
 import icarus.operatingsoftware.OperatingSoftware;
 import icarus.operatingsoftware.Plant;
 import icarus.operatingsoftware.PlantControl;

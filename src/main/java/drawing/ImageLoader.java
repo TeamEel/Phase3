@@ -7,7 +7,8 @@ import java.net.URL;
 import javax.imageio.ImageIO;
 
 /**
- *
+ * Utility class to help with loading images from class resources
+ * 
  * @author drm
  */
 public class ImageLoader {

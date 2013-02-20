@@ -1,4 +1,4 @@
-package gui;
+package gui.controlwidgets;
 
 import icarus.operatingsoftware.Components;
 import icarus.operatingsoftware.PlantControl;

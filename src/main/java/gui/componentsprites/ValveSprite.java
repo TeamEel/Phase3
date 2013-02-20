@@ -33,12 +33,12 @@ public class ValveSprite implements ComponentSprite {
                 range()
                 .format(pathFormat)
                 .from(0).to(39)
-                .end())
+                .stop())
                 .animation(
                 range()
                 .format(pathFormat)
                 .from(39).to(0)
-                .end())
+                .stop())
                 .done());
     }
 

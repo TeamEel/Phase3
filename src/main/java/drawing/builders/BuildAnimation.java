@@ -4,7 +4,7 @@ import drawing.animation.Animation;
 import java.io.IOException;
 
 /**
- *
+ * Helper methods to create Expression Builders for Animations
  * @author drm
  */
 public class BuildAnimation {
@@ -18,6 +18,6 @@ public class BuildAnimation {
     }
 
     public static Animation singleFrame(String resourcePath) throws IOException {
-        return frames().frame(resourcePath).end();
+        return frames().frame(resourcePath).stop();
     }
 }

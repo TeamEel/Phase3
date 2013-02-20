@@ -1,4 +1,4 @@
-package gui;
+package gui.controlwidgets;
 
 import icarus.operatingsoftware.PlantControl;
 import java.util.Observer;

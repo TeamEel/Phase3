@@ -1,4 +1,4 @@
-package gui;
+package gui.controlwidgets;
 
 import javax.swing.Box;
 import javax.swing.JLabel;

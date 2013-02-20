@@ -3,7 +3,10 @@ package drawing;
 import java.awt.Graphics;
 
 /**
- *
+ * Encapsulate a Sprite with an associated z-value
+ * 
+ * Provides the interface needed by SpriteSet and (indirectly) SpriteCanvas.
+ * 
  * @author drm
  */
 public class ZSprite implements Comparable<ZSprite> {

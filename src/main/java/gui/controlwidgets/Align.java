@@ -1,10 +1,11 @@
-package gui;
+package gui.controlwidgets;
 
 import java.awt.Component;
 import javax.swing.Box;
 
 /**
- *
+ * Helper classes to create hboxes with appropriate glue to
+ * align GUI elements on the left or in the centre of a vbox
  * @author drm
  */
 public class Align {
